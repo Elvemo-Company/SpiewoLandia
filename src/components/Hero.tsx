@@ -1,0 +1,63 @@
+import React from 'react';
+import { Play, ChevronDown } from 'lucide-react';
+
+const Hero = () => {
+  return (
+    <section className="relative h-screen flex items-center justify-center overflow-hidden">
+      {/* Video Background */}
+      <div className="absolute inset-0 z-0">
+        <div className="w-full h-full bg-gradient-to-r from-chocolate/80 via-chocolate/40 to-transparent">
+          <img 
+            src="https://images.pexels.com/photos/8293657/pexels-photo-8293657.jpeg"
+            alt="Children singing happily"
+            className="w-full h-full object-cover"
+          />
+        </div>
+      </div>
+
+      {/* Content */}
+      <div className="relative z-10 max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
+        <h1 className="font-serif text-h1-mobile lg:text-h1-desktop font-bold text-white mb-6 animate-fade-in">
+          Odkryj Radość Muzyki
+        </h1>
+        <p className="text-lg lg:text-xl text-white/90 mb-8 max-w-2xl mx-auto animate-slide-up">
+          Profesjonalne zajęcia muzyczne dla dzieci i dorosłych. 
+          Rozwijamy talenty, budujemy pewność siebie, tworzymy niezapomniane chwile.
+        </p>
+        
+        <div className="flex flex-col sm:flex-row justify-center items-center space-y-4 sm:space-y-0 sm:space-x-6 animate-slide-up">
+          <button className="bg-golden hover:bg-sunset text-white px-8 py-4 rounded-full font-medium text-lg transition-all duration-300 transform hover:scale-105 hover:shadow-card-hover">
+            Zobacz Zajęcia
+          </button>
+          <button className="group flex items-center border-2 border-white text-white hover:bg-white hover:text-chocolate px-8 py-4 rounded-full font-medium text-lg transition-all duration-300">
+            <Play className="h-5 w-5 mr-2 group-hover:text-golden transition-colors" />
+            Umów Próbną Lekcję
+          </button>
+        </div>
+
+        {/* Stats Preview */}
+        <div className="grid grid-cols-3 gap-8 mt-16 max-w-2xl mx-auto">
+          <div className="text-center animate-fade-in">
+            <div className="text-2xl lg:text-3xl font-bold text-golden">500+</div>
+            <div className="text-sm text-white/80">Szczęśliwych Uczniów</div>
+          </div>
+          <div className="text-center animate-fade-in">
+            <div className="text-2xl lg:text-3xl font-bold text-golden">10</div>
+            <div className="text-sm text-white/80">Lat Doświadczenia</div>
+          </div>
+          <div className="text-center animate-fade-in">
+            <div className="text-2xl lg:text-3xl font-bold text-golden">50+</div>
+            <div className="text-sm text-white/80">Występów Rocznie</div>
+          </div>
+        </div>
+      </div>
+
+      {/* Scroll Indicator */}
+      <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce-gentle">
+        <ChevronDown className="h-6 w-6 text-white/60" />
+      </div>
+    </section>
+  );
+};
+
+export default Hero;
