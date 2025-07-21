@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Menu, X, Phone } from 'lucide-react';
-import logo from '../assets/logo.png';
+import logo from '../assets/logo.svg';
 
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -24,7 +24,7 @@ const Header = () => {
     { name: 'Lekcje', href: '/vocal-lessons' },
     { name: 'Dla Przedszkoli', href: '/preschool-programs' },
     { name: 'Śluby', href: '/wedding-services' },
-    { name: 'O Nas', href: '/about' },
+    { name: 'O Mnie', href: '/about' },
     { name: 'Kontakt', href: '/contact' }
   ];
 
