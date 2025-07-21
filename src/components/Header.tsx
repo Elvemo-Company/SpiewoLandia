@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Music, Menu, X, Phone, ChevronDown } from 'lucide-react';
+import { Menu, X, Phone } from 'lucide-react';
+import logo from '../assets/logo.png';
 
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
   const location = useLocation();
 
   useEffect(() => {
@@ -18,19 +18,12 @@ const Header = () => {
 
   const navigation = [
     {
-      name: 'Zajęcia dla Dzieci',
-      href: '/book-classes',
-      dropdown: [
-        { name: 'Warszawa Centrum', href: '/book-classes' },
-        { name: 'Kraków', href: '/book-classes' },
-        { name: 'Gdańsk', href: '/book-classes' },
-        { name: 'Harmonogram', href: '/book-classes' },
-        { name: 'Cennik', href: '/book-classes' }
-      ]
+      name: 'Dla Dzieci',
+      href: '/book-classes'
     },
-    { name: 'Lekcje Wokalne', href: '/vocal-lessons' },
-    { name: 'Programy dla Przedszkoli', href: '/preschool-programs' },
-    { name: 'Oprawa Ślubu', href: '/wedding-services' },
+    { name: 'Lekcje', href: '/vocal-lessons' },
+    { name: 'Dla Przedszkoli', href: '/preschool-programs' },
+    { name: 'Śluby', href: '/wedding-services' },
     { name: 'O Nas', href: '/about' },
     { name: 'Kontakt', href: '/contact' }
   ];
@@ -46,71 +39,42 @@ const Header = () => {
           isScrolled ? 'bg-white shadow-card' : 'bg-transparent'
         }`}
       >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-16 lg:h-20">
-            {/* Logo */}
-            <div className="flex items-center">
-              <div className="flex-shrink-0 flex items-center">
-                <Link to="/" className="flex items-center">
-                  <Music className={`h-8 w-8 mr-2 transition-colors duration-300 ${
-                    isScrolled ? 'text-golden' : 'text-white'
-                  }`} />
-                  <span className={`font-serif text-xl lg:text-2xl font-bold transition-colors duration-300 ${
-                    isScrolled ? 'text-dark-brown' : 'text-white'
-                  }`}>
+        <div className="max-w-7xl mx-auto px-2 sm:px-4 lg:px-6">
+          <div className="flex justify-center items-center h-16 lg:h-20">
+            <div className="hidden lg:flex items-center gap-x-4 px-2">
+              {/* Logo */}
+              <div className="flex-shrink-0 flex items-center pr-6 lg:pr-10">
+                <Link to="/" className="flex items-center focus:outline-none focus:border-none">
+                  <img src={logo} alt="Logo" className="h-16 w-16 mr-4 object-contain" />
+                  <span className="font-serif text-xl lg:text-2xl font-bold text-dark-brown transition-colors duration-300">
                     ŚpiewoLandia
                   </span>
                 </Link>
               </div>
-            </div>
-
-            {/* Desktop Navigation */}
-            <nav className="hidden lg:flex items-center space-x-8">
+              {/* Menu Items */}
               {navigation.map((item) => (
-                <div 
-                  key={item.name} 
-                  className="relative"
-                  onMouseEnter={() => item.dropdown && setActiveDropdown(item.name)}
-                  onMouseLeave={() => setActiveDropdown(null)}
+                <Link
+                  key={item.name}
+                  to={item.href}
+                  className={`flex items-center justify-center py-2 text-base font-medium transition-colors duration-300 rounded-lg hover:text-golden hover:bg-cream/60
+                    text-dark-brown
+                    ${isActivePage(item.href) ? 'text-golden font-semibold bg-cream/80' : ''}
+                    focus:outline-none focus:border-none
+                  `}
+                  style={{ letterSpacing: '0.02em', minWidth: 140, textAlign: 'center' }}
                 >
-                  <Link
-                    href={item.href}
-                    to={item.href}
-                    className={`flex items-center px-3 py-2 text-sm font-medium transition-colors duration-300 hover:text-golden ${
-                      isScrolled ? 'text-dark-brown' : 'text-white'
-                    } ${
-                      isActivePage(item.href) ? 'text-golden font-semibold' : ''
-                    }`}
-                  >
-                    {item.name}
-                    {item.dropdown && (
-                      <ChevronDown className="ml-1 h-4 w-4" />
-                    )}
-                  </Link>
-                  
-                  {item.dropdown && activeDropdown === item.name && (
-                    <div className="absolute top-full left-0 mt-2 w-56 bg-white rounded-lg shadow-card-hover py-2">
-                      {item.dropdown.map((dropdownItem) => (
-                        <Link
-                          key={dropdownItem.name}
-                          to={dropdownItem.href}
-                          className="block px-4 py-2 text-sm text-dark-brown hover:bg-cream hover:text-golden transition-colors duration-200"
-                        >
-                          {dropdownItem.name}
-                        </Link>
-                      ))}
-                    </div>
-                  )}
-                </div>
+                  {item.name}
+                </Link>
               ))}
-              
+              {/* Button */}
               <Link 
                 to="/book-classes"
-                className="bg-sunset hover:bg-golden text-white px-6 py-2 rounded-full font-medium transition-all duration-300 transform hover:scale-105 inline-block"
+                className="bg-sunset hover:bg-golden text-white px-6 py-2 rounded-full font-semibold transition-all duration-300 transform hover:scale-105 shadow-md text-base tracking-wide flex items-center justify-center focus:outline-none focus:border-none"
+                style={{ minWidth: 120, letterSpacing: '0.02em', textAlign: 'center' }}
               >
-                Zarezerwuj Zajęcia
+                Zarezerwuj
               </Link>
-            </nav>
+            </div>
 
             {/* Mobile menu button */}
             <div className="lg:hidden flex items-center space-x-4">
@@ -156,20 +120,6 @@ const Header = () => {
                 >
                   {item.name}
                 </Link>
-                {item.dropdown && (
-                  <div className="ml-4 mt-2 space-y-2">
-                    {item.dropdown.map((dropdownItem) => (
-                      <Link
-                        key={dropdownItem.name}
-                        to={dropdownItem.href}
-                        className="block text-sm text-chocolate hover:text-golden transition-colors py-1"
-                        onClick={() => setIsMobileMenuOpen(false)}
-                      >
-                        {dropdownItem.name}
-                      </Link>
-                    ))}
-                  </div>
-                )}
               </div>
             ))}
             
