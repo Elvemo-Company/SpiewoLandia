@@ -1,5 +1,35 @@
+
 import React, { useState } from 'react';
 import { Users, Clock, BookOpen, Heart, CheckCircle, Download, MapPin, Calendar, Play, Star, Music } from 'lucide-react';
+import Header from '../components/Header';
+
+const VocalHero = () => (
+  <section className="relative h-96 lg:h-[500px] flex items-center justify-center overflow-hidden">
+    <div className="absolute inset-0 z-0">
+      <div className="w-full h-full bg-gradient-to-r from-chocolate/80 via-chocolate/40 to-transparent">
+        <img 
+          src="https://images.pexels.com/photos/7078662/pexels-photo-7078662.jpeg"
+          alt="Vocal lessons"
+          className="w-full h-full object-cover"
+        />
+      </div>
+      <div className="absolute inset-0 backdrop-blur bg-gradient-to-br from-white/10 via-transparent to-black/20 border-white/20"></div>
+    </div>
+    <Header className="absolute top-0 left-0 w-full z-20" />
+    <div className="relative z-10 max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
+      <h1 className="font-serif text-h1-mobile lg:text-h1-desktop font-bold text-white mb-6 animate-fade-in">
+        Lekcje Wokalne
+      </h1>
+      <p className="text-lg lg:text-xl text-white/90 mb-8 max-w-2xl mx-auto animate-slide-up">
+        Odkryj potencjał swojego głosu z doświadczonymi pedagogami. 
+        Indywidualne podejście dla każdego poziomu zaawansowania.
+      </p>
+      <button className="bg-golden hover:bg-sunset text-white px-8 py-4 rounded-full font-medium text-lg transition-all duration-300 transform hover:scale-105">
+        Umów Pierwszą Lekcję
+      </button>
+    </div>
+  </section>
+);
 
 const VocalLessons = () => {
   const [selectedLevel, setSelectedLevel] = useState('beginner');
@@ -76,34 +106,10 @@ const VocalLessons = () => {
     }
   };
 
+
   return (
     <div className="min-h-screen">
-      {/* Hero Section */}
-      <section className="relative h-96 lg:h-[500px] flex items-center justify-center overflow-hidden">
-        <div className="absolute inset-0 z-0">
-          <div className="w-full h-full bg-gradient-to-r from-chocolate/80 via-chocolate/40 to-transparent">
-            <img 
-              src="https://images.pexels.com/photos/7078662/pexels-photo-7078662.jpeg"
-              alt="Vocal lessons"
-              className="w-full h-full object-cover"
-            />
-          </div>
-          <div className="absolute inset-0 backdrop-blur bg-gradient-to-br from-white/10 via-transparent to-black/20 border-white/20"></div>
-        </div>
-
-        <div className="relative z-10 max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
-          <h1 className="font-serif text-h1-mobile lg:text-h1-desktop font-bold text-white mb-6 animate-fade-in">
-            Lekcje Wokalne
-          </h1>
-          <p className="text-lg lg:text-xl text-white/90 mb-8 max-w-2xl mx-auto animate-slide-up">
-            Odkryj potencjał swojego głosu z doświadczonymi pedagogami. 
-            Indywidualne podejście dla każdego poziomu zaawansowania.
-          </p>
-          <button className="bg-golden hover:bg-sunset text-white px-8 py-4 rounded-full font-medium text-lg transition-all duration-300 transform hover:scale-105">
-            Umów Pierwszą Lekcję
-          </button>
-        </div>
-      </section>
+      <VocalHero />
 
       {/* Lesson Levels */}
       <section className="py-12 lg:py-16 bg-white">

@@ -3,7 +3,11 @@ import { Link, useLocation } from 'react-router-dom';
 import { Menu, X, Phone } from 'lucide-react';
 import logo from '../assets/logo.svg';
 
-const Header = () => {
+interface HeaderProps {
+  className?: string;
+}
+
+const Header: React.FC<HeaderProps> = ({ className = '' }) => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const location = useLocation();
@@ -37,7 +41,7 @@ const Header = () => {
       <header 
         className={`fixed top-0 w-full z-50 transition-all duration-300 ${
           isScrolled ? 'bg-white shadow-card' : 'bg-transparent'
-        }`}
+        } ${className}`}
       >
         <div className="max-w-7xl mx-auto px-2 sm:px-4 lg:px-6">
           <div className="flex justify-center items-center h-16 lg:h-20">
@@ -56,11 +60,7 @@ const Header = () => {
                 <Link
                   key={item.name}
                   to={item.href}
-                  className={`flex items-center justify-center py-2 text-base font-medium transition-colors duration-300 rounded-lg hover:text-golden hover:bg-cream/60
-                    text-dark-brown
-                    ${isActivePage(item.href) ? 'text-golden font-semibold bg-cream/80' : ''}
-                    focus:outline-none focus:border-none
-                  `}
+                  className={`flex items-center justify-center py-2 text-base font-medium transition-colors duration-300 rounded-lg text-dark-brown focus:outline-none focus:border-none`}
                   style={{ letterSpacing: '0.02em', minWidth: 140, textAlign: 'center' }}
                 >
                   {item.name}

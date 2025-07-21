@@ -1,5 +1,35 @@
+
 import React from 'react';
 import { Music, Heart, Users, Award, Clock, MapPin, Star, Quote } from 'lucide-react';
+import Header from '../components/Header';
+
+const AboutUsHero = () => (
+  <section className="relative h-96 lg:h-[500px] flex items-center justify-center overflow-hidden">
+    <div className="absolute inset-0 z-0">
+      <div className="w-full h-full bg-gradient-to-r from-chocolate/80 via-chocolate/40 to-transparent">
+        <img 
+          src="https://images.pexels.com/photos/8199186/pexels-photo-8199186.jpeg"
+          alt="ŚpiewoLandia team"
+          className="w-full h-full object-cover"
+        />
+      </div>
+      <div className="absolute inset-0 backdrop-blur bg-gradient-to-br from-white/10 via-transparent to-black/20 border-white/20"></div>
+    </div>
+    <Header className="absolute top-0 left-0 w-full z-20" />
+    <div className="relative z-10 max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
+      <h1 className="font-serif text-h1-mobile lg:text-h1-desktop font-bold text-white mb-6 animate-fade-in">
+        O Mnie
+      </h1>
+      <p className="text-lg lg:text-xl text-white/90 mb-8 max-w-2xl mx-auto animate-slide-up">
+        Poznaj moją historię i pasję do muzyki. Odkryj, jak ŚpiewoLandia 
+        stała się miejscem, gdzie dzieci i dorośli odkrywają radość śpiewania.
+      </p>
+      <button className="bg-golden hover:bg-sunset text-white px-8 py-4 rounded-full font-medium text-lg transition-all duration-300 transform hover:scale-105">
+        Poznaj Moją Historię
+      </button>
+    </div>
+  </section>
+);
 
 const AboutUs = () => {
   const founder = {
@@ -83,41 +113,17 @@ const AboutUs = () => {
     { number: '200+', label: 'Ślubów Rocznie', icon: Heart }
   ];
 
+
   return (
     <div className="min-h-screen">
-      {/* Hero Section */}
-      <section className="relative h-96 lg:h-[500px] flex items-center justify-center overflow-hidden">
-        <div className="absolute inset-0 z-0">
-          <div className="w-full h-full bg-gradient-to-r from-chocolate/80 via-chocolate/40 to-transparent">
-            <img 
-              src="https://images.pexels.com/photos/8199186/pexels-photo-8199186.jpeg"
-              alt="ŚpiewoLandia team"
-              className="w-full h-full object-cover"
-            />
-          </div>
-          <div className="absolute inset-0 backdrop-blur bg-gradient-to-br from-white/10 via-transparent to-black/20 border-white/20"></div>
-        </div>
-
-        <div className="relative z-10 max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
-          <h1 className="font-serif text-h1-mobile lg:text-h1-desktop font-bold text-white mb-6 animate-fade-in">
-            O Mnie
-          </h1>
-          <p className="text-lg lg:text-xl text-white/90 mb-8 max-w-2xl mx-auto animate-slide-up">
-            Poznaj moją historię i pasję do muzyki. Odkryj, jak ŚpiewoLandia 
-            stała się miejscem, gdzie dzieci i dorośli odkrywają radość śpiewania.
-          </p>
-          <button className="bg-golden hover:bg-sunset text-white px-8 py-4 rounded-full font-medium text-lg transition-all duration-300 transform hover:scale-105">
-            Poznaj Moją Historię
-          </button>
-        </div>
-      </section>
+      <AboutUsHero />
 
       {/* Mission Statement */}
       <section className="py-16 lg:py-24 bg-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <Quote className="h-12 w-12 text-golden mx-auto mb-8 opacity-50" />
           <h2 className="font-serif text-2xl lg:text-3xl font-bold text-dark-brown mb-6">
-            Moja Misja
+            Misja
           </h2>
           <p className="text-lg lg:text-xl text-chocolate leading-relaxed mb-8">
             "Wierzę, że muzyka ma moc zmieniania życia. Moją misją jest odkrywanie i rozwijanie 
@@ -135,7 +141,7 @@ const AboutUs = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="font-serif text-h2-mobile lg:text-h2-desktop font-bold text-dark-brown mb-4">
-              Moje Wartości
+              Wartości
             </h2>
             <p className="text-lg text-chocolate">
               Zasady, którymi kieruję się w pracy z uczniami
@@ -169,7 +175,7 @@ const AboutUs = () => {
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="font-serif text-h2-mobile lg:text-h2-desktop font-bold text-dark-brown mb-4">
-              Moja Droga
+              Droga
             </h2>
             <p className="text-lg text-chocolate">
               10 lat budowania ŚpiewoLandii - krok po kroku

@@ -1,5 +1,35 @@
+
 import React, { useState } from 'react';
 import { Heart, Music, Users, Clock, Play, Pause, Volume2, Calendar, CheckCircle, Star } from 'lucide-react';
+import Header from '../components/Header';
+
+const WeddingHero = () => (
+  <section className="relative h-96 lg:h-[500px] flex items-center justify-center overflow-hidden">
+    <div className="absolute inset-0 z-0">
+      <div className="w-full h-full bg-gradient-to-r from-chocolate/80 via-chocolate/40 to-transparent">
+        <img 
+          src="https://images.pexels.com/photos/1024993/pexels-photo-1024993.jpeg"
+          alt="Wedding ceremony with musicians"
+          className="w-full h-full object-cover"
+        />
+      </div>
+      <div className="absolute inset-0 backdrop-blur bg-gradient-to-br from-white/10 via-transparent to-black/20 border-white/20"></div>
+    </div>
+    <Header className="absolute top-0 left-0 w-full z-20" />
+    <div className="relative z-10 max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
+      <h1 className="font-serif text-h1-mobile lg:text-h1-desktop font-bold text-white mb-6 animate-fade-in">
+        Oprawa Muzyczna Ślubów
+      </h1>
+      <p className="text-lg lg:text-xl text-white/90 mb-8 max-w-2xl mx-auto animate-slide-up">
+        Tworzymy magiczne momenty muzyczne w Waszym najważniejszym dniu. 
+        Profesjonalna oprawa ceremonii i przyjęć weselnych.
+      </p>
+      <button className="bg-golden hover:bg-sunset text-white px-8 py-4 rounded-full font-medium text-lg transition-all duration-300 transform hover:scale-105">
+        Sprawdź Dostępność
+      </button>
+    </div>
+  </section>
+);
 
 const WeddingServices = () => {
   const [selectedPackage, setSelectedPackage] = useState('classic');
@@ -133,34 +163,10 @@ const WeddingServices = () => {
     }
   };
 
+
   return (
     <div className="min-h-screen">
-      {/* Hero Section */}
-      <section className="relative h-96 lg:h-[500px] flex items-center justify-center overflow-hidden">
-        <div className="absolute inset-0 z-0">
-          <div className="w-full h-full bg-gradient-to-r from-chocolate/80 via-chocolate/40 to-transparent">
-            <img 
-              src="https://images.pexels.com/photos/1024993/pexels-photo-1024993.jpeg"
-              alt="Wedding ceremony with musicians"
-              className="w-full h-full object-cover"
-            />
-          </div>
-          <div className="absolute inset-0 backdrop-blur bg-gradient-to-br from-white/10 via-transparent to-black/20 border-white/20"></div>
-        </div>
-
-        <div className="relative z-10 max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
-          <h1 className="font-serif text-h1-mobile lg:text-h1-desktop font-bold text-white mb-6 animate-fade-in">
-            Oprawa Muzyczna Ślubów
-          </h1>
-          <p className="text-lg lg:text-xl text-white/90 mb-8 max-w-2xl mx-auto animate-slide-up">
-            Tworzymy magiczne momenty muzyczne w Waszym najważniejszym dniu. 
-            Profesjonalna oprawa ceremonii i przyjęć weselnych.
-          </p>
-          <button className="bg-golden hover:bg-sunset text-white px-8 py-4 rounded-full font-medium text-lg transition-all duration-300 transform hover:scale-105">
-            Sprawdź Dostępność
-          </button>
-        </div>
-      </section>
+      <WeddingHero />
 
       {/* Packages */}
       <section className="py-16 lg:py-24 bg-white">
