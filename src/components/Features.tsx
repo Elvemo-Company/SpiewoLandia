@@ -1,28 +1,25 @@
 import React from 'react';
-import { Music, Mic, Heart } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 const Features = () => {
   const features = [
     {
-      icon: Music,
-      title: 'Zajęcia Grupowe',
-      description: 'Nauka w grupie rówieśników w przyjaznej atmosferze. Rozwijamy umiejętności społeczne i budujemy pewność siebie.',
-      image: 'https://images.pexels.com/photos/8199186/pexels-photo-8199186.jpeg',
-      link: '#group-classes'
-    },
-    {
-      icon: Mic,
-      title: 'Lekcje Indywidualne',
-      description: 'Personalizowane podejście dostosowane do indywidualnych potrzeb i tempa nauki każdego ucznia.',
+      title: 'Lekcje Wokalne',
+      description: 'Indywidualne podejście do każdego ucznia. Profesjonalna nauka techniki wokalnej dla wszystkich poziomów.',
       image: 'https://images.pexels.com/photos/7078662/pexels-photo-7078662.jpeg',
-      link: '#individual-lessons'
+      link: '/vocal-lessons'
     },
     {
-      icon: Heart,
-      title: 'Występy na Żywo',
-      description: 'Profesjonalna oprawa muzyczna ślubów, uroczystości i koncertów. Tworzymy magiczne chwile.',
+      title: 'Programy dla Przedszkoli',
+      description: 'Kompleksowe programy muzyczne dostosowane do potrzeb placówek edukacyjnych. Profesjonalna obsługa i materiały.',
+      image: 'https://images.pexels.com/photos/8197562/pexels-photo-8197562.jpeg',
+      link: '/preschool-programs'
+    },
+    {
+      title: 'Oprawa Ślubu',
+      description: 'Wyjątkowa oprawa muzyczna najważniejszego dnia w życiu. Dopasowana do charakteru ceremonii i życzeń pary.',
       image: 'https://images.pexels.com/photos/1024993/pexels-photo-1024993.jpeg',
-      link: '#live-performances'
+      link: '/wedding-services'
     }
   ];
 
@@ -52,11 +49,6 @@ const Features = () => {
                   className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-dark-brown/50 to-transparent"></div>
-                <div className="absolute top-4 left-4">
-                  <div className="bg-golden p-3 rounded-full">
-                    <feature.icon className="h-6 w-6 text-white" />
-                  </div>
-                </div>
               </div>
               
               <div className="p-6">
@@ -66,13 +58,13 @@ const Features = () => {
                 <p className="text-chocolate mb-4 leading-relaxed">
                   {feature.description}
                 </p>
-                <a
-                  href={feature.link}
+                <Link
+                  to={feature.link}
                   className="inline-flex items-center text-golden hover:text-sunset font-medium transition-colors duration-200 group"
                 >
                   Dowiedz się więcej
                   <span className="ml-1 transform group-hover:translate-x-1 transition-transform duration-200">→</span>
-                </a>
+                </Link>
               </div>
             </div>
           ))}

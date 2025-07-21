@@ -116,12 +116,20 @@ const TrustIndicators = () => {
           <h3 className="font-serif text-xl lg:text-2xl font-bold text-dark-brown mb-8">
             Nasi Partnerzy
           </h3>
-          <div className="flex flex-wrap justify-center items-center gap-8 opacity-60">
+          <div className="flex flex-wrap justify-center items-center gap-8">
             {/* Partner logos would go here */}
-            <div className="bg-gray-200 rounded-lg px-8 py-4 text-gray-500">Przedszkole Słoneczko</div>
-            <div className="bg-gray-200 rounded-lg px-8 py-4 text-gray-500">Hotel Belvedere</div>
-            <div className="bg-gray-200 rounded-lg px-8 py-4 text-gray-500">Pałac Romantyczny</div>
-            <div className="bg-gray-200 rounded-lg px-8 py-4 text-gray-500">Centrum Kultury</div>
+            <div className="bg-golden/20 border border-golden/30 rounded-lg px-8 py-4 text-dark-brown font-medium shadow-card hover:shadow-card-hover hover:bg-golden/30 transition-all duration-300">
+              Przedszkole Słoneczko
+            </div>
+            <div className="bg-soft-green/20 border border-soft-green/30 rounded-lg px-8 py-4 text-dark-brown font-medium shadow-card hover:shadow-card-hover hover:bg-soft-green/30 transition-all duration-300">
+              Hotel Belvedere
+            </div>
+            <div className="bg-sunset/20 border border-sunset/30 rounded-lg px-8 py-4 text-dark-brown font-medium shadow-card hover:shadow-card-hover hover:bg-sunset/30 transition-all duration-300">
+              Pałac Romantyczny
+            </div>
+            <div className="bg-muted-red/20 border border-muted-red/30 rounded-lg px-8 py-4 text-dark-brown font-medium shadow-card hover:shadow-card-hover hover:bg-muted-red/30 transition-all duration-300">
+              Centrum Kultury
+            </div>
           </div>
         </div>
       </div>

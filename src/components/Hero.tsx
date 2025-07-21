@@ -13,6 +13,7 @@ const Hero = () => {
             className="w-full h-full object-cover"
           />
         </div>
+        <div className="absolute inset-0 backdrop-blur bg-gradient-to-br from-white/10 via-transparent to-black/20 border-white/20"></div>
       </div>
 
       {/* Content */}

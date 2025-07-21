@@ -120,6 +120,7 @@ const PreschoolPrograms = () => {
               className="w-full h-full object-cover"
             />
           </div>
+          <div className="absolute inset-0 backdrop-blur bg-gradient-to-br from-white/10 via-transparent to-black/20 border-white/20"></div>
         </div>
 
         <div className="relative z-10 max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
@@ -137,9 +138,9 @@ const PreschoolPrograms = () => {
       </section>
 
       {/* Programs */}
-      <section className="py-16 lg:py-24 bg-white">
+      <section className="py-12 lg:py-16 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
+          <div className="text-center mb-12">
             <h2 className="font-serif text-h2-mobile lg:text-h2-desktop font-bold text-dark-brown mb-4">
               Nasze Programy
             </h2>
@@ -148,7 +149,7 @@ const PreschoolPrograms = () => {
             </p>
           </div>
 
-          <div className="flex flex-wrap justify-center mb-8">
+          <div className="flex flex-wrap justify-center mb-6">
             {programs.map((program) => (
               <button
                 key={program.id}
@@ -172,8 +173,8 @@ const PreschoolPrograms = () => {
                   selectedProgram === program.id ? 'opacity-100 block' : 'opacity-0 hidden'
                 }`}
               >
-                <div className="bg-cream rounded-2xl p-8 lg:p-12">
-                  <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                <div className="bg-cream rounded-2xl p-6 lg:p-8">
+                  <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
                     <div className="lg:col-span-2">
                       <div className="flex items-center mb-4">
                         <span className="bg-golden text-white px-3 py-1 rounded-full text-sm font-medium mr-4">
@@ -183,31 +184,31 @@ const PreschoolPrograms = () => {
                           {program.name}
                         </h3>
                       </div>
-                      <p className="text-chocolate text-lg mb-6">
+                      <p className="text-chocolate text-lg mb-4">
                         {program.description}
                       </p>
                       
-                      <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
-                        <div className="text-center">
-                          <Clock className="h-6 w-6 text-golden mx-auto mb-2" />
+                      <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-4">
+                        <div className="text-center py-6">
+                          <Clock className="h-6 w-6 text-golden mx-auto mb-3" />
                           <p className="text-sm text-chocolate">{program.duration}</p>
                         </div>
-                        <div className="text-center">
-                          <Calendar className="h-6 w-6 text-golden mx-auto mb-2" />
+                        <div className="text-center py-6">
+                          <Calendar className="h-6 w-6 text-golden mx-auto mb-3" />
                           <p className="text-sm text-chocolate">{program.frequency}</p>
                         </div>
-                        <div className="text-center">
-                          <Users className="h-6 w-6 text-golden mx-auto mb-2" />
+                        <div className="text-center py-6">
+                          <Users className="h-6 w-6 text-golden mx-auto mb-3" />
                           <p className="text-sm text-chocolate">min. {program.minChildren}</p>
                         </div>
-                        <div className="text-center">
+                        <div className="text-center py-6">
                           <span className="text-lg font-bold text-golden block">{program.price}</span>
                         </div>
                       </div>
 
                       <ul className="grid grid-cols-1 md:grid-cols-2 gap-3">
                         {program.features.map((feature, index) => (
-                          <li key={index} className="flex items-center">
+                          <li key={index} className="flex items-center py-2">
                             <CheckCircle className="h-5 w-5 text-soft-green mr-3 flex-shrink-0" />
                             <span className="text-chocolate">{feature}</span>
                           </li>
@@ -215,20 +216,33 @@ const PreschoolPrograms = () => {
                       </ul>
                     </div>
                     
-                    <div className="bg-white rounded-xl p-6 h-fit">
-                      <h4 className="font-serif text-xl font-bold text-dark-brown mb-4">
-                        Zainteresowany?
-                      </h4>
-                      <button className="w-full bg-golden hover:bg-sunset text-white py-3 rounded-full font-medium transition-all duration-300 transform hover:scale-105 mb-4">
-                        Umów Prezentację
-                      </button>
-                      <button className="w-full border-2 border-golden text-golden hover:bg-golden hover:text-white py-3 rounded-full font-medium transition-all duration-300 flex items-center justify-center">
-                        <Download className="h-4 w-4 mr-2" />
-                        Pobierz Broszurę
-                      </button>
-                      <p className="text-xs text-chocolate mt-4 text-center">
-                        Bezpłatna prezentacja w Waszej placówce
+                    <div className="backdrop-blur-sm bg-white/40 border border-white/60 rounded-xl p-6 h-fit shadow-lg">
+                      <div className="flex items-center mb-4">
+                        <div className="w-10 h-10 bg-golden/90 backdrop-blur-sm rounded-full flex items-center justify-center mr-3">
+                          <Heart className="h-5 w-5 text-white" />
+                        </div>
+                        <h4 className="font-serif text-xl font-bold text-dark-brown">
+                          Zainteresowany?
+                        </h4>
+                      </div>
+                      <p className="text-dark-brown/80 text-sm mb-6 leading-relaxed font-medium">
+                        Dołącz do grona zadowolonych placówek w całej Polsce. Zapewniamy kompleksową obsługę i wysoką jakość zajęć.
                       </p>
+                      <div className="space-y-3">
+                        <button className="w-full bg-golden/90 hover:bg-golden backdrop-blur-sm text-white py-3 rounded-lg font-medium transition-all duration-300 transform hover:scale-[1.02] flex items-center justify-center shadow-md">
+                          <Calendar className="h-4 w-4 mr-2" />
+                          Umów Prezentację
+                        </button>
+                        <button className="w-full bg-white/60 backdrop-blur-sm border border-golden/60 text-dark-brown hover:bg-golden/90 hover:text-white py-3 rounded-lg font-medium transition-all duration-300 flex items-center justify-center">
+                          <Download className="h-4 w-4 mr-2" />
+                          Pobierz Broszurę
+                        </button>
+                      </div>
+                      <div className="mt-4 p-3 bg-golden/10 backdrop-blur-sm rounded-lg border border-golden/20">
+                        <p className="text-xs text-dark-brown/70 text-center font-medium">
+                          ✨ Bezpłatna prezentacja w Waszej placówce
+                        </p>
+                      </div>
                     </div>
                   </div>
                 </div>
