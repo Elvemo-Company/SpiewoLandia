@@ -2,76 +2,49 @@ import React from 'react';
 import { Music, Heart, Users, Award, Clock, MapPin, Star, Quote } from 'lucide-react';
 
 const AboutUs = () => {
-  const team = [
-    {
-      name: 'Anna Kowalska',
-      role: 'Założycielka i Dyrektor Artystyczny',
-      experience: '15 lat doświadczenia',
-      education: 'Akademia Muzyczna w Warszawie, Wydział Wokalno-Aktorski',
-      specialization: 'Pedagogika muzyczna, technika wokalna',
-      image: 'https://images.pexels.com/photos/3756679/pexels-photo-3756679.jpeg',
-      bio: 'Pasjonatka muzyki i pracy z dziećmi. Stworzyła ŚpiewoLandię z misją dzielenia się radością płynącą z muzyki. Laureatka licznych konkursów wokalnych.',
-      achievements: [
-        'Laureatka konkursu "Złoty Głos 2015"',
-        'Certyfikowany pedagog muzyczny',
-        'Autorka metody "Naturalny rozwój głosu"'
-      ]
-    },
-    {
-      name: 'Michał Nowak',
-      role: 'Pedagog Wokalny i Instrumentalista',
-      experience: '10 lat doświadczenia',
-      education: 'Berklee College of Music, Boston',
-      specialization: 'Jazz, pop, rock, produkcja muzyczna',
-      image: 'https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg',
-      bio: 'Wszechstronny muzyk i producent. Specjalizuje się w nowoczesnych stylach muzycznych i pracy z młodzieżą. Współpracuje z wieloma artystami.',
-      achievements: [
-        'Wokalista zespołu "Echo Dreams"',
-        'Producent muzyczny (20+ albumów)',
-        'Współpraca z TVP i Polskim Radiem'
-      ]
-    },
-    {
-      name: 'Katarzyna Wiśniewska',
-      role: 'Pedagog ds. Dzieci i Młodzieży',
-      experience: '8 lat doświadczenia',
-      education: 'Uniwersytet Muzyczny F. Chopina, Pedagogika Muzyczna',
-      specialization: 'Wczesna edukacja muzyczna, terapia przez muzykę',
-      image: 'https://images.pexels.com/photos/415829/pexels-photo-415829.jpeg',
-      bio: 'Specjalistka w pracy z najmłodszymi. Tworzy programy edukacyjne łączące muzykę z rozwojem emocjonalnym i społecznym dzieci.',
-      achievements: [
-        'Certyfikat terapii muzyką',
-        'Autorka programu "Muzyka i Emocje"',
-        'Współpraca z 50+ przedszkolami'
-      ]
-    }
-  ];
+  const founder = {
+    name: 'Anna Kowalska',
+    role: 'Założycielka i Dyrektor Artystyczny',
+    experience: '15 lat doświadczenia',
+    education: 'Akademia Muzyczna w Warszawie, Wydział Wokalno-Aktorski',
+    specialization: 'Pedagogika muzyczna, technika wokalna',
+    image: 'https://images.pexels.com/photos/3756679/pexels-photo-3756679.jpeg',
+    bio: 'Pasjonatka muzyki i pracy z dziećmi. Stworzyła ŚpiewoLandię z misją dzielenia się radością płynącą z muzyki. Laureatka licznych konkursów wokalnych.',
+    achievements: [
+      'Laureatka konkursu "Złoty Głos 2015"',
+      'Certyfikowany pedagog muzyczny',
+      'Autorka metody "Naturalny rozwój głosu"',
+      'Współpraca z 50+ przedszkolami',
+      'Wokalista i producent muzyczny',
+      'Współpraca z TVP i Polskim Radiem'
+    ]
+  };
 
   const milestones = [
     {
       year: '2014',
       title: 'Początek',
-      description: 'Anna Kowalska zakłada ŚpiewoLandię z misją dzielenia się pasją do muzyki'
+      description: 'Założyłam ŚpiewoLandię z misją dzielenia się pasją do muzyki'
     },
     {
       year: '2016',
       title: 'Pierwsze sukcesy',
-      description: 'Rozpoczęcie współpracy z przedszkolami w Warszawie'
+      description: 'Rozpoczęłam współpracę z przedszkolami w Warszawie'
     },
     {
       year: '2018',
-      title: 'Rozwój zespołu',
-      description: 'Dołączenie Michała i Katarzyny, rozszerzenie oferty'
+      title: 'Rozwój działalności',
+      description: 'Rozszerzyłam ofertę o lekcje indywidualne i zajęcia grupowe'
     },
     {
       year: '2020',
       title: 'Ekspansja',
-      description: 'Otwarcie oddziałów w Krakowie i Gdańsku'
+      description: 'Otworzyłam działalność w kilku miastach w Polsce'
     },
     {
       year: '2022',
       title: 'Nowe programy',
-      description: 'Wprowadzenie programów online i terapii muzyką'
+      description: 'Wprowadziłam programy online i terapię muzyką'
     },
     {
       year: '2024',
@@ -84,22 +57,22 @@ const AboutUs = () => {
     {
       icon: Heart,
       title: 'Pasja',
-      description: 'Muzyka to nasza pasja, którą dzielimy się z każdym uczniem'
+      description: 'Muzyka to moja pasja, którą dzielę się z każdym uczniem'
     },
     {
       icon: Users,
       title: 'Wspólnota',
-      description: 'Budujemy społeczność ludzi kochających muzykę'
+      description: 'Buduję społeczność ludzi kochających muzykę'
     },
     {
       icon: Star,
       title: 'Jakość',
-      description: 'Najwyższa jakość nauczania i profesjonalizm'
+      description: 'Najwyższa jakość nauczania i profesjonalizm w każdej lekcji'
     },
     {
       icon: Award,
-      title: 'Rozwój',
-      description: 'Wspieramy rozwój talentów na każdym etapie'
+      title: 'Doświadczenie',
+      description: 'Wieloletnie doświadczenie w pracy z dziećmi i dorosłymi'
     }
   ];
 
@@ -122,15 +95,20 @@ const AboutUs = () => {
               className="w-full h-full object-cover"
             />
           </div>
+          <div className="absolute inset-0 backdrop-blur bg-gradient-to-br from-white/10 via-transparent to-black/20 border-white/20"></div>
         </div>
 
         <div className="relative z-10 max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
           <h1 className="font-serif text-h1-mobile lg:text-h1-desktop font-bold text-white mb-6 animate-fade-in">
-            O Nas
+            O Mnie
           </h1>
           <p className="text-lg lg:text-xl text-white/90 mb-8 max-w-2xl mx-auto animate-slide-up">
-            Poznaj historię ŚpiewoLandii i ludzi, którzy tworzą magię muzyki każdego dnia
+            Poznaj moją historię i pasję do muzyki. Odkryj, jak ŚpiewoLandia 
+            stała się miejscem, gdzie dzieci i dorośli odkrywają radość śpiewania.
           </p>
+          <button className="bg-golden hover:bg-sunset text-white px-8 py-4 rounded-full font-medium text-lg transition-all duration-300 transform hover:scale-105">
+            Poznaj Moją Historię
+          </button>
         </div>
       </section>
 
@@ -139,10 +117,10 @@ const AboutUs = () => {
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <Quote className="h-12 w-12 text-golden mx-auto mb-8 opacity-50" />
           <h2 className="font-serif text-2xl lg:text-3xl font-bold text-dark-brown mb-6">
-            Nasza Misja
+            Moja Misja
           </h2>
           <p className="text-lg lg:text-xl text-chocolate leading-relaxed mb-8">
-            "Wierzymy, że muzyka ma moc zmieniania życia. Nasza misja to odkrywanie i rozwijanie 
+            "Wierzę, że muzyka ma moc zmieniania życia. Moją misją jest odkrywanie i rozwijanie 
             talentów muzycznych w każdym wieku, budowanie pewności siebie przez sztukę oraz 
             tworzenie niezapomnianych momentów, które pozostają w sercach na zawsze."
           </p>
@@ -157,8 +135,11 @@ const AboutUs = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="font-serif text-h2-mobile lg:text-h2-desktop font-bold text-dark-brown mb-4">
-              Nasze Wartości
+              Moje Wartości
             </h2>
+            <p className="text-lg text-chocolate">
+              Zasady, którymi kieruję się w pracy z uczniami
+            </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
@@ -188,10 +169,10 @@ const AboutUs = () => {
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="font-serif text-h2-mobile lg:text-h2-desktop font-bold text-dark-brown mb-4">
-              Nasza Historia
+              Moja Droga
             </h2>
             <p className="text-lg text-chocolate">
-              10 lat pasji, rozwoju i niezliczonych muzycznych chwil
+              10 lat budowania ŚpiewoLandii - krok po kroku
             </p>
           </div>
 
@@ -231,71 +212,64 @@ const AboutUs = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="font-serif text-h2-mobile lg:text-h2-desktop font-bold text-dark-brown mb-4">
-              Nasz Zespół
+              Założycielka
             </h2>
             <p className="text-lg text-chocolate">
-              Poznaj ludzi, którzy tworzą ŚpiewoLandię
+              Poznaj osobę, która stoi za ŚpiewoLandią
             </p>
           </div>
 
-          <div className="space-y-16">
-            {team.map((member, index) => (
-              <div
-                key={member.name}
-                className={`grid grid-cols-1 lg:grid-cols-2 gap-8 items-center animate-fade-in ${
-                  index % 2 === 1 ? 'lg:grid-flow-col-dense' : ''
-                }`}
-                style={{ animationDelay: `${index * 0.3}s` }}
-              >
-                <div className={`${index % 2 === 1 ? 'lg:col-start-2' : ''}`}>
-                  <div className="relative">
-                    <img
-                      src={member.image}
-                      alt={member.name}
-                      className="w-full h-96 object-cover rounded-2xl shadow-card"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-dark-brown/50 to-transparent rounded-2xl"></div>
-                  </div>
+          <div className="max-w-4xl mx-auto">
+            <div className="bg-white rounded-3xl shadow-card hover:shadow-card-hover transition-all duration-300 overflow-hidden animate-fade-in">
+              <div className="relative h-80 lg:h-96">
+                <img
+                  src={founder.image}
+                  alt={founder.name}
+                  className="w-full h-full object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-dark-brown/80 via-dark-brown/20 to-transparent"></div>
+                <div className="absolute bottom-8 left-8 right-8 text-white">
+                  <h3 className="font-serif text-3xl lg:text-4xl font-bold mb-2">
+                    {founder.name}
+                  </h3>
+                  <p className="text-golden font-semibold text-lg">{founder.role}</p>
+                  <p className="text-white/90 text-sm mt-2">{founder.experience}</p>
                 </div>
-                
-                <div className={`${index % 2 === 1 ? 'lg:col-start-1 lg:row-start-1' : ''}`}>
-                  <div className="bg-white rounded-2xl p-8 shadow-card hover:shadow-card-hover transition-all duration-300">
-                    <h3 className="font-serif text-2xl font-bold text-dark-brown mb-2">
-                      {member.name}
-                    </h3>
-                    <p className="text-golden font-semibold mb-2">{member.role}</p>
-                    <p className="text-chocolate text-sm mb-4">{member.experience}</p>
-                    
-                    <div className="space-y-3 mb-6">
-                      <div>
-                        <h4 className="font-semibold text-dark-brown text-sm">Wykształcenie:</h4>
-                        <p className="text-chocolate text-sm">{member.education}</p>
+              </div>
+              
+              <div className="p-8 lg:p-12">
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
+                  <div>
+                    <h4 className="font-serif text-xl font-bold text-dark-brown mb-4">O mnie</h4>
+                    <p className="text-chocolate leading-relaxed mb-6">
+                      {founder.bio}
+                    </p>
+                    <div className="space-y-3">
+                      <div className="bg-cream rounded-lg p-4">
+                        <h5 className="font-semibold text-dark-brown text-sm mb-1">Wykształcenie:</h5>
+                        <p className="text-chocolate text-sm">{founder.education}</p>
                       </div>
-                      <div>
-                        <h4 className="font-semibold text-dark-brown text-sm">Specjalizacja:</h4>
-                        <p className="text-chocolate text-sm">{member.specialization}</p>
+                      <div className="bg-cream rounded-lg p-4">
+                        <h5 className="font-semibold text-dark-brown text-sm mb-1">Specjalizacja:</h5>
+                        <p className="text-chocolate text-sm">{founder.specialization}</p>
                       </div>
                     </div>
-                    
-                    <p className="text-chocolate mb-6 leading-relaxed">
-                      {member.bio}
-                    </p>
-                    
-                    <div>
-                      <h4 className="font-semibold text-dark-brown text-sm mb-3">Osiągnięcia:</h4>
-                      <ul className="space-y-2">
-                        {member.achievements.map((achievement, achIndex) => (
-                          <li key={achIndex} className="flex items-start">
-                            <Star className="h-4 w-4 text-golden mr-2 mt-0.5 flex-shrink-0" />
-                            <span className="text-chocolate text-sm">{achievement}</span>
-                          </li>
-                        ))}
-                      </ul>
+                  </div>
+                  
+                  <div>
+                    <h4 className="font-serif text-xl font-bold text-dark-brown mb-4">Moje osiągnięcia</h4>
+                    <div className="space-y-3">
+                      {founder.achievements.map((achievement, achIndex) => (
+                        <div key={achIndex} className="flex items-start bg-golden/5 rounded-lg p-3 hover:bg-golden/10 transition-colors duration-300">
+                          <Star className="h-5 w-5 text-golden mr-3 mt-0.5 flex-shrink-0" />
+                          <span className="text-chocolate text-sm">{achievement}</span>
+                        </div>
+                      ))}
                     </div>
                   </div>
                 </div>
               </div>
-            ))}
+            </div>
           </div>
         </div>
       </section>

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Mic, Clock, Users, Star, Play, CheckCircle, Calendar } from 'lucide-react';
+import { Users, Clock, BookOpen, Heart, CheckCircle, Download, MapPin, Calendar, Play, Star, Music } from 'lucide-react';
 
 const VocalLessons = () => {
   const [selectedLevel, setSelectedLevel] = useState('beginner');
@@ -32,25 +32,6 @@ const VocalLessons = () => {
     }
   ];
 
-  const teachers = [
-    {
-      name: 'Anna Kowalska',
-      specialization: 'Technika klasyczna, Musical',
-      experience: '12 lat doświadczenia',
-      education: 'Akademia Muzyczna w Warszawie',
-      image: 'https://images.pexels.com/photos/3756679/pexels-photo-3756679.jpeg',
-      achievements: ['Laureatka konkursu wokalnego "Złoty Głos"', 'Solistka Teatru Wielkiego', 'Autorka metody "Naturalny Głos"']
-    },
-    {
-      name: 'Michał Nowak',
-      specialization: 'Pop, Rock, Jazz',
-      experience: '8 lat doświadczenia',
-      education: 'Berklee College of Music',
-      image: 'https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg',
-      achievements: ['Wokalista zespołu "Echo"', 'Producent muzyczny', 'Współpraca z TVP']
-    }
-  ];
-
   const sampleLessons = [
     {
       title: 'Rozgrzewka głosowa - podstawy',
@@ -68,7 +49,7 @@ const VocalLessons = () => {
       title: 'Interpretacja ballady popowej',
       duration: '4:38',
       level: 'Zaawansowany',
-      teacher: 'Michał Nowak'
+      teacher: 'Anna Kowalska'
     }
   ];
 
@@ -107,6 +88,7 @@ const VocalLessons = () => {
               className="w-full h-full object-cover"
             />
           </div>
+          <div className="absolute inset-0 backdrop-blur bg-gradient-to-br from-white/10 via-transparent to-black/20 border-white/20"></div>
         </div>
 
         <div className="relative z-10 max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
@@ -124,9 +106,9 @@ const VocalLessons = () => {
       </section>
 
       {/* Lesson Levels */}
-      <section className="py-16 lg:py-24 bg-white">
+      <section className="py-12 lg:py-16 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
+          <div className="text-center mb-12">
             <h2 className="font-serif text-h2-mobile lg:text-h2-desktop font-bold text-dark-brown mb-4">
               Poziomy Zaawansowania
             </h2>
@@ -135,7 +117,7 @@ const VocalLessons = () => {
             </p>
           </div>
 
-          <div className="flex flex-wrap justify-center mb-8">
+          <div className="flex flex-wrap justify-center mb-6">
             {levels.map((level) => (
               <button
                 key={level.id}
@@ -159,92 +141,46 @@ const VocalLessons = () => {
                   selectedLevel === level.id ? 'opacity-100 block' : 'opacity-0 hidden'
                 }`}
               >
-                <div className="bg-cream rounded-2xl p-8 lg:p-12">
+                <div className="bg-cream rounded-2xl p-6 lg:p-8">
                   <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
                     <div>
                       <h3 className="font-serif text-2xl lg:text-3xl font-bold text-dark-brown mb-4">
                         {level.name}
                       </h3>
-                      <p className="text-chocolate text-lg mb-6">
+                      <p className="text-chocolate text-lg mb-6 leading-relaxed">
                         {level.description}
                       </p>
-                      <div className="flex items-center space-x-6 mb-6">
+                      <div className="flex items-center justify-between mb-6 bg-white/60 rounded-lg p-4">
                         <div className="flex items-center">
                           <Clock className="h-5 w-5 text-golden mr-2" />
                           <span className="text-chocolate">{level.duration}</span>
                         </div>
-                        <div className="flex items-center">
-                          <span className="text-2xl font-bold text-golden">{level.price}</span>
-                          <span className="text-chocolate ml-1">/lekcja</span>
-                        </div>
+                        <span className="text-2xl font-bold text-golden">{level.price}</span>
                       </div>
                       <ul className="space-y-3">
                         {level.features.map((feature, index) => (
-                          <li key={index} className="flex items-center">
-                            <CheckCircle className="h-5 w-5 text-soft-green mr-3" />
+                          <li key={index} className="flex items-start">
+                            <CheckCircle className="h-5 w-5 text-soft-green mr-3 mt-0.5 flex-shrink-0" />
                             <span className="text-chocolate">{feature}</span>
                           </li>
                         ))}
                       </ul>
                     </div>
                     <div className="text-center">
-                      <button className="bg-golden hover:bg-sunset text-white px-8 py-4 rounded-full font-medium text-lg transition-all duration-300 transform hover:scale-105 mb-4">
-                        Zarezerwuj Lekcję
-                      </button>
-                      <p className="text-sm text-chocolate">
-                        Pierwsza lekcja próbna -20%
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Teachers */}
-      <section className="py-16 lg:py-24 bg-cream">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="font-serif text-h2-mobile lg:text-h2-desktop font-bold text-dark-brown mb-4">
-              Nasi Pedagodzy
-            </h2>
-            <p className="text-lg text-chocolate">
-              Doświadczeni profesjonaliści z pasją do nauczania
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-            {teachers.map((teacher, index) => (
-              <div
-                key={teacher.name}
-                className="bg-white rounded-2xl shadow-card hover:shadow-card-hover transition-all duration-300 overflow-hidden animate-fade-in"
-                style={{ animationDelay: `${index * 0.2}s` }}
-              >
-                <div className="grid grid-cols-1 md:grid-cols-2">
-                  <div className="relative h-64 md:h-full">
-                    <img
-                      src={teacher.image}
-                      alt={teacher.name}
-                      className="w-full h-full object-cover"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-dark-brown/50 to-transparent"></div>
-                  </div>
-                  <div className="p-6">
-                    <h3 className="font-serif text-xl font-bold text-dark-brown mb-2">
-                      {teacher.name}
-                    </h3>
-                    <p className="text-golden font-medium mb-2">{teacher.specialization}</p>
-                    <p className="text-chocolate text-sm mb-4">{teacher.experience}</p>
-                    <p className="text-chocolate text-sm mb-4">{teacher.education}</p>
-                    <div className="space-y-2">
-                      {teacher.achievements.map((achievement, achIndex) => (
-                        <div key={achIndex} className="flex items-start">
-                          <Star className="h-4 w-4 text-golden mr-2 mt-0.5 flex-shrink-0" />
-                          <span className="text-sm text-chocolate">{achievement}</span>
+                      <div className="bg-white/40 rounded-xl p-8">
+                        <div className="w-20 h-20 bg-golden rounded-full flex items-center justify-center mx-auto mb-6">
+                          <Music className="h-10 w-10 text-white" />
                         </div>
-                      ))}
+                        <h4 className="font-serif text-xl font-bold text-dark-brown mb-6">
+                          Rozpocznij Teraz
+                        </h4>
+                        <button className="bg-golden hover:bg-sunset text-white px-8 py-4 rounded-full font-medium text-lg transition-all duration-300 transform hover:scale-105 w-full mb-4">
+                          Zarezerwuj Lekcję
+                        </button>
+                        <p className="text-sm text-soft-green font-medium">
+                          -20% na pierwszą lekcję
+                        </p>
+                      </div>
                     </div>
                   </div>
                 </div>
