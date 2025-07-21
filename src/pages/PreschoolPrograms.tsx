@@ -3,6 +3,9 @@ import { Users, Clock, BookOpen, Heart, CheckCircle, Download, MapPin, Calendar 
 
 const PreschoolPrograms = () => {
   const [selectedProgram, setSelectedProgram] = useState('basic');
+  const [currentTestimonial, setCurrentTestimonial] = useState(0);
+  const [touchStart, setTouchStart] = useState<number | null>(null);
+  const [touchEnd, setTouchEnd] = useState<number | null>(null);
 
   const programs = [
     {
@@ -108,6 +111,33 @@ const PreschoolPrograms = () => {
     }
   ];
 
+  // Swipe handling for testimonials
+  const minSwipeDistance = 50;
+
+  const onTouchStart = (e: React.TouchEvent) => {
+    setTouchEnd(null);
+    setTouchStart(e.targetTouches[0].clientX);
+  };
+
+  const onTouchMove = (e: React.TouchEvent) => {
+    setTouchEnd(e.targetTouches[0].clientX);
+  };
+
+  const onTouchEnd = () => {
+    if (!touchStart || !touchEnd) return;
+    
+    const distance = touchStart - touchEnd;
+    const isLeftSwipe = distance > minSwipeDistance;
+    const isRightSwipe = distance < -minSwipeDistance;
+
+    if (isLeftSwipe && currentTestimonial < testimonials.length - 1) {
+      setCurrentTestimonial(currentTestimonial + 1);
+    }
+    if (isRightSwipe && currentTestimonial > 0) {
+      setCurrentTestimonial(currentTestimonial - 1);
+    }
+  };
+
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
@@ -149,21 +179,35 @@ const PreschoolPrograms = () => {
             </p>
           </div>
 
-          <div className="flex flex-wrap justify-center mb-6">
-            {programs.map((program) => (
-              <button
-                key={program.id}
-                onClick={() => setSelectedProgram(program.id)}
-                className={`mx-2 mb-4 px-6 py-3 rounded-full font-medium transition-all duration-300 ${
-                  selectedProgram === program.id
-                    ? 'bg-golden text-white shadow-card-hover'
-                    : 'bg-cream text-chocolate hover:bg-golden hover:text-white'
-                }`}
-              >
-                {program.name}
-              </button>
-            ))}
+          <div className="flex justify-center mb-6 overflow-x-auto scrollbar-hide">
+            <div className="flex space-x-3 px-12 lg:px-0 min-w-max lg:min-w-0">
+              {programs.map((program) => (
+                <button
+                  key={program.id}
+                  onClick={() => setSelectedProgram(program.id)}
+                  className={`px-6 lg:px-6 py-3 rounded-full font-medium transition-all duration-300 whitespace-nowrap ${
+                    selectedProgram === program.id
+                      ? 'bg-golden text-white shadow-card-hover'
+                      : 'bg-cream text-chocolate hover:bg-golden hover:text-white'
+                  }`}
+                >
+                  {program.name}
+                </button>
+              ))}
+            </div>
           </div>
+
+          <style dangerouslySetInnerHTML={{
+            __html: `
+              .scrollbar-hide {
+                -ms-overflow-style: none;
+                scrollbar-width: none;
+              }
+              .scrollbar-hide::-webkit-scrollbar {
+                display: none;
+              }
+            `
+          }} />
 
           <div className="max-w-6xl mx-auto">
             {programs.map((program) => (
@@ -216,16 +260,16 @@ const PreschoolPrograms = () => {
                       </ul>
                     </div>
                     
-                    <div className="backdrop-blur-sm bg-white/40 border border-white/60 rounded-xl p-6 h-fit shadow-lg">
-                      <div className="flex items-center mb-4">
-                        <div className="w-10 h-10 bg-golden/90 backdrop-blur-sm rounded-full flex items-center justify-center mr-3">
+                    <div className="backdrop-blur-sm bg-white/40 border border-white/60 rounded-xl p-4 lg:p-6 h-fit shadow-lg">
+                      <div className="flex items-center mb-3 lg:mb-4">
+                        <div className="hidden lg:flex w-10 h-10 bg-golden/90 backdrop-blur-sm rounded-full items-center justify-center mr-3">
                           <Heart className="h-5 w-5 text-white" />
                         </div>
-                        <h4 className="font-serif text-xl font-bold text-dark-brown">
+                        <h4 className="hidden lg:block font-serif text-xl font-bold text-dark-brown">
                           Zainteresowany?
                         </h4>
                       </div>
-                      <p className="text-dark-brown/80 text-sm mb-6 leading-relaxed font-medium">
+                      <p className="hidden lg:block text-dark-brown/80 text-sm mb-6 leading-relaxed font-medium">
                         Dołącz do grona zadowolonych placówek w całej Polsce. Zapewniamy kompleksową obsługę i wysoką jakość zajęć.
                       </p>
                       <div className="space-y-3">
@@ -238,7 +282,7 @@ const PreschoolPrograms = () => {
                           Pobierz Broszurę
                         </button>
                       </div>
-                      <div className="mt-4 p-3 bg-golden/10 backdrop-blur-sm rounded-lg border border-golden/20">
+                      <div className="mt-3 lg:mt-4 p-3 bg-golden/10 backdrop-blur-sm rounded-lg border border-golden/20">
                         <p className="text-xs text-dark-brown/70 text-center font-medium">
                           ✨ Bezpłatna prezentacja w Waszej placówce
                         </p>
@@ -334,7 +378,73 @@ const PreschoolPrograms = () => {
             </h2>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+          {/* Mobile: Carousel with pagination */}
+          <div className="lg:hidden">
+            <div className="relative">
+              <div 
+                className="overflow-hidden"
+                onTouchStart={onTouchStart}
+                onTouchMove={onTouchMove}
+                onTouchEnd={onTouchEnd}
+              >
+                <div 
+                  className="flex transition-transform duration-300 ease-in-out"
+                  style={{ transform: `translateX(-${currentTestimonial * 100}%)` }}
+                >
+                  {testimonials.map((testimonial, index) => (
+                    <div
+                      key={index}
+                      className="w-full flex-shrink-0 px-4"
+                    >
+                      <div className="bg-white rounded-2xl shadow-card mx-auto max-w-sm overflow-hidden">
+                        <div className="h-48 relative">
+                          <img
+                            src={testimonial.image}
+                            alt={testimonial.name}
+                            className="w-full h-full object-cover"
+                          />
+                          <div className="absolute inset-0 bg-gradient-to-t from-dark-brown/50 to-transparent"></div>
+                          <div className="absolute bottom-4 left-4 text-white">
+                            <p className="text-sm font-medium">{testimonial.location}</p>
+                          </div>
+                        </div>
+                        <div className="p-6">
+                          <h4 className="font-serif text-lg font-bold text-dark-brown mb-2">
+                            {testimonial.name}
+                          </h4>
+                          <p className="text-golden text-sm font-medium mb-3">
+                            {testimonial.director}
+                          </p>
+                          <p className="text-chocolate italic">
+                            "{testimonial.text}"
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+              
+              {/* Pagination dots */}
+              <div className="flex justify-center mt-6 space-x-2">
+                {testimonials.map((_, index) => (
+                  <button
+                    key={index}
+                    onClick={() => setCurrentTestimonial(index)}
+                    className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                      index === currentTestimonial 
+                        ? 'bg-golden scale-125' 
+                        : 'bg-chocolate/30 hover:bg-chocolate/50'
+                    }`}
+                    aria-label={`Przejdź do opinii ${index + 1}`}
+                  />
+                ))}
+              </div>
+            </div>
+          </div>
+
+          {/* Desktop: Grid */}
+          <div className="hidden lg:grid lg:grid-cols-2 gap-8">
             {testimonials.map((testimonial, index) => (
               <div
                 key={index}

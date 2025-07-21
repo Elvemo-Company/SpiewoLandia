@@ -68,11 +68,11 @@ const Testimonials = () => {
 
         <div className="relative max-w-4xl mx-auto">
           {/* Main Testimonial */}
-          <div className="bg-white rounded-2xl shadow-card-hover p-8 lg:p-12 text-center animate-fade-in">
-            <Quote className="h-12 w-12 text-golden mx-auto mb-6 opacity-50" />
+          <div className="bg-white rounded-2xl shadow-card-hover p-6 lg:p-12 text-center animate-fade-in mx-4 lg:mx-0">
+            <Quote className="h-8 w-8 lg:h-12 lg:w-12 text-golden mx-auto mb-4 lg:mb-6 opacity-50" />
             
-            <div className="mb-8">
-              <p className="text-lg lg:text-xl text-dark-brown leading-relaxed italic">
+            <div className="mb-6 lg:mb-8">
+              <p className="text-base lg:text-xl text-dark-brown leading-relaxed italic">
                 "{testimonials[currentSlide].content}"
               </p>
             </div>
@@ -81,17 +81,17 @@ const Testimonials = () => {
               {renderStars(testimonials[currentSlide].rating)}
             </div>
 
-            <div className="flex items-center justify-center">
+            <div className="flex items-center justify-center flex-col sm:flex-row">
               <img
                 src={testimonials[currentSlide].image}
                 alt={testimonials[currentSlide].name}
-                className="w-16 h-16 rounded-full object-cover mr-4"
+                className="w-12 h-12 lg:w-16 lg:h-16 rounded-full object-cover mb-2 sm:mb-0 sm:mr-4"
               />
-              <div className="text-left">
-                <h4 className="font-semibold text-dark-brown">
+              <div className="text-center sm:text-left">
+                <h4 className="font-semibold text-dark-brown text-sm lg:text-base">
                   {testimonials[currentSlide].name}
                 </h4>
-                <p className="text-chocolate text-sm">
+                <p className="text-chocolate text-xs lg:text-sm">
                   {testimonials[currentSlide].role}
                 </p>
               </div>
@@ -101,18 +101,18 @@ const Testimonials = () => {
           {/* Navigation */}
           <button
             onClick={prevSlide}
-            className="absolute left-0 top-1/2 transform -translate-y-1/2 -translate-x-4 lg:-translate-x-16 bg-white rounded-full p-3 shadow-card hover:shadow-card-hover transition-all duration-300 hover:scale-110"
+            className="absolute left-2 lg:left-0 top-1/2 transform -translate-y-1/2 lg:-translate-x-16 bg-white rounded-full p-2 lg:p-3 shadow-card hover:shadow-card-hover transition-all duration-300 hover:scale-110 z-10"
             aria-label="Previous testimonial"
           >
-            <ChevronLeft className="h-6 w-6 text-chocolate" />
+            <ChevronLeft className="h-5 w-5 lg:h-6 lg:w-6 text-chocolate" />
           </button>
 
           <button
             onClick={nextSlide}
-            className="absolute right-0 top-1/2 transform -translate-y-1/2 translate-x-4 lg:translate-x-16 bg-white rounded-full p-3 shadow-card hover:shadow-card-hover transition-all duration-300 hover:scale-110"
+            className="absolute right-2 lg:right-0 top-1/2 transform -translate-y-1/2 lg:translate-x-16 bg-white rounded-full p-2 lg:p-3 shadow-card hover:shadow-card-hover transition-all duration-300 hover:scale-110 z-10"
             aria-label="Next testimonial"
           >
-            <ChevronRight className="h-6 w-6 text-chocolate" />
+            <ChevronRight className="h-5 w-5 lg:h-6 lg:w-6 text-chocolate" />
           </button>
 
           {/* Dots */}
@@ -130,8 +130,8 @@ const Testimonials = () => {
           </div>
         </div>
 
-        {/* Mini Testimonials Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-16">
+        {/* Mini Testimonials Grid - Hidden on mobile */}
+        <div className="hidden md:grid md:grid-cols-3 gap-6 mt-16">
           {testimonials.slice(0, 3).map((testimonial, index) => (
             <div
               key={index}

@@ -1,7 +1,6 @@
 
 import React from 'react';
 import { Music, Heart, Users, Award, Clock, MapPin, Star, Quote } from 'lucide-react';
-import Header from '../components/Header';
 
 const AboutUsHero = () => (
   <section className="relative h-96 lg:h-[500px] flex items-center justify-center overflow-hidden">
@@ -15,7 +14,6 @@ const AboutUsHero = () => (
       </div>
       <div className="absolute inset-0 backdrop-blur bg-gradient-to-br from-white/10 via-transparent to-black/20 border-white/20"></div>
     </div>
-    <Header className="absolute top-0 left-0 w-full z-20" />
     <div className="relative z-10 max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
       <h1 className="font-serif text-h1-mobile lg:text-h1-desktop font-bold text-white mb-6 animate-fade-in">
         O Mnie
@@ -116,6 +114,7 @@ const AboutUs = () => {
 
   return (
     <div className="min-h-screen">
+      {/* Hero Section */}
       <AboutUsHero />
 
       {/* Mission Statement */}

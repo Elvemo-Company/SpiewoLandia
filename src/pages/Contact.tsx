@@ -11,6 +11,7 @@ const Contact = () => {
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [expandedFaq, setExpandedFaq] = useState<number | null>(null);
 
   const subjects = [
     { value: 'general', label: 'Ogólne pytanie' },
@@ -69,6 +70,10 @@ const Contact = () => {
         message: ''
       });
     }, 3000);
+  };
+
+  const toggleFaq = (index: number) => {
+    setExpandedFaq(expandedFaq === index ? null : index);
   };
 
   const faqItems = [
@@ -400,18 +405,63 @@ const Contact = () => {
             {faqItems.map((item, index) => (
               <div
                 key={index}
-                className="bg-cream rounded-lg p-6 animate-fade-in"
+                className="bg-cream rounded-lg animate-fade-in"
                 style={{ animationDelay: `${index * 0.1}s` }}
               >
-                <h3 className="font-serif text-lg font-bold text-dark-brown mb-3">
-                  {item.question}
-                </h3>
-                <p className="text-chocolate leading-relaxed">
-                  {item.answer}
-                </p>
+                {/* Mobile: Accordion with toggle */}
+                <div className="lg:hidden">
+                  <button
+                    onClick={() => toggleFaq(index)}
+                    className="w-full p-6 text-left flex items-center justify-between hover:bg-cream/80 transition-colors duration-300"
+                  >
+                    <h3 className="font-serif text-lg font-bold text-dark-brown">
+                      {item.question}
+                    </h3>
+                    <ChevronDown 
+                      className={`h-5 w-5 text-chocolate transition-transform duration-300 ${
+                        expandedFaq === index ? 'rotate-180' : ''
+                      }`}
+                    />
+                  </button>
+                  {expandedFaq === index && (
+                    <div className="px-6 pb-6 animate-slide-down">
+                      <p className="text-chocolate leading-relaxed">
+                        {item.answer}
+                      </p>
+                    </div>
+                  )}
+                </div>
+
+                {/* Desktop: Always visible */}
+                <div className="hidden lg:block p-6">
+                  <h3 className="font-serif text-lg font-bold text-dark-brown mb-3">
+                    {item.question}
+                  </h3>
+                  <p className="text-chocolate leading-relaxed">
+                    {item.answer}
+                  </p>
+                </div>
               </div>
             ))}
           </div>
+
+          <style dangerouslySetInnerHTML={{
+            __html: `
+              @keyframes slide-down {
+                from {
+                  opacity: 0;
+                  transform: translateY(-10px);
+                }
+                to {
+                  opacity: 1;
+                  transform: translateY(0);
+                }
+              }
+              .animate-slide-down {
+                animation: slide-down 0.3s ease-out;
+              }
+            `
+          }} />
 
           <div className="text-center mt-12">
             <p className="text-chocolate mb-4">

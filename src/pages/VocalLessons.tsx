@@ -1,7 +1,6 @@
 
 import React, { useState } from 'react';
 import { Users, Clock, BookOpen, Heart, CheckCircle, Download, MapPin, Calendar, Play, Star, Music } from 'lucide-react';
-import Header from '../components/Header';
 
 const VocalHero = () => (
   <section className="relative h-96 lg:h-[500px] flex items-center justify-center overflow-hidden">
@@ -15,7 +14,6 @@ const VocalHero = () => (
       </div>
       <div className="absolute inset-0 backdrop-blur bg-gradient-to-br from-white/10 via-transparent to-black/20 border-white/20"></div>
     </div>
-    <Header className="absolute top-0 left-0 w-full z-20" />
     <div className="relative z-10 max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
       <h1 className="font-serif text-h1-mobile lg:text-h1-desktop font-bold text-white mb-6 animate-fade-in">
         Lekcje Wokalne
@@ -34,6 +32,9 @@ const VocalHero = () => (
 const VocalLessons = () => {
   const [selectedLevel, setSelectedLevel] = useState('beginner');
   const [playingAudio, setPlayingAudio] = useState<string | null>(null);
+  const [currentTestimonial, setCurrentTestimonial] = useState(0);
+  const [touchStart, setTouchStart] = useState<number | null>(null);
+  const [touchEnd, setTouchEnd] = useState<number | null>(null);
 
   const levels = [
     {
@@ -106,9 +107,37 @@ const VocalLessons = () => {
     }
   };
 
+  // Swipe handling for testimonials
+  const minSwipeDistance = 50;
+
+  const onTouchStart = (e: React.TouchEvent) => {
+    setTouchEnd(null);
+    setTouchStart(e.targetTouches[0].clientX);
+  };
+
+  const onTouchMove = (e: React.TouchEvent) => {
+    setTouchEnd(e.targetTouches[0].clientX);
+  };
+
+  const onTouchEnd = () => {
+    if (!touchStart || !touchEnd) return;
+    
+    const distance = touchStart - touchEnd;
+    const isLeftSwipe = distance > minSwipeDistance;
+    const isRightSwipe = distance < -minSwipeDistance;
+
+    if (isLeftSwipe && currentTestimonial < testimonials.length - 1) {
+      setCurrentTestimonial(currentTestimonial + 1);
+    }
+    if (isRightSwipe && currentTestimonial > 0) {
+      setCurrentTestimonial(currentTestimonial - 1);
+    }
+  };
+
 
   return (
     <div className="min-h-screen">
+      {/* Hero Section */}
       <VocalHero />
 
       {/* Lesson Levels */}
@@ -123,21 +152,35 @@ const VocalLessons = () => {
             </p>
           </div>
 
-          <div className="flex flex-wrap justify-center mb-6">
-            {levels.map((level) => (
-              <button
-                key={level.id}
-                onClick={() => setSelectedLevel(level.id)}
-                className={`mx-2 mb-4 px-6 py-3 rounded-full font-medium transition-all duration-300 ${
-                  selectedLevel === level.id
-                    ? 'bg-golden text-white shadow-card-hover'
-                    : 'bg-cream text-chocolate hover:bg-golden hover:text-white'
-                }`}
-              >
-                {level.name}
-              </button>
-            ))}
+          <div className="flex justify-center mb-6 overflow-x-auto scrollbar-hide">
+            <div className="flex space-x-3 px-12 lg:px-0 min-w-max lg:min-w-0">
+              {levels.map((level) => (
+                <button
+                  key={level.id}
+                  onClick={() => setSelectedLevel(level.id)}
+                  className={`px-6 lg:px-6 py-3 rounded-full font-medium transition-all duration-300 whitespace-nowrap ${
+                    selectedLevel === level.id
+                      ? 'bg-golden text-white shadow-card-hover'
+                      : 'bg-cream text-chocolate hover:bg-golden hover:text-white'
+                  }`}
+                >
+                  {level.name}
+                </button>
+              ))}
+            </div>
           </div>
+
+          <style dangerouslySetInnerHTML={{
+            __html: `
+              .scrollbar-hide {
+                -ms-overflow-style: none;
+                scrollbar-width: none;
+              }
+              .scrollbar-hide::-webkit-scrollbar {
+                display: none;
+              }
+            `
+          }} />
 
           <div className="max-w-4xl mx-auto">
             {levels.map((level) => (
@@ -173,17 +216,17 @@ const VocalLessons = () => {
                       </ul>
                     </div>
                     <div className="text-center">
-                      <div className="bg-white/40 rounded-xl p-8">
-                        <div className="w-20 h-20 bg-golden rounded-full flex items-center justify-center mx-auto mb-6">
+                      <div className="bg-white/40 rounded-xl p-6 lg:p-8">
+                        <div className="hidden lg:block w-20 h-20 bg-golden rounded-full flex items-center justify-center mx-auto mb-6">
                           <Music className="h-10 w-10 text-white" />
                         </div>
-                        <h4 className="font-serif text-xl font-bold text-dark-brown mb-6">
+                        <h4 className="hidden lg:block font-serif text-lg lg:text-xl font-bold text-dark-brown mb-4 lg:mb-6">
                           Rozpocznij Teraz
                         </h4>
-                        <button className="bg-golden hover:bg-sunset text-white px-8 py-4 rounded-full font-medium text-lg transition-all duration-300 transform hover:scale-105 w-full mb-4">
+                        <button className="bg-golden hover:bg-sunset text-white px-6 lg:px-8 py-3 lg:py-4 rounded-full font-medium text-base lg:text-lg transition-all duration-300 transform hover:scale-105 w-full mb-3 lg:mb-4">
                           Zarezerwuj Lekcję
                         </button>
-                        <p className="text-sm text-soft-green font-medium">
+                        <p className="text-xs lg:text-sm text-soft-green font-medium">
                           -20% na pierwszą lekcję
                         </p>
                       </div>
@@ -250,7 +293,65 @@ const VocalLessons = () => {
             </h2>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          {/* Mobile: Carousel with pagination */}
+          <div className="lg:hidden">
+            <div className="relative">
+              <div 
+                className="overflow-hidden"
+                onTouchStart={onTouchStart}
+                onTouchMove={onTouchMove}
+                onTouchEnd={onTouchEnd}
+              >
+                <div 
+                  className="flex transition-transform duration-300 ease-in-out"
+                  style={{ transform: `translateX(-${currentTestimonial * 100}%)` }}
+                >
+                  {testimonials.map((testimonial, index) => (
+                    <div
+                      key={index}
+                      className="w-full flex-shrink-0 px-4"
+                    >
+                      <div className="bg-white rounded-lg p-6 shadow-card mx-auto max-w-sm">
+                        <div className="flex items-center mb-4">
+                          {Array.from({ length: testimonial.rating }).map((_, starIndex) => (
+                            <Star key={starIndex} className="h-4 w-4 text-golden fill-current" />
+                          ))}
+                        </div>
+                        <p className="text-chocolate mb-4 italic">"{testimonial.text}"</p>
+                        <div className="flex items-center">
+                          <img
+                            src={testimonial.image}
+                            alt={testimonial.name}
+                            className="w-10 h-10 rounded-full object-cover mr-3"
+                          />
+                          <span className="font-semibold text-dark-brown">{testimonial.name}</span>
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+              
+              {/* Pagination dots */}
+              <div className="flex justify-center mt-6 space-x-2">
+                {testimonials.map((_, index) => (
+                  <button
+                    key={index}
+                    onClick={() => setCurrentTestimonial(index)}
+                    className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                      index === currentTestimonial 
+                        ? 'bg-golden scale-125' 
+                        : 'bg-chocolate/30 hover:bg-chocolate/50'
+                    }`}
+                    aria-label={`Przejdź do opinii ${index + 1}`}
+                  />
+                ))}
+              </div>
+            </div>
+          </div>
+
+          {/* Desktop: Grid */}
+          <div className="hidden lg:grid lg:grid-cols-2 gap-8">
             {testimonials.map((testimonial, index) => (
               <div
                 key={index}

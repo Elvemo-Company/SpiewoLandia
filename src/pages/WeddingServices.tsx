@@ -1,7 +1,6 @@
 
 import React, { useState } from 'react';
-import { Heart, Music, Users, Clock, Play, Pause, Volume2, Calendar, CheckCircle, Star } from 'lucide-react';
-import Header from '../components/Header';
+import { Heart, Music, Camera, Users, Clock, Star, CheckCircle, Calendar, Award, Phone, Play, Pause, Volume2 } from 'lucide-react';
 
 const WeddingHero = () => (
   <section className="relative h-96 lg:h-[500px] flex items-center justify-center overflow-hidden">
@@ -15,7 +14,6 @@ const WeddingHero = () => (
       </div>
       <div className="absolute inset-0 backdrop-blur bg-gradient-to-br from-white/10 via-transparent to-black/20 border-white/20"></div>
     </div>
-    <Header className="absolute top-0 left-0 w-full z-20" />
     <div className="relative z-10 max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
       <h1 className="font-serif text-h1-mobile lg:text-h1-desktop font-bold text-white mb-6 animate-fade-in">
         Oprawa Muzyczna Ślubów
@@ -35,6 +33,12 @@ const WeddingServices = () => {
   const [selectedPackage, setSelectedPackage] = useState('classic');
   const [playingTrack, setPlayingTrack] = useState<string | null>(null);
   const [selectedCategory, setSelectedCategory] = useState('ceremony');
+  const [currentTestimonial, setCurrentTestimonial] = useState(0);
+  const [touchStart, setTouchStart] = useState<number | null>(null);
+  const [touchEnd, setTouchEnd] = useState<number | null>(null);
+  const [currentGalleryImage, setCurrentGalleryImage] = useState(0);
+  const [galleryTouchStart, setGalleryTouchStart] = useState<number | null>(null);
+  const [galleryTouchEnd, setGalleryTouchEnd] = useState<number | null>(null);
 
   const packages = [
     {
@@ -155,6 +159,58 @@ const WeddingServices = () => {
     }
   ];
 
+  // Swipe handling for testimonials
+  const minSwipeDistance = 50;
+
+  const onTouchStart = (e: React.TouchEvent) => {
+    setTouchEnd(null);
+    setTouchStart(e.targetTouches[0].clientX);
+  };
+
+  const onTouchMove = (e: React.TouchEvent) => {
+    setTouchEnd(e.targetTouches[0].clientX);
+  };
+
+  const onTouchEnd = () => {
+    if (!touchStart || !touchEnd) return;
+    
+    const distance = touchStart - touchEnd;
+    const isLeftSwipe = distance > minSwipeDistance;
+    const isRightSwipe = distance < -minSwipeDistance;
+
+    if (isLeftSwipe && currentTestimonial < testimonials.length - 1) {
+      setCurrentTestimonial(currentTestimonial + 1);
+    }
+    if (isRightSwipe && currentTestimonial > 0) {
+      setCurrentTestimonial(currentTestimonial - 1);
+    }
+  };
+
+  // Swipe handling for gallery
+  const onGalleryTouchStart = (e: React.TouchEvent) => {
+    setGalleryTouchEnd(null);
+    setGalleryTouchStart(e.targetTouches[0].clientX);
+  };
+
+  const onGalleryTouchMove = (e: React.TouchEvent) => {
+    setGalleryTouchEnd(e.targetTouches[0].clientX);
+  };
+
+  const onGalleryTouchEnd = () => {
+    if (!galleryTouchStart || !galleryTouchEnd) return;
+    
+    const distance = galleryTouchStart - galleryTouchEnd;
+    const isLeftSwipe = distance > minSwipeDistance;
+    const isRightSwipe = distance < -minSwipeDistance;
+
+    if (isLeftSwipe && currentGalleryImage < gallery.length - 1) {
+      setCurrentGalleryImage(currentGalleryImage + 1);
+    }
+    if (isRightSwipe && currentGalleryImage > 0) {
+      setCurrentGalleryImage(currentGalleryImage - 1);
+    }
+  };
+
   const handlePlayTrack = (trackId: string) => {
     if (playingTrack === trackId) {
       setPlayingTrack(null);
@@ -166,6 +222,7 @@ const WeddingServices = () => {
 
   return (
     <div className="min-h-screen">
+      {/* Hero Section */}
       <WeddingHero />
 
       {/* Packages */}
@@ -249,22 +306,36 @@ const WeddingServices = () => {
             </p>
           </div>
 
-          <div className="flex flex-wrap justify-center mb-8">
-            {categories.map((category) => (
-              <button
-                key={category.id}
-                onClick={() => setSelectedCategory(category.id)}
-                className={`mx-2 mb-4 px-6 py-3 rounded-full font-medium transition-all duration-300 flex items-center ${
-                  selectedCategory === category.id
-                    ? 'bg-golden text-white shadow-card-hover'
-                    : 'bg-white text-chocolate hover:bg-golden hover:text-white'
-                }`}
-              >
-                <category.icon className="h-4 w-4 mr-2" />
-                {category.name}
-              </button>
-            ))}
+          <div className="flex justify-center mb-8 overflow-x-auto scrollbar-hide">
+            <div className="flex space-x-3 px-12 lg:px-0 min-w-max lg:min-w-0">
+              {categories.map((category) => (
+                <button
+                  key={category.id}
+                  onClick={() => setSelectedCategory(category.id)}
+                  className={`px-6 py-3 rounded-full font-medium transition-all duration-300 flex items-center whitespace-nowrap ${
+                    selectedCategory === category.id
+                      ? 'bg-golden text-white shadow-card-hover'
+                      : 'bg-white text-chocolate hover:bg-golden hover:text-white'
+                  }`}
+                >
+                  <category.icon className="h-4 w-4 mr-2" />
+                  {category.name}
+                </button>
+              ))}
+            </div>
           </div>
+
+          <style dangerouslySetInnerHTML={{
+            __html: `
+              .scrollbar-hide {
+                -ms-overflow-style: none;
+                scrollbar-width: none;
+              }
+              .scrollbar-hide::-webkit-scrollbar {
+                display: none;
+              }
+            `
+          }} />
 
           <div className="max-w-4xl mx-auto">
             <div className="bg-white rounded-2xl p-6 lg:p-8">
@@ -326,7 +397,62 @@ const WeddingServices = () => {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          {/* Mobile: Carousel with pagination */}
+          <div className="lg:hidden">
+            <div className="relative">
+              <div 
+                className="overflow-hidden rounded-2xl"
+                onTouchStart={onGalleryTouchStart}
+                onTouchMove={onGalleryTouchMove}
+                onTouchEnd={onGalleryTouchEnd}
+              >
+                <div 
+                  className="flex transition-transform duration-300 ease-in-out"
+                  style={{ transform: `translateX(-${currentGalleryImage * 100}%)` }}
+                >
+                  {gallery.map((item, index) => (
+                    <div
+                      key={index}
+                      className="w-full flex-shrink-0"
+                    >
+                      <div className="relative aspect-square mx-4">
+                        <img
+                          src={item.image}
+                          alt={item.title}
+                          className="w-full h-full object-cover rounded-lg"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-dark-brown/80 via-transparent to-transparent rounded-lg">
+                          <div className="absolute bottom-4 left-4 text-white">
+                            <h4 className="font-semibold mb-1">{item.title}</h4>
+                            <p className="text-sm opacity-90">{item.location}</p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+              
+              {/* Pagination dots */}
+              <div className="flex justify-center mt-6 space-x-2">
+                {gallery.map((_, index) => (
+                  <button
+                    key={index}
+                    onClick={() => setCurrentGalleryImage(index)}
+                    className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                      index === currentGalleryImage 
+                        ? 'bg-golden scale-125' 
+                        : 'bg-chocolate/30 hover:bg-chocolate/50'
+                    }`}
+                    aria-label={`Przejdź do zdjęcia ${index + 1}`}
+                  />
+                ))}
+              </div>
+            </div>
+          </div>
+
+          {/* Desktop: Grid */}
+          <div className="hidden lg:grid lg:grid-cols-4 gap-6">
             {gallery.map((item, index) => (
               <div
                 key={index}
@@ -361,7 +487,71 @@ const WeddingServices = () => {
             </h2>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+          {/* Mobile: Carousel with pagination */}
+          <div className="lg:hidden">
+            <div className="relative">
+              <div 
+                className="overflow-hidden"
+                onTouchStart={onTouchStart}
+                onTouchMove={onTouchMove}
+                onTouchEnd={onTouchEnd}
+              >
+                <div 
+                  className="flex transition-transform duration-300 ease-in-out"
+                  style={{ transform: `translateX(-${currentTestimonial * 100}%)` }}
+                >
+                  {testimonials.map((testimonial, index) => (
+                    <div
+                      key={index}
+                      className="w-full flex-shrink-0 px-4"
+                    >
+                      <div className="bg-white rounded-2xl shadow-card mx-auto max-w-sm overflow-hidden">
+                        <div className="h-48 relative">
+                          <img
+                            src={testimonial.image}
+                            alt={testimonial.names}
+                            className="w-full h-full object-cover"
+                          />
+                          <div className="absolute inset-0 bg-gradient-to-t from-dark-brown/50 to-transparent"></div>
+                          <div className="absolute bottom-4 left-4 text-white">
+                            <h4 className="font-serif text-lg font-bold">{testimonial.names}</h4>
+                            <p className="text-sm opacity-90">{testimonial.date}</p>
+                          </div>
+                        </div>
+                        <div className="p-6">
+                          <div className="flex items-center mb-4">
+                            {Array.from({ length: testimonial.rating }).map((_, starIndex) => (
+                              <Star key={starIndex} className="h-4 w-4 text-golden fill-current" />
+                            ))}
+                          </div>
+                          <p className="text-chocolate italic">"{testimonial.text}"</p>
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+              
+              {/* Pagination dots */}
+              <div className="flex justify-center mt-6 space-x-2">
+                {testimonials.map((_, index) => (
+                  <button
+                    key={index}
+                    onClick={() => setCurrentTestimonial(index)}
+                    className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                      index === currentTestimonial 
+                        ? 'bg-golden scale-125' 
+                        : 'bg-chocolate/30 hover:bg-chocolate/50'
+                    }`}
+                    aria-label={`Przejdź do opinii ${index + 1}`}
+                  />
+                ))}
+              </div>
+            </div>
+          </div>
+
+          {/* Desktop: Grid */}
+          <div className="hidden lg:grid lg:grid-cols-2 gap-8">
             {testimonials.map((testimonial, index) => (
               <div
                 key={index}
