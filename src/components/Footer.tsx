@@ -136,7 +136,17 @@ const Footer = () => {
             className="absolute inset-0 bg-black/50 backdrop-blur-sm"
             onClick={() => setShowTermsModal(false)}
           />
-          <div className="relative bg-white rounded-2xl p-6 max-w-md md:max-w-2xl w-full max-h-[80vh] overflow-y-auto shadow-2xl animate-fade-in">
+          <div className="relative bg-white rounded-2xl p-6 max-w-md md:max-w-2xl w-full max-h-[80vh] overflow-y-auto shadow-2xl animate-fade-in scrollbar-hide">
+      {/* Ukryj scrollbar w modalu regulaminu */}
+      <style>{`
+        .scrollbar-hide {
+          -ms-overflow-style: none;
+          scrollbar-width: none;
+        }
+        .scrollbar-hide::-webkit-scrollbar {
+          display: none;
+        }
+      `}</style>
             <button
               onClick={() => setShowTermsModal(false)}
               className="absolute top-4 right-4 p-2 rounded-full hover:bg-cream transition-colors duration-200"

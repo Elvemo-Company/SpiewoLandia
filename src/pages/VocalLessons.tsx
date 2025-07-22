@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { Users, Clock, BookOpen, Heart, CheckCircle, Download, MapPin, Calendar, Play, Star, Music } from 'lucide-react';
 
 const VocalHero = () => (
-  <section className="relative h-96 lg:h-[500px] flex items-center justify-center overflow-hidden">
+  <section className="relative h-[600px] lg:h-[700px] flex items-center justify-center overflow-hidden">
     <div className="absolute inset-0 z-0">
       <div className="w-full h-full bg-gradient-to-r from-chocolate/80 via-chocolate/40 to-transparent">
         <img 
@@ -218,9 +218,11 @@ const VocalLessons = () => {
                     </div>
                     <div className="text-center">
                       <div className="bg-white/40 rounded-xl p-6 lg:p-8">
-                        <div className="hidden lg:block w-20 h-20 bg-golden rounded-full flex items-center justify-center mx-auto mb-6">
+                      <div className="hidden lg:flex justify-center mb-6">
+                        <div className="w-20 h-20 bg-golden rounded-full flex items-center justify-center">
                           <Music className="h-10 w-10 text-white" />
                         </div>
+                      </div>
                         <h4 className="hidden lg:block font-serif text-lg lg:text-xl font-bold text-dark-brown mb-4 lg:mb-6">
                           Rozpocznij Teraz
                         </h4>

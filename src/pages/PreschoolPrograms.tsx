@@ -150,7 +150,7 @@ const PreschoolPrograms = () => {
   return (
     <div className="min-h-screen overflow-x-hidden">
       {/* Hero Section */}
-      <section className="relative h-96 lg:h-[500px] flex items-center justify-center overflow-hidden">
+      <section className="relative h-[600px] lg:h-[700px] flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0 z-0">
           <div className="w-full h-full bg-gradient-to-r from-chocolate/80 via-chocolate/40 to-transparent">
             <img 
@@ -256,8 +256,7 @@ const PreschoolPrograms = () => {
                           <p className="text-xs lg:text-sm text-chocolate">min. {program.minChildren}</p>
                         </div>
                         <div className="text-center py-3 lg:py-6">
-                          <span className="text-base lg:text-lg font-bold text-golden block">{program.price}</span>
-                          <span className="block text-xs text-chocolate/70 mt-1 font-normal italic">cena za dziecko na miesiąc</span>
+                          <span className="text-base lg:text-lg font-bold text-golden block">{program.price}<sup className="text-golden">*</sup></span>
                         </div>
                       </div>
 
@@ -269,6 +268,7 @@ const PreschoolPrograms = () => {
                           </li>
                         ))}
                       </ul>
+                      <span className="block text-xs text-chocolate/70 mt-3 font-normal italic">* cena za dziecko na miesiąc</span>
                     </div>
                     
                     <div className="backdrop-blur-sm bg-white/40 border border-white/60 rounded-xl p-4 lg:p-6 h-fit shadow-lg">

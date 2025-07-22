@@ -158,7 +158,7 @@ const BookClasses = () => {
   return (
     <div className="min-h-screen bg-cream">
       {/* Hero Section */}
-      <section className="relative h-64 lg:h-80 flex items-center justify-center overflow-hidden">
+      <section className="relative h-[600px] lg:h-[700px] flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0 z-0">
           <div className="w-full h-full bg-gradient-to-r from-chocolate/80 via-chocolate/40 to-transparent">
             <img 
