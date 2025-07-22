@@ -76,11 +76,14 @@ const Footer = () => {
                     <div className="flex items-start">
                       <MapPin className="h-3 w-3 lg:h-4 lg:w-4 text-golden mr-2 mt-0.5 flex-shrink-0" />
                       <div>
-                        <p className="text-white/80 text-xs lg:text-sm">ul. Muzyczna 12</p>
-                        <p className="text-white/80 text-xs lg:text-sm">00-123 Warszawa</p>
-                        <div className="mt-2 bg-white/10 rounded-lg p-2 hover:bg-white/20 transition-colors duration-300 cursor-pointer">
-                          <p className="text-xs text-white/80">Zobacz na mapie →</p>
-                        </div>
+                        <a
+                          href="https://maps.google.com/?q=Piotrkowska+1+Łódź"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-white/80 text-xs lg:text-sm hover:text-golden transition-colors duration-300 block"
+                        >
+                          Piotrkowska 1<br />Łódź
+                        </a>
                       </div>
                     </div>
                   </div>
@@ -109,14 +112,6 @@ const Footer = () => {
         </div>
       </footer>
 
-      {/* Back to Top Button */}
-      <button
-        onClick={scrollToTop}
-        className="fixed bottom-6 right-6 bg-golden hover:bg-sunset text-white p-3 rounded-full shadow-card hover:shadow-card-hover transition-all duration-300 transform hover:scale-110 z-50"
-        aria-label="Back to top"
-      >
-        <ArrowUp className="h-6 w-6" />
-      </button>
 
       {/* Terms Modal */}
       {showTermsModal && (

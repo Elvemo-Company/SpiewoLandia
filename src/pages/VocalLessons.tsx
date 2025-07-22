@@ -154,15 +154,16 @@ const VocalLessons = () => {
 
           <div className="flex justify-center mb-6 overflow-x-auto scrollbar-hide">
             <div className="flex space-x-3 px-12 lg:px-0 min-w-max lg:min-w-0">
-              {levels.map((level) => (
+              {levels.map((level, idx) => (
                 <button
                   key={level.id}
                   onClick={() => setSelectedLevel(level.id)}
-                  className={`px-6 lg:px-6 py-3 rounded-full font-medium transition-all duration-300 whitespace-nowrap ${
-                    selectedLevel === level.id
+                  className={`px-6 lg:px-6 py-3 rounded-full font-medium transition-all duration-300 whitespace-nowrap
+                    ${selectedLevel === level.id
                       ? 'bg-golden text-white shadow-card-hover'
-                      : 'bg-cream text-chocolate hover:bg-golden hover:text-white'
-                  }`}
+                      : 'bg-cream text-chocolate hover:bg-golden hover:text-white'}
+                    ${idx === 0 ? 'ml-48 lg:ml-0' : ''}
+                  `}
                 >
                   {level.name}
                 </button>

@@ -14,7 +14,7 @@ const PreschoolPrograms = () => {
       name: 'Program Podstawowy',
       duration: '30 min',
       frequency: '1x w tygodniu',
-      price: '80 zł/dziecko/miesiąc',
+      price: '80 zł',
       minChildren: '8 dzieci',
       description: 'Wprowadzenie do świata muzyki przez zabawę i śpiew',
       features: [
@@ -31,7 +31,7 @@ const PreschoolPrograms = () => {
       name: 'Program Rozszerzony',
       duration: '45 min',
       frequency: '2x w tygodniu',
-      price: '120 zł/dziecko/miesiąc',
+      price: '120 zł',
       minChildren: '10 dzieci',
       description: 'Kompleksowy rozwój muzyczny z elementami teatru',
       features: [
@@ -49,7 +49,7 @@ const PreschoolPrograms = () => {
       name: 'Program Premium',
       duration: '60 min',
       frequency: '3x w tygodniu',
-      price: '180 zł/dziecko/miesiąc',
+      price: '180 zł',
       minChildren: '12 dzieci',
       description: 'Profesjonalne przygotowanie muzyczne z indywidualnym podejściem',
       features: [
@@ -190,15 +190,16 @@ const PreschoolPrograms = () => {
 
           <div className="flex justify-center mb-6 overflow-x-auto scrollbar-hide">
             <div className="flex space-x-3 px-12 lg:px-0 min-w-max lg:min-w-0">
-              {programs.map((program) => (
+              {programs.map((program, idx) => (
                 <button
                   key={program.id}
                   onClick={() => setSelectedProgram(program.id)}
-                  className={`px-6 lg:px-6 py-3 rounded-full font-medium transition-all duration-300 whitespace-nowrap ${
-                    selectedProgram === program.id
+                  className={`px-6 lg:px-6 py-3 rounded-full font-medium transition-all duration-300 whitespace-nowrap
+                    ${selectedProgram === program.id
                       ? 'bg-golden text-white shadow-card-hover'
-                      : 'bg-cream text-chocolate hover:bg-golden hover:text-white'
-                  }`}
+                      : 'bg-cream text-chocolate hover:bg-golden hover:text-white'}
+                    ${idx === 0 ? 'ml-64 lg:ml-0' : ''}
+                  `}
                 >
                   {program.name}
                 </button>
@@ -256,6 +257,7 @@ const PreschoolPrograms = () => {
                         </div>
                         <div className="text-center py-3 lg:py-6">
                           <span className="text-base lg:text-lg font-bold text-golden block">{program.price}</span>
+                          <span className="block text-xs text-chocolate/70 mt-1 font-normal italic">cena za dziecko na miesiąc</span>
                         </div>
                       </div>
 

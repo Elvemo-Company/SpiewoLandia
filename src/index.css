@@ -142,3 +142,6 @@ select:focus {
   background-color: #FFB84D;
   color: white;
 }
+a:focus, button:focus {
+  outline: none;
+}
