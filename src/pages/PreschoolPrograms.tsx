@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
-import { Users, Clock, BookOpen, Heart, CheckCircle, Download, MapPin, Calendar } from 'lucide-react';
+import { Users, Clock, BookOpen, Heart, CheckCircle, Download, MapPin, Calendar, X } from 'lucide-react';
 
 const PreschoolPrograms = () => {
   const [selectedProgram, setSelectedProgram] = useState('basic');
   const [currentTestimonial, setCurrentTestimonial] = useState(0);
   const [touchStart, setTouchStart] = useState<number | null>(null);
   const [touchEnd, setTouchEnd] = useState<number | null>(null);
+  const [selectedBenefit, setSelectedBenefit] = useState<number | null>(null);
 
   const programs = [
     {
@@ -138,8 +139,16 @@ const PreschoolPrograms = () => {
     }
   };
 
+  const closeBenefitModal = () => {
+    setSelectedBenefit(null);
+  };
+
+  const openBenefitModal = (index: number) => {
+    setSelectedBenefit(index);
+  };
+
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen overflow-x-hidden">
       {/* Hero Section */}
       <section className="relative h-96 lg:h-[500px] flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0 z-0">
@@ -221,7 +230,7 @@ const PreschoolPrograms = () => {
                   <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
                     <div className="lg:col-span-2">
                       <div className="flex items-center mb-4">
-                        <span className="bg-golden text-white px-3 py-1 rounded-full text-sm font-medium mr-4">
+                        <span className="bg-golden text-white px-3 py-1 rounded-full text-sm font-medium mr-4 whitespace-nowrap">
                           {program.ageGroup}
                         </span>
                         <h3 className="font-serif text-2xl lg:text-3xl font-bold text-dark-brown">
@@ -232,21 +241,21 @@ const PreschoolPrograms = () => {
                         {program.description}
                       </p>
                       
-                      <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-4">
-                        <div className="text-center py-6">
-                          <Clock className="h-6 w-6 text-golden mx-auto mb-3" />
-                          <p className="text-sm text-chocolate">{program.duration}</p>
+                      <div className="grid grid-cols-4 gap-2 lg:gap-4 mb-4">
+                        <div className="text-center py-3 lg:py-6">
+                          <Clock className="h-4 w-4 lg:h-6 lg:w-6 text-golden mx-auto mb-1 lg:mb-3" />
+                          <p className="text-xs lg:text-sm text-chocolate">{program.duration}</p>
                         </div>
-                        <div className="text-center py-6">
-                          <Calendar className="h-6 w-6 text-golden mx-auto mb-3" />
-                          <p className="text-sm text-chocolate">{program.frequency}</p>
+                        <div className="text-center py-3 lg:py-6">
+                          <Calendar className="h-4 w-4 lg:h-6 lg:w-6 text-golden mx-auto mb-1 lg:mb-3" />
+                          <p className="text-xs lg:text-sm text-chocolate">{program.frequency}</p>
                         </div>
-                        <div className="text-center py-6">
-                          <Users className="h-6 w-6 text-golden mx-auto mb-3" />
-                          <p className="text-sm text-chocolate">min. {program.minChildren}</p>
+                        <div className="text-center py-3 lg:py-6">
+                          <Users className="h-4 w-4 lg:h-6 lg:w-6 text-golden mx-auto mb-1 lg:mb-3" />
+                          <p className="text-xs lg:text-sm text-chocolate">min. {program.minChildren}</p>
                         </div>
-                        <div className="text-center py-6">
-                          <span className="text-lg font-bold text-golden block">{program.price}</span>
+                        <div className="text-center py-3 lg:py-6">
+                          <span className="text-base lg:text-lg font-bold text-golden block">{program.price}</span>
                         </div>
                       </div>
 
@@ -308,7 +317,29 @@ const PreschoolPrograms = () => {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          {/* Mobile: Horizontal scroll with icons only */}
+          <div className="lg:hidden overflow-x-auto scrollbar-hide">
+            <div className="flex space-x-6 px-4 min-w-max">
+              {benefits.map((benefit, index) => (
+                <div
+                  key={benefit.title}
+                  className="text-center group animate-fade-in flex-shrink-0 cursor-pointer"
+                  style={{ animationDelay: `${index * 0.1}s` }}
+                  onClick={() => openBenefitModal(index)}
+                >
+                  <div className="inline-flex items-center justify-center w-16 h-16 bg-white rounded-full mb-3 group-hover:scale-110 transition-transform duration-300 shadow-card">
+                    <benefit.icon className="h-8 w-8 text-golden" />
+                  </div>
+                  <h3 className="font-serif text-sm font-bold text-dark-brown whitespace-nowrap">
+                    {benefit.title}
+                  </h3>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Desktop: Grid with descriptions */}
+          <div className="hidden lg:grid lg:grid-cols-4 gap-8">
             {benefits.map((benefit, index) => (
               <div
                 key={benefit.title}
@@ -342,7 +373,36 @@ const PreschoolPrograms = () => {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          {/* Mobile: Horizontal scroll */}
+          <div className="lg:hidden overflow-x-auto scrollbar-hide">
+            <div className="flex space-x-4 px-4 min-w-max">
+              {locations.map((location, index) => (
+                <div
+                  key={location.city}
+                  className="bg-cream rounded-lg p-6 text-center hover:shadow-card transition-all duration-300 animate-fade-in flex-shrink-0 w-64"
+                  style={{ animationDelay: `${index * 0.1}s` }}
+                >
+                  <MapPin className="h-8 w-8 text-golden mx-auto mb-4" />
+                  <h3 className="font-serif text-xl font-bold text-dark-brown mb-2">
+                    {location.city}
+                  </h3>
+                  <p className="text-chocolate text-sm mb-3">
+                    {location.count} współpracujących przedszkoli
+                  </p>
+                  <div className="space-y-1">
+                    {location.districts.map((district) => (
+                      <span key={district} className="inline-block bg-white px-2 py-1 rounded text-xs text-chocolate mr-1 mb-1">
+                        {district}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Desktop: Grid */}
+          <div className="hidden lg:grid lg:grid-cols-4 gap-6">
             {locations.map((location, index) => (
               <div
                 key={location.city}
@@ -495,6 +555,38 @@ const PreschoolPrograms = () => {
           </div>
         </div>
       </section>
+
+      {/* Modal for Benefits (Mobile only) */}
+      {selectedBenefit !== null && (
+        <div className="lg:hidden fixed inset-0 z-50 flex items-center justify-center p-4">
+          <div 
+            className="absolute inset-0 bg-black/50 backdrop-blur-sm"
+            onClick={closeBenefitModal}
+          />
+          <div className="relative bg-white rounded-2xl p-6 max-w-sm w-full shadow-2xl animate-fade-in">
+            <button
+              onClick={closeBenefitModal}
+              className="absolute top-4 right-4 p-2 rounded-full hover:bg-cream transition-colors duration-200"
+            >
+              <X className="h-5 w-5 text-chocolate" />
+            </button>
+            
+            <div className="text-center">
+              <div className="inline-flex items-center justify-center w-16 h-16 bg-golden/10 rounded-full mb-4">
+                {React.createElement(benefits[selectedBenefit].icon, { 
+                  className: "h-8 w-8 text-golden" 
+                })}
+              </div>
+              <h3 className="font-serif text-xl font-bold text-dark-brown mb-4">
+                {benefits[selectedBenefit].title}
+              </h3>
+              <p className="text-chocolate leading-relaxed">
+                {benefits[selectedBenefit].description}
+              </p>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

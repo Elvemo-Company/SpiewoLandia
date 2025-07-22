@@ -1,6 +1,6 @@
 
-import React from 'react';
-import { Music, Heart, Users, Award, Clock, MapPin, Star, Quote } from 'lucide-react';
+import React, { useState } from 'react';
+import { Music, Heart, Users, Award, Clock, MapPin, Star, Quote, X } from 'lucide-react';
 
 const AboutUsHero = () => (
   <section className="relative h-96 lg:h-[500px] flex items-center justify-center overflow-hidden">
@@ -22,7 +22,10 @@ const AboutUsHero = () => (
         Poznaj moją historię i pasję do muzyki. Odkryj, jak ŚpiewoLandia 
         stała się miejscem, gdzie dzieci i dorośli odkrywają radość śpiewania.
       </p>
-      <button className="bg-golden hover:bg-sunset text-white px-8 py-4 rounded-full font-medium text-lg transition-all duration-300 transform hover:scale-105">
+      <button 
+        onClick={() => document.getElementById('founder')?.scrollIntoView({ behavior: 'smooth' })}
+        className="bg-golden hover:bg-sunset text-white px-8 py-4 rounded-full font-medium text-lg transition-all duration-300 transform hover:scale-105"
+      >
         Poznaj Moją Historię
       </button>
     </div>
@@ -30,6 +33,8 @@ const AboutUsHero = () => (
 );
 
 const AboutUs = () => {
+  const [selectedValue, setSelectedValue] = useState<number | null>(null);
+
   const founder = {
     name: 'Anna Kowalska',
     role: 'Założycielka i Dyrektor Artystyczny',
@@ -104,6 +109,14 @@ const AboutUs = () => {
     }
   ];
 
+  const closeModal = () => {
+    setSelectedValue(null);
+  };
+
+  const openModal = (index: number) => {
+    setSelectedValue(index);
+  };
+
   const stats = [
     { number: '500+', label: 'Uczniów', icon: Users },
     { number: '10', label: 'Lat Doświadczenia', icon: Clock },
@@ -147,7 +160,29 @@ const AboutUs = () => {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          {/* Mobile: Horizontal scroll with modals */}
+          <div className="lg:hidden overflow-x-auto scrollbar-hide">
+            <div className="flex space-x-6 px-4 min-w-max">
+              {values.map((value, index) => (
+                <div
+                  key={value.title}
+                  className="text-center group animate-fade-in flex-shrink-0 cursor-pointer"
+                  style={{ animationDelay: `${index * 0.1}s` }}
+                  onClick={() => openModal(index)}
+                >
+                  <div className="inline-flex items-center justify-center w-16 h-16 bg-white rounded-full mb-3 group-hover:scale-110 transition-transform duration-300 shadow-card">
+                    <value.icon className="h-8 w-8 text-golden" />
+                  </div>
+                  <h3 className="font-serif text-sm font-bold text-dark-brown whitespace-nowrap">
+                    {value.title}
+                  </h3>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Desktop: Grid with descriptions */}
+          <div className="hidden lg:grid lg:grid-cols-4 gap-8">
             {values.map((value, index) => (
               <div
                 key={value.title}
@@ -166,6 +201,18 @@ const AboutUs = () => {
               </div>
             ))}
           </div>
+
+          <style dangerouslySetInnerHTML={{
+            __html: `
+              .scrollbar-hide {
+                -ms-overflow-style: none;
+                scrollbar-width: none;
+              }
+              .scrollbar-hide::-webkit-scrollbar {
+                display: none;
+              }
+            `
+          }} />
         </div>
       </section>
 
@@ -187,7 +234,7 @@ const AboutUs = () => {
             {milestones.map((milestone, index) => (
               <div
                 key={milestone.year}
-                className={`relative flex items-center mb-12 animate-fade-in ${
+                className={`relative flex items-center mb-3 lg:mb-12 animate-fade-in ${
                   index % 2 === 0 ? 'flex-row' : 'flex-row-reverse'
                 }`}
                 style={{ animationDelay: `${index * 0.2}s` }}
@@ -213,7 +260,7 @@ const AboutUs = () => {
       </section>
 
       {/* Team */}
-      <section className="py-16 lg:py-24 bg-cream">
+      <section id="founder" className="py-16 lg:py-24 bg-cream">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="font-serif text-h2-mobile lg:text-h2-desktop font-bold text-dark-brown mb-4">
@@ -332,6 +379,38 @@ const AboutUs = () => {
           </div>
         </div>
       </section>
+
+      {/* Modal for Values (Mobile only) */}
+      {selectedValue !== null && (
+        <div className="lg:hidden fixed inset-0 z-50 flex items-center justify-center p-4">
+          <div 
+            className="absolute inset-0 bg-black/50 backdrop-blur-sm"
+            onClick={closeModal}
+          />
+          <div className="relative bg-white rounded-2xl p-6 max-w-sm w-full shadow-2xl animate-fade-in">
+            <button
+              onClick={closeModal}
+              className="absolute top-4 right-4 p-2 rounded-full hover:bg-cream transition-colors duration-200"
+            >
+              <X className="h-5 w-5 text-chocolate" />
+            </button>
+            
+            <div className="text-center">
+              <div className="inline-flex items-center justify-center w-16 h-16 bg-golden/10 rounded-full mb-4">
+                {React.createElement(values[selectedValue].icon, { 
+                  className: "h-8 w-8 text-golden" 
+                })}
+              </div>
+              <h3 className="font-serif text-xl font-bold text-dark-brown mb-4">
+                {values[selectedValue].title}
+              </h3>
+              <p className="text-chocolate leading-relaxed">
+                {values[selectedValue].description}
+              </p>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

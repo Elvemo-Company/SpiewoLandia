@@ -1,16 +1,18 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Music, Phone, Mail, MapPin, Facebook, Instagram, Youtube, ArrowUp } from 'lucide-react';
+import { Music, Phone, Mail, MapPin, Facebook, Instagram, Youtube, ArrowUp, X } from 'lucide-react';
 import logo from '../assets/logo.svg';
 
 const Footer = () => {
+  const [showTermsModal, setShowTermsModal] = useState(false);
+
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   return (
     <>
-      <footer className="bg-dark-brown text-white">
+      <footer className="bg-chocolate text-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 lg:py-8">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
             {/* Brand Section */}
@@ -93,8 +95,14 @@ const Footer = () => {
               <div className="text-white/60 text-xs lg:text-sm mb-2 md:mb-0">
                 © 2025 ŚpiewoLandia. Wszelkie prawa zastrzeżone.
               </div>
-              <div className="text-white/60 text-xs">
-                Strona wykorzystuje pliki cookies
+              <div className="text-white/60 text-xs flex flex-col md:flex-row items-center space-y-1 md:space-y-0 md:space-x-4">
+                <span>Strona wykorzystuje pliki cookies</span>
+                <button 
+                  onClick={() => setShowTermsModal(true)}
+                  className="text-white/60 hover:text-golden transition-colors duration-300 underline"
+                >
+                  Regulamin
+                </button>
               </div>
             </div>
           </div>
@@ -109,6 +117,97 @@ const Footer = () => {
       >
         <ArrowUp className="h-6 w-6" />
       </button>
+
+      {/* Terms Modal */}
+      {showTermsModal && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
+          <div 
+            className="absolute inset-0 bg-black/50 backdrop-blur-sm"
+            onClick={() => setShowTermsModal(false)}
+          />
+          <div className="relative bg-white rounded-2xl p-6 max-w-md md:max-w-2xl w-full max-h-[80vh] overflow-y-auto shadow-2xl animate-fade-in">
+            <button
+              onClick={() => setShowTermsModal(false)}
+              className="absolute top-4 right-4 p-2 rounded-full hover:bg-cream transition-colors duration-200"
+            >
+              <X className="h-5 w-5 text-chocolate" />
+            </button>
+            
+            <div className="pr-8">
+              <h2 className="font-serif text-2xl font-bold text-dark-brown mb-6">Regulamin</h2>
+              
+              <div className="space-y-4 text-sm text-chocolate">
+                <section>
+                  <h3 className="font-bold text-lg text-dark-brown mb-2">§1 Postanowienia ogólne</h3>
+                  <p>
+                    Niniejszy Regulamin określa zasady korzystania z usług oferowanych przez ŚpiewoLandię, 
+                    prowadzoną przez Annę Kowalską, zwaną dalej "Organizatorem".
+                  </p>
+                </section>
+
+                <section>
+                  <h3 className="font-bold text-lg text-dark-brown mb-2">§2 Zajęcia dla dzieci</h3>
+                  <ul className="list-disc list-inside space-y-1 ml-4">
+                    <li>Zajęcia odbywają się według ustalonego harmonogramu</li>
+                    <li>Opłaty uiszczane są z góry za cały miesiąc</li>
+                    <li>Możliwość odrobienia zajęć w przypadku usprawiedliwionej nieobecności</li>
+                    <li>Rodzic/opiekun zobowiązany jest do punktualnego odbierania dzieci</li>
+                  </ul>
+                </section>
+
+                <section>
+                  <h3 className="font-bold text-lg text-dark-brown mb-2">§3 Lekcje indywidualne</h3>
+                  <ul className="list-disc list-inside space-y-1 ml-4">
+                    <li>Lekcje odbywają się w uzgodnionych terminach</li>
+                    <li>Możliwość przełożenia lekcji z 24h wyprzedzeniem</li>
+                    <li>Brak możliwości zwrotu za niestawiennictwo bez usprawiedliwienia</li>
+                  </ul>
+                </section>
+
+                <section>
+                  <h3 className="font-bold text-lg text-dark-brown mb-2">§4 Zasady płatności</h3>
+                  <ul className="list-disc list-inside space-y-1 ml-4">
+                    <li>Płatności dokonywane są przelewem lub gotówką</li>
+                    <li>Opłaty za zajęcia uiszczane są z góry</li>
+                    <li>W przypadku rezygnacji, zwrot następuje proporcjonalnie za niewykorzystane zajęcia</li>
+                  </ul>
+                </section>
+
+                <section>
+                  <h3 className="font-bold text-lg text-dark-brown mb-2">§5 Odpowiedzialność</h3>
+                  <p>
+                    Organizator nie ponosi odpowiedzialności za rzeczy pozostawione przez uczestników 
+                    w miejscu prowadzenia zajęć. Rodzice/opiekunowie odpowiadają za zachowanie dzieci 
+                    podczas zajęć.
+                  </p>
+                </section>
+
+                <section>
+                  <h3 className="font-bold text-lg text-dark-brown mb-2">§6 Ochrona danych osobowych</h3>
+                  <p>
+                    Dane osobowe uczestników przetwarzane są zgodnie z RODO, wyłącznie w celu realizacji 
+                    usług edukacyjnych i komunikacji z uczestnikami.
+                  </p>
+                </section>
+
+                <section>
+                  <h3 className="font-bold text-lg text-dark-brown mb-2">§7 Postanowienia końcowe</h3>
+                  <p>
+                    Regulamin wchodzi w życie z dniem publikacji. Organizator zastrzega sobie prawo 
+                    do wprowadzania zmian w regulaminie po wcześniejszym poinformowaniu uczestników.
+                  </p>
+                </section>
+              </div>
+
+              <div className="mt-6 pt-4 border-t border-cream">
+                <p className="text-xs text-chocolate/60 text-center">
+                  Ostatnia aktualizacja: 15 stycznia 2025
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </>
   );
 };

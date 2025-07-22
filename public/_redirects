@@ -1,0 +1,17 @@
+# Netlify redirects for SPA (React Router)
+/*    /index.html   200
+
+# Force HTTPS (uncomment when ready)
+# http://spiewolandia.pl/*    https://spiewolandia.pl/:splat  301!
+# http://www.spiewolandia.pl/*    https://spiewolandia.pl/:splat  301!
+
+# API redirects (if needed in future)
+# /api/*  https://api.spiewolandia.pl/:splat  200
+
+# Security headers
+/*
+  X-Frame-Options: DENY
+  X-XSS-Protection: 1; mode=block
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: camera=(), microphone=(), location=(), payment=() 

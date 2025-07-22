@@ -1,0 +1,33 @@
+# The humans responsible & colophon
+# TEAM
+
+    Founder & Artistic Director: Anna Kowalska
+    Contact: info [at] spiewolandia.pl
+    Twitter: @spiewolandia
+    Location: Warsaw, Poland
+
+# THANKS
+
+    To all our students and families who make ŚpiewoLandia special
+    To the music teachers who inspired us
+    To everyone who believes in the power of music education
+
+# TECHNOLOGY COLOPHON
+
+    HTML5, CSS3, JavaScript
+    React, TypeScript, Tailwind CSS
+    Vite, Node.js
+    Hosted with love
+
+    Standards: HTML5, CSS3
+    Components: React, TypeScript
+    Styling: Tailwind CSS
+    Build: Vite
+    IDE: Cursor
+
+# WEBSITE
+
+    Last update: 2025/01/15
+    Language: Polish / English
+    Doctype: HTML5
+    Standards: W3C valid code 

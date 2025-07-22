@@ -1,13 +1,25 @@
 {
-  "name": "vite-react-typescript-starter",
+  "name": "spiewolandia-website",
   "private": true,
-  "version": "0.0.0",
+  "version": "1.0.0",
   "type": "module",
+  "description": "ŚpiewoLandia - Professional music education website",
+  "author": "Anna Kowalska <info@spiewolandia.pl>",
+  "homepage": "https://spiewolandia.pl",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/spiewolandia/website.git"
+  },
+  "keywords": ["music", "education", "children", "voice", "lessons", "warsaw"],
   "scripts": {
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "build:prod": "npm run lint && vite build",
+    "seo:check": "echo 'Checking SEO files...' && ls -la public/robots.txt public/sitemap.xml public/manifest.json",
+    "deploy:check": "npm run build:prod && npm run seo:check",
+    "serve": "npm run build && npm run preview"
   },
   "dependencies": {
     "lucide-react": "^0.344.0",

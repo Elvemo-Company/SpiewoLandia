@@ -16,9 +16,9 @@ function App() {
   return (
     <Router>
       <ScrollToTop />
-      <div className="min-h-screen bg-cream text-dark-brown">
+      <div className="min-h-screen bg-cream text-dark-brown flex flex-col">
         <Header />
-        <main className="pt-16 lg:pt-20">
+        <main className="pt-16 lg:pt-20 flex-grow">
           <Routes>
             <Route path="/" element={<HomePage />} />
             <Route path="/about" element={<AboutUs />} />

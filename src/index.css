@@ -24,6 +24,40 @@
 /* Smooth scrolling */
 html {
   scroll-behavior: smooth;
+  overflow-x: hidden;
+  height: 100%;
+}
+
+/* Prevent overscrolling */
+body {
+  overscroll-behavior: none;
+  height: 100%;
+  overflow-x: hidden;
+}
+
+/* Prevent scrolling beyond content */
+#root {
+  min-height: 100vh;
+  overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Ensure main content takes available space */
+main {
+  flex: 1 0 auto;
+}
+
+/* Footer should stick to bottom */
+footer {
+  flex-shrink: 0;
+}
+
+/* Prevent overscroll bounce on mobile */
+html,
+body {
+  overscroll-behavior-y: none;
+  -webkit-overflow-scrolling: touch;
 }
 
 /* Remove blue highlight on mobile */
