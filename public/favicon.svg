@@ -1,4 +1,46 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="none">
-  <rect width="32" height="32" rx="6" fill="#FFB84D"/>
-  <path d="M12 8v12c0 1.1-.9 2-2 2s-2-.9-2-2 .9-2 2-2c.4 0 .7.1 1 .3V10l8-2v8.7c-.3-.2-.6-.3-1-.3-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2V6l-8 2z" fill="white"/>
-</svg> 
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="1080" height="1080" viewBox="498.67 520.67 1080 1080">
+  <desc>Created with Fabric.js 5.2.4</desc>
+  <defs>
+    <radialGradient gradientUnits="userSpaceOnUse" cx="1039.29" cy="1061.94" r="533.5" id="gradient-1">
+      <stop offset="0" style="stop-color: rgb(0% 0% 0%)"></stop>
+      <stop offset="1" style="stop-color: rgb(0% 0% 0%)"></stop>
+    </radialGradient>
+    <linearGradient gradientUnits="userSpaceOnUse" x1="1039.29" y1="528.447" x2="1039.29" y2="1595.433" id="gradient-0" spreadMethod="pad">
+      <stop offset="0" style="stop-color: rgb(0% 0% 0%)"></stop>
+      <stop offset="1" style="stop-color: rgb(0% 0% 0%)"></stop>
+    </linearGradient>
+  </defs>
+  <ellipse style="stroke-width: 0px; stroke: url(#gradient-0); fill: rgb(255, 124, 54);" cx="1039.29" cy="1061.94" rx="533.5" ry="533.493"></ellipse>
+  <g transform="matrix(0 0 0 0 0 0)" id="54d68c20-4f94-437e-b259-8c00a6427d89"></g>
+  <g transform="matrix(1 0 0 1 540 540)" id="c714ad22-f6c5-4e49-83bc-228936dcc46a">
+    <rect style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-dashoffset: 0; stroke-linejoin: miter; stroke-miterlimit: 4; fill: rgb(255,255,255); fill-rule: nonzero; opacity: 1; visibility: hidden;" vector-effect="non-scaling-stroke" x="-540" y="-540" rx="0" ry="0" width="1080" height="1080"></rect>
+  </g>
+  <g transform="matrix(1.99, 0, 0, 1.99, 1046.901978, 1088.856445)">
+    <g style="" vector-effect="non-scaling-stroke">
+      <g transform="matrix(0.13 0 0 -0.13 -61.07 -5.61)">
+        <path style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-dashoffset: 0; stroke-linejoin: miter; stroke-miterlimit: 4; fill: rgb(76,45,24); fill-rule: nonzero; opacity: 1;" vector-effect="non-scaling-stroke" transform=" translate(-2090, -2440.84)" d="M 2890 4094 C 2773 4001 2643 3970 2489 4000 C 2406 4017 2196 4014 2113 3996 C 1728 3913 1441 3613 1387 3238 C 1379 3178 1370 3145 1362 3146 C 1355 3147 1339 3148 1326 3149 C 1312 3149 1264 3175 1219 3205 C 1173 3236 1130 3258 1122 3255 C 1099 3247 1116 3155 1152 3087 C 1190 3016 1247 2965 1340 2916 C 1406 2881 1412 2875 1446 2807 C 1522 2655 1632 2543 1793 2455 C 1841 2429 1858 2414 1851 2407 C 1845 2401 1790 2394 1728 2392 C 1465 2382 1197 2460 994 2606 C 951 2637 910 2665 903 2667 C 882 2675 870 2623 870 2522 C 871 2315 939 2150 1081 2010 C 1177 1915 1324 1838 1463 1810 C 1525 1798 1533 1789 1497 1773 C 1411 1734 1205 1725 1072 1755 C 978 1776 962 1770 981 1724 C 1022 1628 1142 1500 1268 1416 C 1384 1339 1584 1255 1723 1226 C 1755 1219 1756 1212 1731 1129 C 1721 1094 1702 1027 1689 981 C 1666 900 1663 897 1614 865 C 1585 847 1559 827 1556 821 C 1547 807 1575 794 1654 776 C 1740 756 2057 753 2083 773 C 2112 794 2088 810 1959 855 C 1878 883 1834 903 1832 914 C 1829 930 1885 1142 1901 1171 C 1908 1184 1935 1188 2052 1193 C 2131 1196 2206 1202 2219 1206 C 2243 1213 2243 1212 2236 1169 C 2222 1081 2201 848 2206 835 C 2218 806 2283 796 2475 796 C 2614 795 2671 799 2688 808 C 2750 843 2648 892 2442 925 C 2396 933 2356 941 2354 943 C 2351 945 2354 978 2359 1016 C 2364 1054 2374 1124 2380 1171 L 2392 1256 L 2457 1289 C 2493 1307 2547 1337 2576 1355 C 2648 1402 2783 1531 2836 1607 C 3030 1878 3043 2233 2868 2488 L 2839 2531 L 2886 2583 C 2945 2649 3005 2737 3030 2794 C 3048 2838 3057 2846 3180 2937 C 3216 2964 3245 2992 3245 3000 C 3245 3008 3196 3038 3131 3071 C 3068 3103 3011 3135 3004 3142 C 2984 3162 3038 3239 3239 3479 C 3278 3526 3310 3572 3310 3582 C 3310 3605 3271 3606 3145 3585 C 3010 3563 3015 3561 2980 3631 C 2950 3690 2875 3775 2815 3818 L 2785 3840 L 2843 3891 C 2930 3968 2978 4072 2947 4114 C 2936 4128 2930 4126 2890 4094 z M 2632 3513 C 2659 3498 2666 3487 2668 3457 C 2672 3415 2673 3415 2584 3436 C 2470 3462 2405 3439 2361 3355 C 2316 3271 2268 3287 2289 3379 C 2303 3441 2361 3506 2418 3525 C 2481 3545 2587 3539 2632 3513 z" stroke-linecap="round"></path>
+      </g>
+      <g transform="matrix(0.13 0 0 -0.13 172.25 -115.45)">
+        <path style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-dashoffset: 0; stroke-linejoin: miter; stroke-miterlimit: 4; fill: rgb(76,45,24); fill-rule: nonzero; opacity: 1;" vector-effect="non-scaling-stroke" transform=" translate(-3818.05, -3297.48)" d="M 3735 3661 C 3632 3634 3527 3541 3491 3445 C 3473 3397 3469 3370 3472 3305 C 3477 3187 3520 3112 3625 3040 C 3666 3012 3670 3005 3670 2969 L 3670 2929 L 3818 2932 L 3965 2935 L 3968 2975 C 3971 3011 3976 3019 4015 3044 C 4111 3104 4164 3204 4165 3325 C 4165 3394 4161 3414 4136 3464 C 4076 3587 3970 3658 3837 3665 C 3798 3667 3752 3666 3735 3661 z" stroke-linecap="round"></path>
+      </g>
+      <g transform="matrix(0.13 0 0 -0.13 132.92 15.47)">
+        <path style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-dashoffset: 0; stroke-linejoin: miter; stroke-miterlimit: 4; fill: rgb(76,45,24); fill-rule: nonzero; opacity: 1;" vector-effect="non-scaling-stroke" transform=" translate(-3527.47, -2311.07)" d="M 3653 2848 C 3648 2841 3638 2822 3630 2805 C 3622 2789 3579 2739 3535 2695 C 3468 2628 3438 2606 3350 2562 C 3251 2513 3094 2460 3046 2460 C 2997 2459 2995 2448 3024 2360 C 3084 2177 3084 2007 3021 1803 C 3016 1785 3015 1768 3020 1765 C 3044 1750 3202 1796 3315 1852 C 3467 1928 3608 2050 3699 2185 C 3724 2224 3750 2256 3755 2258 C 3761 2259 3767 2221 3770 2170 C 3776 2067 3789 2046 3845 2046 C 3868 2046 3888 2054 3903 2068 C 3923 2089 3925 2100 3925 2209 L 3925 2327 L 3966 2372 C 4021 2431 4036 2478 4020 2535 C 4009 2574 4010 2584 4029 2623 C 4052 2671 4057 2748 4039 2783 C 4033 2795 4016 2817 4002 2833 L 3976 2860 L 3819 2860 C 3705 2860 3660 2857 3653 2848 z" stroke-linecap="round"></path>
+      </g>
+    </g>
+  </g>
+  <g transform="matrix(0 0 0 0 540 540)">
+    <g style=""></g>
+  </g>
+  <g transform="matrix(0 0 0 0 540 540)">
+    <g style=""></g>
+  </g>
+  <g transform="matrix(0 0 0 0 540 0)">
+    <g style=""></g>
+  </g>
+  <g transform="matrix(0 0 0 0 540 0)">
+    <g style=""></g>
+  </g>
+  <g transform="matrix(0 0 0 0 0 0)">
+    <g style=""></g>
+  </g>
+</svg>
