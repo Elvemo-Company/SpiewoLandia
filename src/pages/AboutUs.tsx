@@ -234,13 +234,13 @@ const AboutUs = () => {
             {milestones.map((milestone, index) => (
               <div
                 key={milestone.year}
-                className={`relative flex items-center mb-3 lg:mb-12 animate-fade-in ${
+                className={`relative flex items-center mb-1 lg:mb-6 animate-fade-in ${
                   index % 2 === 0 ? 'flex-row' : 'flex-row-reverse'
                 }`}
                 style={{ animationDelay: `${index * 0.2}s` }}
               >
                 <div className={`w-1/2 ${index % 2 === 0 ? 'pr-8 text-right' : 'pl-8 text-left'}`}>
-                  <div className="bg-cream rounded-lg p-6 shadow-card hover:shadow-card-hover transition-all duration-300">
+                  <div className="bg-cream rounded-lg p-4 shadow-card hover:shadow-card-hover transition-all duration-300">
                     <h3 className="font-serif text-xl font-bold text-dark-brown mb-2">
                       {milestone.title}
                     </h3>

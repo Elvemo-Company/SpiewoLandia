@@ -124,12 +124,12 @@ const Header: React.FC<HeaderProps> = ({ className = '' }) => {
           <div className="flex flex-col h-full">
             {/* Header */}
             <div className="flex items-center justify-between p-6 border-b border-cream">
-              <div className="flex items-center">
-                <img src={logo} alt="ŚpiewoLandia Logo" className="h-6 w-6 mr-3 object-contain" />
-                <span className="font-serif text-lg font-bold text-dark-brown">
-                  ŚpiewoLandia
-                </span>
-              </div>
+            <Link to="/" className="flex items-center" onClick={() => setIsMobileMenuOpen(false)}>
+              <img src={logo} alt="ŚpiewoLandia Logo" className="h-6 w-6 mr-3 object-contain" />
+              <span className="font-serif text-lg font-bold text-dark-brown">
+                ŚpiewoLandia
+              </span>
+            </Link>
               <button
                 onClick={() => setIsMobileMenuOpen(false)}
                 className="p-2 rounded-lg text-dark-brown hover:bg-cream transition-colors duration-200"

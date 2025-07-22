@@ -308,15 +308,16 @@ const WeddingServices = () => {
 
           <div className="flex justify-center mb-8 overflow-x-auto scrollbar-hide">
             <div className="flex space-x-3 px-12 lg:px-0 min-w-max lg:min-w-0">
-              {categories.map((category) => (
+              {categories.map((category, idx) => (
                 <button
                   key={category.id}
                   onClick={() => setSelectedCategory(category.id)}
-                  className={`px-6 py-3 rounded-full font-medium transition-all duration-300 flex items-center whitespace-nowrap ${
-                    selectedCategory === category.id
+                  className={`px-6 py-3 rounded-full font-medium transition-all duration-300 flex items-center whitespace-nowrap
+                    ${selectedCategory === category.id
                       ? 'bg-golden text-white shadow-card-hover'
-                      : 'bg-white text-chocolate hover:bg-golden hover:text-white'
-                  }`}
+                      : 'bg-white text-chocolate hover:bg-golden hover:text-white'}
+                    ${idx === 0 ? 'ml-16 lg:ml-0' : ''}
+                  `}
                 >
                   <category.icon className="h-4 w-4 mr-2" />
                   {category.name}
