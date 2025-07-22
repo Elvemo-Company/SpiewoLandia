@@ -1,5 +1,6 @@
 import React from 'react';
 import { ArrowRight, MapPin, Calendar, Users, Heart } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 const ServicesOverview = () => {
   const services = [
@@ -74,7 +75,7 @@ const ServicesOverview = () => {
               {/* Content */}
               <div className="relative z-10 p-8 h-full flex flex-col justify-between min-h-[400px]">
                 <div>
-                  <div className="inline-flex items-center justify-center w-12 h-12 bg-white/20 backdrop-blur-sm rounded-full mb-6">
+                  <div className="hidden lg:inline-flex items-center justify-center w-12 h-12 bg-white/20 backdrop-blur-sm rounded-full mb-6">
                     <service.icon className="h-6 w-6 text-white" />
                   </div>
 
@@ -96,10 +97,42 @@ const ServicesOverview = () => {
                   </ul>
                 </div>
 
-                <button className="group/btn bg-white/20 backdrop-blur-sm hover:bg-white hover:text-dark-brown text-white px-6 py-3 rounded-full font-medium transition-all duration-300 flex items-center justify-center">
-                  {service.cta}
-                  <ArrowRight className="ml-2 h-4 w-4 group-hover/btn:translate-x-1 transition-transform duration-300" />
-                </button>
+                {service.title === 'Zajęcia dla Dzieci' && (
+                  <a
+                    href="/book-classes"
+                    className="group/btn bg-white/20 backdrop-blur-sm hover:bg-white hover:text-dark-brown text-white px-6 py-3 rounded-full font-medium transition-all duration-300 flex items-center justify-center text-center"
+                  >
+                    {service.cta}
+                    <ArrowRight className="ml-2 h-4 w-4 group-hover/btn:translate-x-1 transition-transform duration-300" />
+                  </a>
+                )}
+                {service.title === 'Lekcje Wokalne' && (
+                  <Link
+                    to="/vocal-lessons"
+                    className="group/btn bg-white/20 backdrop-blur-sm hover:bg-white hover:text-dark-brown text-white px-6 py-3 rounded-full font-medium transition-all duration-300 flex items-center justify-center"
+                  >
+                    {service.cta}
+                    <ArrowRight className="ml-2 h-4 w-4 group-hover/btn:translate-x-1 transition-transform duration-300" />
+                  </Link>
+                )}
+                {service.title === 'Programy dla Przedszkoli' && (
+                  <Link
+                    to="/preschool-programs"
+                    className="group/btn bg-white/20 backdrop-blur-sm hover:bg-white hover:text-dark-brown text-white px-6 py-3 rounded-full font-medium transition-all duration-300 flex items-center justify-center"
+                  >
+                    {service.cta}
+                    <ArrowRight className="ml-2 h-4 w-4 group-hover/btn:translate-x-1 transition-transform duration-300" />
+                  </Link>
+                )}
+                {service.title === 'Oprawa Ślubu' && (
+                  <Link
+                    to="/wedding-services"
+                    className="group/btn bg-white/20 backdrop-blur-sm hover:bg-white hover:text-dark-brown text-white px-6 py-3 rounded-full font-medium transition-all duration-300 flex items-center justify-center"
+                  >
+                    {service.cta}
+                    <ArrowRight className="ml-2 h-4 w-4 group-hover/btn:translate-x-1 transition-transform duration-300" />
+                  </Link>
+                )}
               </div>
             </div>
           ))}

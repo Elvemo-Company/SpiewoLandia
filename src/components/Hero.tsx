@@ -1,5 +1,7 @@
+
 import React from 'react';
 import { Play, ChevronDown } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 const Hero = () => {
   return (
@@ -26,14 +28,20 @@ const Hero = () => {
           Rozwijamy talenty, budujemy pewność siebie, tworzymy niezapomniane chwile.
         </p>
         
-        <div className="flex flex-col sm:flex-row justify-center items-center space-y-4 sm:space-y-0 sm:space-x-6 animate-slide-up">
-          <button className="bg-golden hover:bg-sunset text-white px-8 py-4 rounded-full font-medium text-lg transition-all duration-300 transform hover:scale-105 hover:shadow-card-hover">
+        <div className="flex flex-col gap-y-4 sm:flex-row sm:flex-nowrap sm:gap-x-6 sm:justify-center sm:items-center sm:w-full sm:max-w-2xl sm:mx-auto sm:overflow-x-auto animate-slide-up">
+          <a
+            href="/vocal-lessons"
+            className="w-full sm:w-auto bg-golden hover:bg-sunset text-white px-8 py-4 rounded-full font-medium text-lg transition-all duration-300 transform hover:scale-105 hover:shadow-card-hover text-center min-w-[180px]"
+          >
             Zobacz Zajęcia
-          </button>
-          <button className="group flex items-center border-2 border-white text-white hover:bg-white hover:text-chocolate px-8 py-4 rounded-full font-medium text-lg transition-all duration-300">
+          </a>
+          <Link
+            to="/book-classes"
+            className="w-full sm:w-auto group flex items-center justify-center border-2 border-white text-white hover:bg-white hover:text-chocolate px-8 py-4 rounded-full font-medium text-lg transition-all duration-300 min-w-[220px]"
+          >
             <Play className="h-5 w-5 mr-2 group-hover:text-golden transition-colors" />
             Umów Próbną Lekcję
-          </button>
+          </Link>
         </div>
 
         {/* Stats Preview */}

@@ -116,18 +116,18 @@ const TrustIndicators = () => {
           <h3 className="font-serif text-xl lg:text-2xl font-bold text-dark-brown mb-8">
             Nasi Partnerzy
           </h3>
-          <div className="flex flex-wrap justify-center items-center gap-8">
+          <div className="grid grid-cols-2 gap-4 max-w-xs mx-auto sm:max-w-sm md:max-w-none md:flex md:flex-wrap md:justify-center md:items-center md:gap-8 md:space-y-0 md:space-x-8">
             {/* Partner logos would go here */}
-            <div className="bg-golden/20 border border-golden/30 rounded-lg px-8 py-4 text-dark-brown font-medium shadow-card hover:shadow-card-hover hover:bg-golden/30 transition-all duration-300">
+            <div className="bg-golden/20 border border-golden/30 rounded-lg px-4 py-4 text-dark-brown font-medium shadow-card hover:shadow-card-hover hover:bg-golden/30 transition-all duration-300 text-center">
               Przedszkole Słoneczko
             </div>
-            <div className="bg-soft-green/20 border border-soft-green/30 rounded-lg px-8 py-4 text-dark-brown font-medium shadow-card hover:shadow-card-hover hover:bg-soft-green/30 transition-all duration-300">
+            <div className="bg-soft-green/20 border border-soft-green/30 rounded-lg px-4 py-4 text-dark-brown font-medium shadow-card hover:shadow-card-hover hover:bg-soft-green/30 transition-all duration-300 text-center">
               Hotel Belvedere
             </div>
-            <div className="bg-sunset/20 border border-sunset/30 rounded-lg px-8 py-4 text-dark-brown font-medium shadow-card hover:shadow-card-hover hover:bg-sunset/30 transition-all duration-300">
+            <div className="bg-sunset/20 border border-sunset/30 rounded-lg px-4 py-4 text-dark-brown font-medium shadow-card hover:shadow-card-hover hover:bg-sunset/30 transition-all duration-300 text-center">
               Pałac Romantyczny
             </div>
-            <div className="bg-muted-red/20 border border-muted-red/30 rounded-lg px-8 py-4 text-dark-brown font-medium shadow-card hover:shadow-card-hover hover:bg-muted-red/30 transition-all duration-300">
+            <div className="bg-muted-red/20 border border-muted-red/30 rounded-lg px-4 py-4 text-dark-brown font-medium shadow-card hover:shadow-card-hover hover:bg-muted-red/30 transition-all duration-300 text-center">
               Centrum Kultury
             </div>
           </div>

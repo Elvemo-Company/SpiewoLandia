@@ -9,7 +9,9 @@ const HomePage = () => {
   return (
     <>
       <Hero />
-      <Features />
+      <div className="hidden md:block">
+        <Features />
+      </div>
       <TrustIndicators />
       <Testimonials />
       <ServicesOverview />

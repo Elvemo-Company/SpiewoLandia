@@ -3,6 +3,29 @@ import { ChevronLeft, ChevronRight, Star, Quote } from 'lucide-react';
 
 const Testimonials = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
+  const [touchStart, setTouchStart] = useState<number | null>(null);
+  const [touchEnd, setTouchEnd] = useState<number | null>(null);
+  // Swipe handling for mobile carousel
+  const minSwipeDistance = 50;
+  const onTouchStart = (e: React.TouchEvent) => {
+    setTouchEnd(null);
+    setTouchStart(e.targetTouches[0].clientX);
+  };
+  const onTouchMove = (e: React.TouchEvent) => {
+    setTouchEnd(e.targetTouches[0].clientX);
+  };
+  const onTouchEnd = () => {
+    if (!touchStart || !touchEnd) return;
+    const distance = touchStart - touchEnd;
+    const isLeftSwipe = distance > minSwipeDistance;
+    const isRightSwipe = distance < -minSwipeDistance;
+    if (isLeftSwipe && currentSlide < testimonials.length - 1) {
+      setCurrentSlide(currentSlide + 1);
+    }
+    if (isRightSwipe && currentSlide > 0) {
+      setCurrentSlide(currentSlide - 1);
+    }
+  };
 
   const testimonials = [
     {
@@ -66,21 +89,85 @@ const Testimonials = () => {
           </p>
         </div>
 
-        <div className="relative max-w-4xl mx-auto">
+        {/* Mobile: Carousel with swipe and dots */}
+        <div className="lg:hidden">
+          <div className="relative">
+            <div
+              className="overflow-hidden"
+              onTouchStart={onTouchStart}
+              onTouchMove={onTouchMove}
+              onTouchEnd={onTouchEnd}
+            >
+              <div
+                className="flex transition-transform duration-300 ease-in-out"
+                style={{ transform: `translateX(-${currentSlide * 100}%)` }}
+              >
+                {testimonials.map((testimonial, index) => (
+                  <div
+                    key={index}
+                    className="w-full flex-shrink-0 px-4"
+                  >
+                    <div className="bg-white rounded-2xl shadow-card-hover p-6 text-center animate-fade-in mx-auto max-w-sm">
+                      <Quote className="h-8 w-8 text-golden mx-auto mb-4 opacity-50" />
+                      <div className="mb-6">
+                        <p className="text-base text-dark-brown leading-relaxed italic">
+                          "{testimonial.content}"
+                        </p>
+                      </div>
+                      <div className="flex items-center justify-center mb-4">
+                        {renderStars(testimonial.rating)}
+                      </div>
+                      <div className="flex items-center justify-center flex-col sm:flex-row">
+                        <img
+                          src={testimonial.image}
+                          alt={testimonial.name}
+                          className="w-12 h-12 rounded-full object-cover mb-2 sm:mb-0 sm:mr-4"
+                        />
+                        <div className="text-center sm:text-left">
+                          <h4 className="font-semibold text-dark-brown text-sm">
+                            {testimonial.name}
+                          </h4>
+                          <p className="text-chocolate text-xs">
+                            {testimonial.role}
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+            {/* Pagination dots */}
+            <div className="flex justify-center mt-6 space-x-2">
+              {testimonials.map((_, index) => (
+                <button
+                  key={index}
+                  onClick={() => setCurrentSlide(index)}
+                  className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                    index === currentSlide
+                      ? 'bg-golden scale-125'
+                      : 'bg-chocolate/30 hover:bg-chocolate/50'
+                  }`}
+                  aria-label={`Przejdź do opinii ${index + 1}`}
+                />
+              ))}
+            </div>
+          </div>
+        </div>
+
+        {/* Desktop: slider with navigation and dots */}
+        <div className="hidden lg:block relative max-w-4xl mx-auto">
           {/* Main Testimonial */}
           <div className="bg-white rounded-2xl shadow-card-hover p-6 lg:p-12 text-center animate-fade-in mx-4 lg:mx-0">
             <Quote className="h-8 w-8 lg:h-12 lg:w-12 text-golden mx-auto mb-4 lg:mb-6 opacity-50" />
-            
             <div className="mb-6 lg:mb-8">
               <p className="text-base lg:text-xl text-dark-brown leading-relaxed italic">
                 "{testimonials[currentSlide].content}"
               </p>
             </div>
-
             <div className="flex items-center justify-center mb-4">
               {renderStars(testimonials[currentSlide].rating)}
             </div>
-
             <div className="flex items-center justify-center flex-col sm:flex-row">
               <img
                 src={testimonials[currentSlide].image}

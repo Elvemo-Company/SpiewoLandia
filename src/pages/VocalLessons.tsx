@@ -261,7 +261,7 @@ const VocalLessons = () => {
                 <div className="flex items-center space-x-4">
                   <button
                     onClick={() => handlePlayAudio(`lesson-${index}`)}
-                    className={`w-12 h-12 rounded-full flex items-center justify-center transition-all duration-300 ${
+                    className={`w-12 h-12 flex-shrink-0 rounded-full flex items-center justify-center transition-all duration-300 ${
                       playingAudio === `lesson-${index}`
                         ? 'bg-sunset text-white'
                         : 'bg-golden text-white hover:bg-sunset'

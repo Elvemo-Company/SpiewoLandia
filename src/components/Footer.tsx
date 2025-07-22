@@ -95,8 +95,24 @@ const Footer = () => {
           {/* Bottom Bar */}
           <div className="border-t border-white/20 mt-4 lg:mt-6 pt-3 lg:pt-4">
             <div className="flex flex-col md:flex-row justify-between items-center">
-              <div className="text-white/60 text-xs lg:text-sm mb-2 md:mb-0">
-                © 2025 ŚpiewoLandia. Wszelkie prawa zastrzeżone.
+              <div className="flex items-center justify-center text-white/60 text-xs lg:text-sm mb-2 md:mb-0 space-x-2">
+                <span>© 2025 ŚpiewoLandia. Wszelkie prawa zastrzeżone.</span>
+                <span className="hidden md:inline">|</span>
+                <a
+                  href="https://elvemo.netlify.app/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center group hover:text-golden transition-colors duration-300"
+                  aria-label="Elvemo - strona firmy"
+                >
+                  <img
+                    src="https://elvemo.netlify.app/logo.svg"
+                    alt="Elvemo logo"
+                    className="h-5 w-5 mr-1 opacity-80 group-hover:opacity-100"
+                    style={{ display: 'inline-block' }}
+                  />
+                  <span className="underline underline-offset-2">Elvemo</span>
+                </a>
               </div>
               <div className="text-white/60 text-xs flex flex-col md:flex-row items-center space-y-1 md:space-y-0 md:space-x-4">
                 <span>Strona wykorzystuje pliki cookies</span>
