@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Users, Clock, BookOpen, Heart, CheckCircle, Download, MapPin, Calendar, X } from 'lucide-react';
+import { playCTASound } from '../utils/audioUtils';
 
 const PreschoolPrograms = () => {
   const [selectedProgram, setSelectedProgram] = useState('basic');
@@ -170,7 +171,9 @@ const PreschoolPrograms = () => {
             Kompleksowe programy muzyczne dostosowane do potrzeb najmłodszych. 
             Rozwijamy talenty przez zabawę i radość z muzyki.
           </p>
-          <button className="bg-golden hover:bg-sunset text-white px-8 py-4 rounded-full font-medium text-lg transition-all duration-300 transform hover:scale-105">
+          <button 
+            onClick={playCTASound}
+            className="bg-golden hover:bg-sunset text-white px-8 py-4 rounded-full font-medium text-lg transition-all duration-300 transform hover:scale-105">
             Zapytaj o Program
           </button>
         </div>

@@ -1,6 +1,9 @@
 
 import React, { useState } from 'react';
 import { Heart, Music, Camera, Users, Clock, Star, CheckCircle, Calendar, Award, Phone, Play, Pause, Volume2 } from 'lucide-react';
+// Import pliku audio
+import notaAudio from '../assets/audio/nuta.mp3';
+import { playCTASound } from '../utils/audioUtils';
 
 const WeddingHero = () => (
   <section className="relative h-[600px] lg:h-[700px] flex items-center justify-center overflow-hidden">
@@ -22,7 +25,9 @@ const WeddingHero = () => (
         Tworzymy magiczne momenty muzyczne w Waszym najważniejszym dniu. 
         Profesjonalna oprawa ceremonii i przyjęć weselnych.
       </p>
-      <button className="bg-golden hover:bg-sunset text-white px-8 py-4 rounded-full font-medium text-lg transition-all duration-300 transform hover:scale-105">
+      <button 
+        onClick={playCTASound}
+        className="bg-golden hover:bg-sunset text-white px-8 py-4 rounded-full font-medium text-lg transition-all duration-300 transform hover:scale-105">
         Sprawdź Dostępność
       </button>
     </div>
@@ -214,8 +219,19 @@ const WeddingServices = () => {
   const handlePlayTrack = (trackId: string) => {
     if (playingTrack === trackId) {
       setPlayingTrack(null);
+      // Zatrzymaj odtwarzanie audio
     } else {
       setPlayingTrack(trackId);
+      // Odtwórz dźwięk nuta.mp3
+      try {
+        const audio = new Audio(notaAudio);
+        audio.volume = 0.5; // Ustaw głośność na 50%
+        audio.play().catch(error => {
+          console.log('Nie można odtworzyć dźwięku:', error);
+        });
+      } catch (error) {
+        console.log('Błąd przy odtwarzaniu audio:', error);
+      }
     }
   };
 

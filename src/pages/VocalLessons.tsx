@@ -1,6 +1,9 @@
 
 import React, { useState } from 'react';
 import { Users, Clock, BookOpen, Heart, CheckCircle, Download, MapPin, Calendar, Play, Star, Music } from 'lucide-react';
+// Import pliku audio
+import notaAudio from '../assets/audio/nuta.mp3';
+import { playCTASound } from '../utils/audioUtils';
 
 const VocalHero = () => (
   <section className="relative h-[600px] lg:h-[700px] flex items-center justify-center overflow-hidden">
@@ -102,8 +105,19 @@ const VocalLessons = () => {
   const handlePlayAudio = (audioId: string) => {
     if (playingAudio === audioId) {
       setPlayingAudio(null);
+      // Zatrzymaj odtwarzanie audio
     } else {
       setPlayingAudio(audioId);
+      // Odtwórz dźwięk nuta.mp3
+      try {
+        const audio = new Audio(notaAudio);
+        audio.volume = 0.5; // Ustaw głośność na 50%
+        audio.play().catch(error => {
+          console.log('Nie można odtworzyć dźwięku:', error);
+        });
+      } catch (error) {
+        console.log('Błąd przy odtwarzaniu audio:', error);
+      }
     }
   };
 

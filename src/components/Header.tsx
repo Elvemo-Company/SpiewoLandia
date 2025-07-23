@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Menu, X, Phone, Music } from 'lucide-react';
 import logo from '../assets/logo.svg';
+import { playClickSound } from '../utils/audioUtils';
 
 interface HeaderProps {
   className?: string;
@@ -74,6 +75,7 @@ const Header: React.FC<HeaderProps> = ({ className = '' }) => {
               {/* Button */}
               <Link 
                 to="/book-classes"
+                onClick={playClickSound}
                 className="bg-sunset hover:bg-golden text-white px-6 py-2 rounded-full font-semibold transition-all duration-300 transform hover:scale-105 shadow-md text-base tracking-wide flex items-center justify-center focus:outline-none focus:border-none"
                 style={{ minWidth: 120, letterSpacing: '0.02em', textAlign: 'center' }}
               >
@@ -163,8 +165,11 @@ const Header: React.FC<HeaderProps> = ({ className = '' }) => {
             <div className="p-6 border-t border-cream space-y-4">
               <Link 
                 to="/book-classes"
+                onClick={() => {
+                  playClickSound();
+                  setIsMobileMenuOpen(false);
+                }}
                 className="block w-full bg-golden hover:bg-sunset text-white py-3 px-6 rounded-xl font-medium transition-all duration-300 text-center shadow-md hover:shadow-lg"
-                onClick={() => setIsMobileMenuOpen(false)}
               >
                 Zarezerwuj Zajęcia
               </Link>

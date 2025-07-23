@@ -1,6 +1,7 @@
 
 import React, { useState } from 'react';
 import { Music, Heart, Users, Award, Clock, MapPin, Star, Quote, X } from 'lucide-react';
+import { playCTASound } from '../utils/audioUtils';
 
 const AboutUsHero = () => (
   <section className="relative h-[600px] lg:h-[700px] flex items-center justify-center overflow-hidden">
@@ -23,7 +24,10 @@ const AboutUsHero = () => (
         stała się miejscem, gdzie dzieci i dorośli odkrywają radość śpiewania.
       </p>
       <button 
-        onClick={() => document.getElementById('founder')?.scrollIntoView({ behavior: 'smooth' })}
+        onClick={() => {
+          playCTASound();
+          document.getElementById('founder')?.scrollIntoView({ behavior: 'smooth' });
+        }}
         className="bg-golden hover:bg-sunset text-white px-8 py-4 rounded-full font-medium text-lg transition-all duration-300 transform hover:scale-105"
       >
         Poznaj Moją Historię

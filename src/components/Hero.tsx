@@ -2,6 +2,7 @@
 import React from 'react';
 import { Play, ChevronDown } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { playCTASound } from '../utils/audioUtils';
 
 const Hero = () => {
   return (
@@ -31,6 +32,7 @@ const Hero = () => {
         <div className="flex flex-col gap-y-4 sm:flex-row sm:flex-nowrap sm:gap-x-6 sm:justify-center sm:items-center sm:w-full sm:max-w-2xl sm:mx-auto sm:overflow-x-auto animate-slide-up">
           <a
             href="/vocal-lessons"
+            onClick={playCTASound}
             className="w-full sm:w-auto bg-golden hover:bg-sunset text-white px-8 py-4 rounded-full font-medium text-lg transition-all duration-300 transform hover:scale-105 hover:shadow-card-hover text-center min-w-[180px]"
           >
             Zobacz Zajęcia
