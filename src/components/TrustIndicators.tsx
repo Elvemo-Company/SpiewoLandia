@@ -6,13 +6,13 @@ const TrustIndicators = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
 
   const stats = [
-    {
-      icon: Users,
-      number: 500,
-      suffix: '+',
-      label: 'Szczęśliwych Uczniów',
-      color: 'text-golden'
-    },
+    // {
+    //   icon: Users,
+    //   number: 500,
+    //   suffix: '+',
+    //   label: 'Szczęśliwych Uczniów',
+    //   color: 'text-golden'
+    // },
     {
       icon: Calendar,
       number: 10,
@@ -24,16 +24,16 @@ const TrustIndicators = () => {
       icon: Award,
       number: 50,
       suffix: '+',
-      label: 'Występów Rocznie',
+      label: 'Występów',
       color: 'text-soft-green'
-    },
-    {
-      icon: Star,
-      number: 98,
-      suffix: '%',
-      label: 'Zadowolenie Klientów',
-      color: 'text-golden'
     }
+    // {
+    //   icon: Star,
+    //   number: 98,
+    //   suffix: '%',
+    //   label: 'Zadowolenie Klientów',
+    //   color: 'text-golden'
+    // }
   ];
 
   useEffect(() => {
@@ -91,7 +91,7 @@ const TrustIndicators = () => {
           </p>
         </div>
 
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-lg mx-auto">
           {stats.map((stat, index) => (
             <div
               key={stat.label}
@@ -111,28 +111,7 @@ const TrustIndicators = () => {
           ))}
         </div>
 
-        {/* Partners Section */}
-        <div className="mt-20 text-center">
-          <h3 className="font-serif text-xl lg:text-2xl font-bold text-dark-brown mb-8">
-            Nasi Partnerzy
-          </h3>
-          <div className="grid grid-cols-2 gap-4 max-w-xs mx-auto sm:max-w-sm md:max-w-none md:flex md:flex-wrap md:justify-center md:items-center md:gap-8 md:space-y-0 md:space-x-8">
-            {/* Partner logos would go here */}
-            <div className="bg-golden/20 border border-golden/30 rounded-lg px-4 py-4 text-dark-brown font-medium shadow-card hover:shadow-card-hover hover:bg-golden/30 transition-all duration-300 text-center">
-              Przedszkole Słoneczko
-            </div>
-            <div className="bg-soft-green/20 border border-soft-green/30 rounded-lg px-4 py-4 text-dark-brown font-medium shadow-card hover:shadow-card-hover hover:bg-soft-green/30 transition-all duration-300 text-center">
-              Hotel Belvedere
-            </div>
-            <div className="bg-sunset/20 border border-sunset/30 rounded-lg px-4 py-4 text-dark-brown font-medium shadow-card hover:shadow-card-hover hover:bg-sunset/30 transition-all duration-300 text-center">
-              Pałac Romantyczny
-            </div>
-            <div className="bg-muted-red/20 border border-muted-red/30 rounded-lg px-4 py-4 text-dark-brown font-medium shadow-card hover:shadow-card-hover hover:bg-muted-red/30 transition-all duration-300 text-center">
-              Centrum Kultury
-            </div>
-          </div>
         </div>
-      </div>
     </section>
   );
 };
