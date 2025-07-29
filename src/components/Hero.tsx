@@ -47,18 +47,18 @@ const Hero = () => {
         </div>
 
         {/* Stats Preview */}
-        <div className="grid grid-cols-3 gap-8 mt-16 max-w-2xl mx-auto">
-          <div className="text-center animate-fade-in">
+        <div className="grid grid-cols-2 gap-8 mt-16 max-w-lg mx-auto">
+          {/* <div className="text-center animate-fade-in">
             <div className="text-2xl lg:text-3xl font-bold text-golden">500+</div>
             <div className="text-sm text-white/80">Szczęśliwych Uczniów</div>
-          </div>
+          </div> */}
           <div className="text-center animate-fade-in">
             <div className="text-2xl lg:text-3xl font-bold text-golden">10</div>
             <div className="text-sm text-white/80">Lat Doświadczenia</div>
           </div>
           <div className="text-center animate-fade-in">
             <div className="text-2xl lg:text-3xl font-bold text-golden">50+</div>
-            <div className="text-sm text-white/80">Występów Rocznie</div>
+            <div className="text-sm text-white/80">Występy</div>
           </div>
         </div>
       </div>
