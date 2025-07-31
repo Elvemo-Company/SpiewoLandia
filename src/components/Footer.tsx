@@ -43,7 +43,7 @@ const Footer = () => {
               <div className="grid grid-cols-2 gap-4 lg:gap-6">
                 {/* Services */}
                 <div>
-                  <h3 className="font-serif text-base lg:text-lg font-bold mb-3 lg:mb-4 text-golden">Nasze Usługi</h3>
+                  <h3 className="font-serif text-base lg:text-lg font-bold mb-3 lg:mb-4 text-golden">Moje Usługi</h3>
                   <ul className="space-y-1 lg:space-y-2">
                     <li><Link to="/book-classes" className="text-white/80 hover:text-golden transition-colors duration-300 text-xs lg:text-sm">Zajęcia dla Dzieci</Link></li>
                     <li><Link to="/vocal-lessons" className="text-white/80 hover:text-golden transition-colors duration-300 text-xs lg:text-sm">Lekcje Wokalne</Link></li>

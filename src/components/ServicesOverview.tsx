@@ -47,7 +47,7 @@ const ServicesOverview = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <h2 className="font-serif text-h2-mobile lg:text-h2-desktop font-bold text-dark-brown mb-4">
-            Wszystkie Nasze Usługi
+            Wszystkie Moje Usługi
           </h2>
           <p className="text-lg text-chocolate max-w-3xl mx-auto">
             Odkryj pełną gamę naszych usługi muzycznych - od najmłodszych po dorosłych, 
