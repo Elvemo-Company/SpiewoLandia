@@ -1,9 +1,8 @@
 
 import React, { useState } from 'react';
-import { Users, Clock, BookOpen, Heart, CheckCircle, Download, MapPin, Calendar, Play, Star, Music } from 'lucide-react';
+import { Clock, CheckCircle, Calendar, Play, Star, Music } from 'lucide-react';
 // Import pliku audio
 import notaAudio from '../assets/audio/nuta.mp3';
-import { playCTASound } from '../utils/audioUtils';
 
 const VocalHero = () => (
   <section className="relative h-[600px] lg:h-[700px] flex items-center justify-center overflow-hidden">
@@ -22,8 +21,8 @@ const VocalHero = () => (
         Lekcje Wokalne
       </h1>
       <p className="text-lg lg:text-xl text-white/90 mb-8 max-w-2xl mx-auto animate-slide-up">
-        Odkryj potencjał swojego głosu z doświadczonymi pedagogami. 
-        Indywidualne podejście dla każdego poziomu zaawansowania.
+        Zajęcia wokalne dla dzieci od 8 lat, młodzieży i dorosłych.
+        Nauka prawidłowego oddychania, emisji, dykcji i pracy z mikrofonem.
       </p>
       <button className="bg-golden hover:bg-sunset text-white px-8 py-4 rounded-full font-medium text-lg transition-all duration-300 transform hover:scale-105">
         Umów Pierwszą Lekcję
@@ -41,49 +40,64 @@ const VocalLessons = () => {
 
   const levels = [
     {
-      id: 'beginner',
-      name: 'Początkujący',
-      description: 'Idealne dla osób rozpoczynających przygodę z śpiewem',
+      id: 'kids8+',
+      name: 'Dzieci 8+',
+      description: 'Pierwsze kroki w śpiewie – zabawowo i merytorycznie',
       duration: '45 min',
-      price: '120 zł',
-      features: ['Podstawy techniki oddychania', 'Rozgrzewka głosowa', 'Proste utwory', 'Budowanie pewności siebie']
+      price: '—',
+      features: [
+        'Prawidłowe oddychanie i emisja głosu',
+        'Intonacja, dykcja i artykulacja',
+        'Różne style: pop, musical, klasyka',
+        'Praca z mikrofonem i ruchem scenicznym'
+      ]
     },
     {
-      id: 'intermediate',
-      name: 'Średniozaawansowany',
-      description: 'Dla osób z podstawowym doświadczeniem wokalnym',
+      id: 'youth',
+      name: 'Młodzież',
+      description: 'Rozwój techniki i interpretacji utworów',
       duration: '60 min',
-      price: '150 zł',
-      features: ['Zaawansowana technika oddychania', 'Rozszerzanie skali głosu', 'Interpretacja utworów', 'Praca nad stylem']
+      price: '—',
+      features: [
+        'Rozszerzanie skali i kontrola głosu',
+        'Różne gatunki: pop, rock, musical, jazz',
+        'Interpretacja i wyrażanie emocji',
+        'Praca sceniczna i mikrofonowa'
+      ]
     },
     {
-      id: 'advanced',
-      name: 'Zaawansowany',
-      description: 'Profesjonalne przygotowanie do występów',
+      id: 'adults',
+      name: 'Dorośli',
+      description: 'Kompleksowe wsparcie wokalne dla każdego poziomu',
       duration: '60 min',
-      price: '180 zł',
-      features: ['Techniki estradowe', 'Przygotowanie do konkursów', 'Nagrania studyjne', 'Coaching sceniczny']
+      price: '—',
+      features: [
+        'Technika oddechowa i emisja',
+        'Praca nad stylem i repertuarem',
+        'Pewność siebie na scenie i w życiu',
+        'Nagrania próbne i przygotowanie do występów'
+      ]
     }
   ];
 
   const sampleLessons = [
     {
-      title: 'Rozgrzewka głosowa - podstawy',
+      title: 'Oddychanie i emisja – podstawy',
       duration: '3:24',
-      level: 'Początkujący',
-      teacher: 'Anna Kowalska'
+      level: 'Dzieci 8+',
+      teacher: 'Instruktor'
     },
     {
-      title: 'Technika oddychania przeponowego',
+      title: 'Intonacja i dykcja w praktyce',
       duration: '5:12',
-      level: 'Średniozaawansowany',
-      teacher: 'Anna Kowalska'
+      level: 'Młodzież',
+      teacher: 'Instruktor'
     },
     {
-      title: 'Interpretacja ballady popowej',
+      title: 'Interpretacja i emocje w śpiewie',
       duration: '4:38',
-      level: 'Zaawansowany',
-      teacher: 'Anna Kowalska'
+      level: 'Dorośli',
+      teacher: 'Instruktor'
     }
   ];
 
@@ -409,10 +423,10 @@ const VocalLessons = () => {
               Zarezerwuj Lekcję
             </button>
             <a 
-              href="tel:+48123456789"
+              href="tel:+48517666426"
               className="text-white hover:text-cream font-medium text-lg flex items-center transition-colors duration-300"
             >
-              lub zadzwoń: +48 123 456 789
+              lub zadzwoń: +48 517 666 426
             </a>
           </div>
         </div>

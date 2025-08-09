@@ -1,14 +1,12 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Music, Phone, Mail, MapPin, Facebook, Instagram, Youtube, ArrowUp, X } from 'lucide-react';
+import { Phone, Mail, MapPin, Facebook, Instagram, Youtube, X } from 'lucide-react';
 import logo from '../assets/logo.svg';
 
 const Footer = () => {
   const [showTermsModal, setShowTermsModal] = useState(false);
 
-  const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  };
+  // no-op
 
   return (
     <>
@@ -61,8 +59,8 @@ const Footer = () => {
                     <div className="flex items-start">
                       <Phone className="h-3 w-3 lg:h-4 lg:w-4 text-golden mr-2 mt-0.5 flex-shrink-0" />
                       <div>
-                        <a href="tel:+48123456789" className="text-white/80 hover:text-golden transition-colors duration-300 text-xs lg:text-sm">
-                          +48 123 456 789
+                        <a href="tel:+48517666426" className="text-white/80 hover:text-golden transition-colors duration-300 text-xs lg:text-sm">
+                          +48 517 666 426
                         </a>
                         <p className="text-xs text-white/60">Pon-Pt: 9:00-20:00</p>
                       </div>

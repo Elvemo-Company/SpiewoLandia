@@ -1,13 +1,13 @@
-import React from 'react';
+//
 import { ArrowRight, MapPin, Calendar, Users, Heart } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 const ServicesOverview = () => {
   const services = [
     {
-      title: 'Zajęcia dla Dzieci',
-      description: 'Rozwijamy talenty muzyczne najmłodszych w przyjaznej atmosferze',
-      features: ['Grupy wiekowe 3-12 lat', 'Lokalizacje w całej Polsce', 'Doświadczeni pedagodzy'],
+      title: 'Zajęcia umuzykalniające',
+      description: 'Muzyczna przygoda dla najmłodszych – ruch, rytm, śpiew i instrumenty',
+      features: ['Grupa 6 m-cy – 3 lata', 'Grupa 3 – 6 lat', 'Kolorowe pomoce i instrumenty'],
       icon: Users,
       color: 'from-golden to-sunset',
       image: 'https://images.pexels.com/photos/8199186/pexels-photo-8199186.jpeg',
@@ -97,7 +97,7 @@ const ServicesOverview = () => {
                   </ul>
                 </div>
 
-                {service.title === 'Zajęcia dla Dzieci' && (
+                {service.title === 'Zajęcia umuzykalniające' && (
                   <a
                     href="/book-classes"
                     className="group/btn bg-white/20 backdrop-blur-sm hover:bg-white hover:text-dark-brown text-white px-6 py-3 rounded-full font-medium transition-all duration-300 flex items-center justify-center text-center"
@@ -153,10 +153,10 @@ const ServicesOverview = () => {
                 Umów Konsultację
               </button>
               <a 
-                href="tel:+48123456789"
+                href="tel:+48517666426"
                 className="text-white hover:text-cream font-medium text-lg flex items-center transition-colors duration-300"
               >
-                lub zadzwoń: +48 123 456 789
+                lub zadzwoń: +48 517 666 426
               </a>
             </div>
           </div>

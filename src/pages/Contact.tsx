@@ -25,7 +25,7 @@ const Contact = () => {
   const mainLocation = {
     city: 'Warszawa - Siedziba Główna',
     address: 'ul. Muzyczna 12, 00-123 Warszawa',
-    phone: '+48 123 456 789',
+    phone: '+48 517 666 426',
     email: 'info@spiewolandia.pl',
     hours: 'Pon-Pt: 9:00-20:00, Sob: 9:00-15:00',
     additionalInfo: [

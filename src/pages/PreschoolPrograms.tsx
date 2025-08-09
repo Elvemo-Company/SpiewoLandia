@@ -3,7 +3,7 @@ import { Users, Clock, BookOpen, Heart, CheckCircle, Download, MapPin, Calendar,
 import { playCTASound } from '../utils/audioUtils';
 
 const PreschoolPrograms = () => {
-  const [selectedProgram, setSelectedProgram] = useState('basic');
+  const [selectedProgram, setSelectedProgram] = useState('group1');
   const [currentTestimonial, setCurrentTestimonial] = useState(0);
   const [touchStart, setTouchStart] = useState<number | null>(null);
   const [touchEnd, setTouchEnd] = useState<number | null>(null);
@@ -11,58 +11,38 @@ const PreschoolPrograms = () => {
 
   const programs = [
     {
-      id: 'basic',
-      name: 'Program Podstawowy',
-      duration: '30 min',
-      frequency: '1x w tygodniu',
-      price: '80 zł',
-      minChildren: '8 dzieci',
-      description: 'Wprowadzenie do świata muzyki przez zabawę i śpiew',
+      id: 'group1',
+      name: '6 miesięcy – 3 lata',
+      duration: '30–40 min',
+      frequency: 'cyklicznie',
+      price: '—',
+      minChildren: '—',
+      description: 'Śpiew na sylabach neutralnych, rytmizowanie wierszyków i wyrażeń dźwiękonaśladowczych, ruch w rytmie muzyki.',
       features: [
-        'Piosenki i rymowanki',
-        'Podstawowe instrumenty',
-        'Rozwijanie słuchu muzycznego',
-        'Ćwiczenia rytmiczne',
-        'Materiały dydaktyczne'
+        'Śpiew na sylabach neutralnych',
+        'Rytmizacja i dźwiękonaśladowanie',
+        'Ruch i poczucie pulsu',
+        'Instrumenty perkusyjne; pierwsze dźwięki na pianinie, ukulele',
+        'Chustki, piłeczki, woreczki, chusta animacyjna'
       ],
-      ageGroup: '3-4 lata'
+      ageGroup: '6 m-cy – 3 lata'
     },
     {
-      id: 'extended',
-      name: 'Program Rozszerzony',
-      duration: '45 min',
-      frequency: '2x w tygodniu',
-      price: '120 zł',
-      minChildren: '10 dzieci',
-      description: 'Kompleksowy rozwój muzyczny z elementami teatru',
+      id: 'group2',
+      name: '3 – 6 lat',
+      duration: '40–50 min',
+      frequency: 'cyklicznie',
+      price: '—',
+      minChildren: '—',
+      description: 'Różnorodny repertuar tonalny i rytmiczny, cisza jako ważny element muzyki. Nauka naturalna i pełna radości.',
       features: [
-        'Wszystko z programu podstawowego',
-        'Elementy teatru muzycznego',
-        'Nauka gry na instrumentach',
-        'Przygotowanie występów',
-        'Warsztaty dla rodziców',
-        'Certyfikat ukończenia'
+        'Rozwój mowy i słuchu muzycznego',
+        'Poczucie rytmu i melodii',
+        'Logiczne myślenie i kreatywność',
+        'Współpraca i funkcjonowanie w grupie',
+        'Systematyczność, samozaparcie i dyscyplina'
       ],
-      ageGroup: '4-6 lat'
-    },
-    {
-      id: 'premium',
-      name: 'Program Premium',
-      duration: '60 min',
-      frequency: '3x w tygodniu',
-      price: '180 zł',
-      minChildren: '12 dzieci',
-      description: 'Profesjonalne przygotowanie muzyczne z indywidualnym podejściem',
-      features: [
-        'Wszystko z programu rozszerzonego',
-        'Indywidualne konsultacje',
-        'Nagrania występów',
-        'Udział w konkursach',
-        'Szkolenia dla nauczycieli',
-        'Raport rozwoju dla rodziców',
-        'Koncert końcowy'
-      ],
-      ageGroup: '5-6 lat'
+      ageGroup: '3 – 6 lat'
     }
   ];
 
@@ -165,11 +145,10 @@ const PreschoolPrograms = () => {
 
         <div className="relative z-10 max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
           <h1 className="font-serif text-h1-mobile lg:text-h1-desktop font-bold text-white mb-6 animate-fade-in">
-            Programy dla Przedszkoli
+            Zajęcia umuzykalniające dla dzieci
           </h1>
           <p className="text-lg lg:text-xl text-white/90 mb-8 max-w-2xl mx-auto animate-slide-up">
-            Kompleksowe programy muzyczne dostosowane do potrzeb najmłodszych. 
-            Rozwijamy talenty przez zabawę i radość z muzyki.
+            Wprowadzamy dzieci w świat dźwięków i rytmów. Śpiew, ruch, instrumenty oraz cisza – wszystko w naturalnej, radosnej atmosferze.
           </p>
           <button 
             onClick={playCTASound}
@@ -183,12 +162,12 @@ const PreschoolPrograms = () => {
       <section className="py-12 lg:py-16 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <h2 className="font-serif text-h2-mobile lg:text-h2-desktop font-bold text-dark-brown mb-4">
-              Nasze Programy
-            </h2>
-            <p className="text-lg text-chocolate max-w-2xl mx-auto">
-              Wybierz program dostosowany do wieku dzieci i potrzeb Waszej placówki
-            </p>
+              <h2 className="font-serif text-h2-mobile lg:text-h2-desktop font-bold text-dark-brown mb-4">
+                Grupy wiekowe
+              </h2>
+              <p className="text-lg text-chocolate max-w-2xl mx-auto">
+                6 miesięcy – 3 lata • 3 – 6 lat
+              </p>
           </div>
 
           <div className="flex justify-center mb-6 overflow-x-auto scrollbar-hide">
@@ -287,7 +266,7 @@ const PreschoolPrograms = () => {
                         Dołącz do grona zadowolonych placówek w całej Polsce. Zapewniamy kompleksową obsługę i wysoką jakość zajęć.
                       </p>
                       <div className="space-y-3">
-                        <button className="w-full bg-golden/90 hover:bg-golden backdrop-blur-sm text-white py-3 rounded-lg font-medium transition-all duration-300 transform hover:scale-[1.02] flex items-center justify-center shadow-md">
+            <button className="w-full bg-golden/90 hover:bg-golden backdrop-blur-sm text-white py-3 rounded-lg font-medium transition-all duration-300 transform hover:scale-[1.02] flex items-center justify-center shadow-md">
                           <Calendar className="h-4 w-4 mr-2" />
                           Umów Prezentację
                         </button>
@@ -552,10 +531,10 @@ const PreschoolPrograms = () => {
               Umów Prezentację
             </button>
             <a 
-              href="tel:+48123456789"
+              href="tel:+48517666426"
               className="text-white hover:text-cream font-medium text-lg flex items-center transition-colors duration-300"
             >
-              lub zadzwoń: +48 123 456 789
+              lub zadzwoń: +48 517 666 426
             </a>
           </div>
         </div>

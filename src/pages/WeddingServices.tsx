@@ -1,9 +1,8 @@
 
 import React, { useState } from 'react';
-import { Heart, Music, Camera, Users, Clock, Star, CheckCircle, Calendar, Award, Phone, Play, Pause, Volume2, MapPin, Euro, Youtube, Church, Sparkles } from 'lucide-react';
-// Import pliku audio
-import notaAudio from '../assets/audio/nuta.mp3';
+import { Heart, Music, Star, CheckCircle, Calendar, MapPin, Youtube, Church, Sparkles } from 'lucide-react';
 import { playCTASound } from '../utils/audioUtils';
+import AudioPreview from '../components/AudioPreview';
 
 const WeddingHero = () => (
   <section className="relative h-[600px] lg:h-[700px] flex items-center justify-center overflow-hidden">
@@ -22,8 +21,8 @@ const WeddingHero = () => (
         Oprawa Muzyczna Ślubów
       </h1>
       <p className="text-lg lg:text-xl text-white/90 mb-8 max-w-2xl mx-auto animate-slide-up">
-        Tworzymy magiczne momenty muzyczne w Waszym najważniejszym dniu. 
-        Profesjonalna oprawa ceremonii i przyjęć weselnych.
+        Tworzymy magiczne momenty muzyczne w Waszym najważniejszym dniu.
+        Profesjonalna oprawa ceremonii i przyjęć okolicznościowych.
       </p>
       <button 
         onClick={playCTASound}
@@ -35,22 +34,19 @@ const WeddingHero = () => (
 );
 
 const WeddingServices = () => {
-  const [playingTrack, setPlayingTrack] = useState<string | null>(null);
   const [selectedCategory, setSelectedCategory] = useState('church');
-  const [selectedSubCategory, setSelectedSubCategory] = useState<string | null>(null);
-  const [expandedCategories, setExpandedCategories] = useState<Set<string>>(new Set(['wejscie', 'milosne']));
+  // removed unused selectedSubCategory
+  const [expandedCategories, setExpandedCategories] = useState<Set<string>>(new Set(['wejscie', 'cywilny']));
   const [currentTestimonial, setCurrentTestimonial] = useState(0);
   const [touchStart, setTouchStart] = useState<number | null>(null);
   const [touchEnd, setTouchEnd] = useState<number | null>(null);
-  const [currentGalleryImage, setCurrentGalleryImage] = useState(0);
-  const [galleryTouchStart, setGalleryTouchStart] = useState<number | null>(null);
-  const [galleryTouchEnd, setGalleryTouchEnd] = useState<number | null>(null);
+  // const [currentGalleryImage, setCurrentGalleryImage] = useState(0);
   const [currentVideoSlide, setCurrentVideoSlide] = useState(0);
   const [videoTouchStart, setVideoTouchStart] = useState<number | null>(null);
   const [videoTouchEnd, setVideoTouchEnd] = useState<number | null>(null);
 
   const offerIncludes = [
-    'Profesjonalny duet wokalny (kobieta + mężczyzna)',
+    'Profesjonalni i wykształceni muzycy oraz wokaliści',
     'Kompletny zestaw nagłośnieniowy',
     'Konsultacja repertuaru przed ceremonią',
     'Próba dźwięku na miejscu',
@@ -62,23 +58,18 @@ const WeddingServices = () => {
 
   const pricingRegions = [
     {
-      region: 'Wrocław',
+      region: 'Łódź (+ dojazd do 30 km)',
       price: '500 zł',
       includes: 'WOKAL + NAGŁOŚNIENIE',
       popular: true
     },
     {
-      region: 'Województwo dolnośląskie',
-      price: '550 zł',
-      includes: 'WOKAL + NAGŁOŚNIENIE + DOJAZD'
-    },
-    {
-      region: 'Województwo opolskie',
-      price: '550 zł',
-      includes: 'WOKAL + NAGŁOŚNIENIE + DOJAZD'
-    },
-    {
       region: 'Województwo łódzkie',
+      price: '550 zł',
+      includes: 'WOKAL + NAGŁOŚNIENIE + DOJAZD'
+    },
+    {
+      region: 'Województwo mazowieckie',
       price: '600 zł',
       includes: 'WOKAL + NAGŁOŚNIENIE + DOJAZD'
     }
@@ -86,123 +77,105 @@ const WeddingServices = () => {
 
   const additionalMusicians = [
     { instrument: 'Organista', price: '450 zł' },
-    { instrument: 'Skrzypaczka', price: '500 zł' },
-    { instrument: 'Pianista', price: '500 zł' }
+    { instrument: 'Skrzypaczka', price: '450 zł' },
+    { instrument: 'Pianista', price: '450 zł' }
   ];
 
   const repertoire = {
     church: {
       wejscie: [
-        { title: 'Ave Maria', artist: 'Schubert', duration: '4:32', category: 'Klasyczna' },
-        { title: 'Canon in D', artist: 'Pachelbel', duration: '3:45', category: 'Klasyczna' },
-        { title: 'Jezu ufam Tobie', artist: 'Tradycyjna', duration: '3:20', category: 'Religijna' },
-        { title: 'Bridal Chorus', artist: 'Wagner', duration: '4:15', category: 'Klasyczna' },
-        { title: 'Air on G String', artist: 'Bach', duration: '5:20', category: 'Klasyczna' },
-        { title: 'Czuła Matko', artist: 'Tradycyjna', duration: '3:50', category: 'Religijna' },
-        { title: 'Veni Creator', artist: 'Tradycyjna', duration: '4:05', category: 'Religijna' },
-        { title: 'Spring', artist: 'Vivaldi', duration: '3:30', category: 'Klasyczna' },
-        { title: 'Salve Regina', artist: 'Tradycyjna', duration: '4:25', category: 'Religijna' },
-        { title: 'Trumpet Voluntary', artist: 'Clarke', duration: '3:15', category: 'Klasyczna' }
+        { title: 'Ave Maria', artist: 'Franz Schubert' },
+        { title: 'Ave Maria', artist: 'Giulio Caccini' },
+        { title: 'Takie jest prawo miłości', artist: '' },
+        { title: 'Oblubieniec', artist: '' },
+        { title: 'Przykazanie nowe daję Wam', artist: '' },
+        { title: 'Schowaj mnie', artist: '' },
+        { title: 'Gdy się łączą ręce dwie', artist: '' },
+        { title: 'Twoja miłość jak ciepły deszcz', artist: '' },
+        { title: 'Ty tylko mnie poprowadź', artist: '' },
+        { title: 'Nic nas nie zdoła odłączyć od Ciebie', artist: '' },
+        { title: 'Nie bójcie się żyć dla miłości', artist: '' },
+        { title: 'Powietrzem moim jesteś', artist: '' },
+        { title: 'Hymn o miłości', artist: '' }
       ],
       ofiarowanie: [
-        { title: 'Magnificat', artist: 'Tradycyjna', duration: '4:15', category: 'Religijna' },
-        { title: 'Ave Verum Corpus', artist: 'Mozart', duration: '3:45', category: 'Klasyczna' },
-        { title: 'Panis Angelicus', artist: 'Franck', duration: '4:00', category: 'Klasyczna' },
-        { title: 'O Salutaris Hostia', artist: 'Tradycyjna', duration: '3:35', category: 'Religijna' },
-        { title: 'Pie Jesu', artist: 'Lloyd Webber', duration: '4:20', category: 'Współczesna' },
-        { title: 'Veni Sancte Spiritus', artist: 'Tradycyjna', duration: '3:55', category: 'Religijna' },
-        { title: 'Meditation', artist: 'Massenet', duration: '5:10', category: 'Klasyczna' },
-        { title: 'Adagio', artist: 'Albinoni', duration: '8:30', category: 'Klasyczna' },
-        { title: 'Laudate Dominum', artist: 'Mozart', duration: '4:35', category: 'Klasyczna' }
+        { title: 'Rękę Ci daję', artist: '' },
+        { title: 'Niepojęty', artist: '' },
+        { title: 'Ofiaruję Tobie Panie mój', artist: '' },
+        { title: 'Tak mnie skrusz', artist: '' },
+        { title: 'Powietrzem moim jest', artist: '' },
+        { title: 'Schowaj mnie', artist: '' }
       ],
       komunia: [
-        { title: 'Chleb żywy', artist: 'Tradycyjna', duration: '3:30', category: 'Religijna' },
-        { title: 'Ubi Caritas', artist: 'Tradycyjna', duration: '4:10', category: 'Religijna' },
-        { title: 'Tantum Ergo', artist: 'Tradycyjna', duration: '3:15', category: 'Religijna' },
-        { title: 'Pange Lingua', artist: 'Tradycyjna', duration: '4:25', category: 'Religijna' },
-        { title: 'O Come All Ye Faithful', artist: 'Tradycyjna', duration: '3:40', category: 'Religijna' },
-        { title: 'Adoramus Te Christe', artist: 'Palestrina', duration: '3:20', category: 'Klasyczna' },
-        { title: 'Kyrie Eleison', artist: 'Tradycyjna', duration: '4:15', category: 'Religijna' },
-        { title: 'Sanctus', artist: 'Tradycyjna', duration: '3:50', category: 'Religijna' },
-        { title: 'Agnus Dei', artist: 'Tradycyjna', duration: '4:05', category: 'Religijna' },
-        { title: 'Ave Regina Coelorum', artist: 'Tradycyjna', duration: '3:45', category: 'Religijna' }
-      ],
-      uwielbienie: [
-        { title: 'Te Deum', artist: 'Tradycyjna', duration: '4:45', category: 'Religijna' },
-        { title: 'Gloria in Excelsis', artist: 'Tradycyjna', duration: '3:50', category: 'Religijna' },
-        { title: 'Alleluia', artist: 'Tradycyjna', duration: '3:25', category: 'Religijna' },
-        { title: 'Magnificat', artist: 'Bach', duration: '5:20', category: 'Klasyczna' },
-        { title: 'Hosanna in Excelsis', artist: 'Tradycyjna', duration: '3:35', category: 'Religijna' },
-        { title: 'O Holy Night', artist: 'Adam', duration: '4:30', category: 'Klasyczna' },
-        { title: 'How Great Thou Art', artist: 'Tradycyjna', duration: '4:15', category: 'Religijna' },
-        { title: 'Be Thou My Vision', artist: 'Tradycyjna', duration: '3:55', category: 'Religijna' },
-        { title: 'Holy Holy Holy', artist: 'Tradycyjna', duration: '4:10', category: 'Religijna' }
+        { title: 'Nie musisz mówić nic', artist: '' },
+        { title: 'Unoszę wzrok', artist: '' },
+        { title: 'Pan mnie strzeże', artist: '' },
+        { title: 'Stoję dziś', artist: '' },
+        { title: 'Schowaj mnie', artist: '' },
+        { title: 'Chlebie najcichszy', artist: '' },
+        { title: 'Panie dobry jak chleb', artist: '' }
       ],
       wyjscie: [
-        { title: 'Oda do radości', artist: 'Beethoven', duration: '4:20', category: 'Klasyczna' },
-        { title: 'Wedding March', artist: 'Mendelssohn', duration: '3:35', category: 'Klasyczna' },
-        { title: 'Hallelujah', artist: 'Cohen', duration: '4:50', category: 'Współczesna' },
-        { title: 'Recessional', artist: 'Guilmant', duration: '3:45', category: 'Klasyczna' },
-        { title: 'Prince of Denmark March', artist: 'Clarke', duration: '3:20', category: 'Klasyczna' },
-        { title: 'Te Deum', artist: 'Charpentier', duration: '4:35', category: 'Klasyczna' },
-        { title: 'Gloria', artist: 'Vivaldi', duration: '5:15', category: 'Klasyczna' },
-        { title: 'Crown Imperial', artist: 'Walton', duration: '4:05', category: 'Współczesna' },
-        { title: 'Orb and Sceptre', artist: 'Walton', duration: '3:50', category: 'Współczesna' },
-        { title: 'Rejoice the Lord is King', artist: 'Handel', duration: '4:25', category: 'Klasyczna' }
+        { title: 'Marsz Mendelssohna', artist: 'Felix Mendelssohn' },
+        { title: 'Marsz Wagnera', artist: 'Richard Wagner' },
+        { title: 'Ave Verum', artist: 'Wolfgang Amadeus Mozart' },
+        { title: 'Gabriel’s Oboe', artist: 'Ennio Morricone' }
       ]
     },
     civil: {
-      milosne: [
-        { title: 'A Thousand Years', artist: 'Christina Perri', duration: '4:45', category: 'Pop' },
-        { title: 'Perfect', artist: 'Ed Sheeran', duration: '4:23', category: 'Pop' },
-        { title: 'All of Me', artist: 'John Legend', duration: '4:29', category: 'Pop' },
-        { title: 'Make You Feel My Love', artist: 'Bob Dylan', duration: '3:32', category: 'Ballada' },
-        { title: 'Thinking Out Loud', artist: 'Ed Sheeran', duration: '4:41', category: 'Pop' },
-        { title: 'Marry Me', artist: 'Train', duration: '4:15', category: 'Pop' },
-        { title: 'The Way You Look Tonight', artist: 'Sinatra', duration: '3:20', category: 'Jazz' },
-        { title: 'Can\'t Help Myself', artist: 'Four Tops', duration: '2:50', category: 'Soul' },
-        { title: 'At Last', artist: 'Etta James', duration: '3:01', category: 'Soul' },
-        { title: 'L-O-V-E', artist: 'Nat King Cole', duration: '2:35', category: 'Jazz' },
-        { title: 'Fly Me to the Moon', artist: 'Sinatra', duration: '2:48', category: 'Jazz' },
-        { title: 'La Vie En Rose', artist: 'Édith Piaf', duration: '3:28', category: 'Chanson' }
+      cywilny: [
+        { "title": "I Don't Want to Miss a Thing", "artist": "Aerosmith" },
+        { "title": "Cztery pory roku – Wiosna", "artist": "Antonio Vivaldi" },
+        { "title": "I Do It For You", "artist": "Bryan Adams" },
+        { "title": "Love Me Like You Do", "artist": "Ellie Goulding" },
+        { "title": "Can You Feel the Love Tonight", "artist": "Elton John" },
+        { "title": "Perfect", "artist": "Ed Sheeran" },
+        { "title": "Gabriel's Oboe", "artist": "Ennio Morricone" },
+        { "title": "Tears in Heaven", "artist": "Eric Clapton" },
+        { "title": "Can't Help Falling in Love", "artist": "Elvis Presley" },
+        { "title": "Always on My Mind", "artist": "Elvis Presley" },
+        { "title": "The Way You Look Tonight", "artist": "Frank Sinatra" },
+        { "title": "You Raise Me Up", "artist": "Josh Groban" },
+        { "title": "Aria na strunie G", "artist": "Johann Sebastian Bach" },
+        { "title": "Ave Maria", "artist": "Johann Sebastian Bach" },
+        { "title": "Memories", "artist": "Maroon 5" },
+        { "title": "Niech mówią, że to nie jest miłość", "artist": "Piotr Rubik" },
+        { "title": "Every Breath You Take", "artist": "Sting" },
+        { "title": "You Are the Sunshine of My Life", "artist": "Stevie Wonder" },
+        { "title": "All You Need Is Love", "artist": "The Beatles" },
+        { "title": "Eine kleine Nachtmusik", "artist": "W. A. Mozart" },
+        { "title": "I Will Always Love You", "artist": "Whitney Houston" },
+        { "title": "Hallelujah", "artist": "Leonard Cohen" },
+        { "title": "Love Is In The Air", "artist": "John Paul Young" },
+        { "title": "Serce Matki", "artist": "Mieczysław Fogg" },
+        { "title": "I'm Kissing You", "artist": "Des'ree" },
+        { "title": "A Thousand Years", "artist": "Christina Perri" },
+        { "title": "The One", "artist": "Kodaline" },
+        { "title": "Unchained Melody", "artist": "The Righteous Brothers" },
+        { "title": "What The World Needs Now Is Love", "artist": "Jackie DeShannon" },
+        { "title": "Just the Way You Are", "artist": "Bruno Mars" },
+        { "title": "Marry You", "artist": "Bruno Mars" },
+        { "title": "Make You Feel My Love", "artist": "Adele" },
+        { "title": "All Of Me", "artist": "John Legend" },
+        { "title": "Beneath Your Beautiful", "artist": "Labrinth ft. Emeli Sandé" }
       ],
-      duchowe: [
-        { title: 'Amazing Grace', artist: 'Tradycyjna', duration: '3:45', category: 'Duchowa' },
-        { title: 'How Great Thou Art', artist: 'Tradycyjna', duration: '4:15', category: 'Duchowa' },
-        { title: 'Blessed Assurance', artist: 'Tradycyjna', duration: '3:30', category: 'Duchowa' },
-        { title: 'What a Wonderful World', artist: 'Louis Armstrong', duration: '2:20', category: 'Jazz' },
-        { title: 'Somewhere Over the Rainbow', artist: 'Judy Garland', duration: '2:45', category: 'Musical' },
-        { title: 'Bridge Over Troubled Water', artist: 'Simon & Garfunkel', duration: '4:55', category: 'Folk' },
-        { title: 'Lean on Me', artist: 'Bill Withers', duration: '4:20', category: 'Soul' },
-        { title: 'You\'ve Got a Friend', artist: 'Carole King', duration: '5:08', category: 'Pop' },
-        { title: 'Stand by Me', artist: 'Ben E. King', duration: '2:55', category: 'Soul' },
-        { title: 'Imagine', artist: 'John Lennon', duration: '3:03', category: 'Rock' }
-      ],
-      ballady: [
-        { title: 'Unchained Melody', artist: 'The Righteous Brothers', duration: '3:36', category: 'Ballada' },
-        { title: 'At Last', artist: 'Etta James', duration: '3:01', category: 'Soul' },
-        { title: 'Thinking Out Loud', artist: 'Ed Sheeran', duration: '4:41', category: 'Pop' },
-        { title: 'The First Time Ever I Saw Your Face', artist: 'Roberta Flack', duration: '5:20', category: 'Soul' },
-        { title: 'Something', artist: 'The Beatles', duration: '3:03', category: 'Rock' },
-        { title: 'Wonderful Tonight', artist: 'Eric Clapton', duration: '3:43', category: 'Rock' },
-        { title: 'Your Song', artist: 'Elton John', duration: '4:01', category: 'Pop' },
-        { title: 'Just the Way You Are', artist: 'Billy Joel', duration: '4:50', category: 'Pop' },
-        { title: 'Let It Be', artist: 'The Beatles', duration: '4:03', category: 'Rock' },
-        { title: 'Fields of Gold', artist: 'Sting', duration: '3:42', category: 'Pop' },
-        { title: 'Sweet Caroline', artist: 'Neil Diamond', duration: '3:21', category: 'Pop' }
+      polskie: [
+        { title: 'Niech mówią, że to nie jest miłość', artist: 'Piotr Rubik' },
+        { title: 'Przetańczyć z Tobą chcę całą noc', artist: 'Anna Jantar' },
+        { title: 'Oczarowanie', artist: 'Zbigniew Wodecki' },
+        { title: 'Kocham Cię kochanie moje', artist: 'Maanam' },
+        { title: 'Kołysanka dla nieznajomej', artist: 'Perfect' },
+        { title: 'Zawsze tam gdzie Ty', artist: 'Lady Pank' }
       ],
       bajkowe: [
-        { title: 'A Whole New World', artist: 'Aladdin OST', duration: '2:45', category: 'Disney' },
-        { title: 'Beauty and the Beast', artist: 'Disney', duration: '4:10', category: 'Disney' },
-        { title: 'Can You Feel the Love Tonight', artist: 'Elton John', duration: '4:00', category: 'Disney' },
-        { title: 'Tale as Old as Time', artist: 'Disney', duration: '3:58', category: 'Disney' },
-        { title: 'Colors of the Wind', artist: 'Pocahontas OST', duration: '3:34', category: 'Disney' },
-        { title: 'When You Wish Upon a Star', artist: 'Disney', duration: '3:15', category: 'Disney' },
-        { title: 'Some Day My Prince Will Come', artist: 'Disney', duration: '4:20', category: 'Disney' },
-        { title: 'Part of Your World', artist: 'The Little Mermaid', duration: '3:15', category: 'Disney' },
-        { title: 'So This Is Love', artist: 'Cinderella OST', duration: '2:40', category: 'Disney' },
-        { title: 'Once Upon a Dream', artist: 'Sleeping Beauty', duration: '2:45', category: 'Disney' },
-        { title: 'Bibbidi-Bobbidi-Boo', artist: 'Cinderella OST', duration: '1:25', category: 'Disney' }
+        { title: 'La La Land', artist: 'Ryan Gosling'},
+        { title: 'City of Stars', artist: 'Emma Stone'},
+        { title: 'The Greatest Showman', artist: 'Rebecca Ferguson'},
+        { title: 'Never Enough', artist: 'Loren Allred'},
+        { title: 'Król Lew', artist: 'Elton John'},
+        { title: 'Can You Feel The Love Tonight', artist: 'Kristle Edwards'},
+        { title: 'Zaplątani', artist: 'Mandy Moore'},
+        { title: 'I See the Light', artist: 'Zachary Levi'}
       ]
     }
   };
@@ -211,15 +184,13 @@ const WeddingServices = () => {
     { id: 'wejscie', name: 'Wejście', icon: Church },
     { id: 'ofiarowanie', name: 'Ofiarowanie', icon: Heart },
     { id: 'komunia', name: 'Komunia', icon: Star },
-    { id: 'uwielbienie', name: 'Uwielbienie', icon: Music },
     { id: 'wyjscie', name: 'Wyjście', icon: Sparkles }
   ];
 
   const civilCategories = [
-    { id: 'milosne', name: 'Miłosne', icon: Heart },
-    { id: 'duchowe', name: 'Duchowe', icon: Star },
-    { id: 'ballady', name: 'Ballady', icon: Music },
-    { id: 'bajkowe', name: 'Bajkowe', icon: Sparkles }
+    { id: 'cywilny', name: 'Cywilny', icon: Heart },
+    { id: 'polskie', name: 'Polskie', icon: Music },
+    { id: 'bajkowe', name: 'Z bajek', icon: Sparkles }
   ];
 
   const youtubeVideos = [
@@ -243,7 +214,8 @@ const WeddingServices = () => {
     }
   ];
 
-  const gallery = [
+  // Example gallery (currently not displayed)
+  /* const gallery = [
     {
       image: 'https://images.pexels.com/photos/1024993/pexels-photo-1024993.jpeg',
       title: 'Ceremonia w plenerze',
@@ -264,7 +236,7 @@ const WeddingServices = () => {
       title: 'Trio smyczkowe',
       location: 'Dwór Korona Karkonoszy'
     }
-  ];
+  ]; */
 
   const testimonials = [
     {
@@ -310,30 +282,7 @@ const WeddingServices = () => {
     }
   };
 
-  // Swipe handling for gallery
-  const onGalleryTouchStart = (e: React.TouchEvent) => {
-    setGalleryTouchEnd(null);
-    setGalleryTouchStart(e.targetTouches[0].clientX);
-  };
-
-  const onGalleryTouchMove = (e: React.TouchEvent) => {
-    setGalleryTouchEnd(e.targetTouches[0].clientX);
-  };
-
-  const onGalleryTouchEnd = () => {
-    if (!galleryTouchStart || !galleryTouchEnd) return;
-    
-    const distance = galleryTouchStart - galleryTouchEnd;
-    const isLeftSwipe = distance > minSwipeDistance;
-    const isRightSwipe = distance < -minSwipeDistance;
-
-    if (isLeftSwipe && currentGalleryImage < gallery.length - 1) {
-      setCurrentGalleryImage(currentGalleryImage + 1);
-    }
-    if (isRightSwipe && currentGalleryImage > 0) {
-      setCurrentGalleryImage(currentGalleryImage - 1);
-    }
-  };
+  // Removed mobile gallery swipe handlers (not used)
 
   // Swipe handling for video carousel
   const onVideoTouchStart = (e: React.TouchEvent) => {
@@ -360,24 +309,7 @@ const WeddingServices = () => {
     }
   };
 
-  const handlePlayTrack = (trackId: string) => {
-    if (playingTrack === trackId) {
-      setPlayingTrack(null);
-      // Zatrzymaj odtwarzanie audio
-    } else {
-      setPlayingTrack(trackId);
-      // Odtwórz dźwięk nuta.mp3
-      try {
-        const audio = new Audio(notaAudio);
-        audio.volume = 0.5; // Ustaw głośność na 50%
-        audio.play().catch(error => {
-          console.log('Nie można odtworzyć dźwięku:', error);
-        });
-      } catch (error) {
-        console.log('Błąd przy odtwarzaniu audio:', error);
-      }
-    }
-  };
+  // Usunięto lokalny odtwarzacz utworów – używamy komponentu AudioPreview
 
   const getCategoryKey = (categoryId: string) => {
     return categoryId as keyof typeof repertoire.church | keyof typeof repertoire.civil;
@@ -409,9 +341,8 @@ const WeddingServices = () => {
 
   const handleCategoryChange = (newCategory: string) => {
     setSelectedCategory(newCategory);
-    setSelectedSubCategory(null);
     // Rozwiń pierwszą kategorię przy zmianie typu ślubu
-    const firstCategory = newCategory === 'church' ? 'wejscie' : 'milosne';
+    const firstCategory = newCategory === 'church' ? 'wejscie' : 'cywilny';
     setExpandedCategories(new Set([firstCategory]));
   };
 
@@ -632,7 +563,6 @@ const WeddingServices = () => {
               {getCurrentCategories().map((category) => {
                 const tracks = getTracksForCategory(category.id);
                 const isExpanded = expandedCategories.has(category.id);
-                                                  const showLimit = 3; // Pokazuj tylko 3 pierwsze utwory, resztę po rozwinięciu
                  const visibleTracks = isExpanded ? tracks : [];
                 
                 return (
@@ -656,35 +586,29 @@ const WeddingServices = () => {
                     </button>
                     
                     <div className={`overflow-hidden transition-all duration-300 ${isExpanded ? 'max-h-none' : 'max-h-80'}`}>
-                      <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                          <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                         {visibleTracks.map((track: any, index: number) => (
                           <div
                             key={index}
                             className="flex items-center justify-between p-3 rounded-lg hover:bg-cream transition-all duration-300 border border-cream"
                           >
                             <div className="flex items-center space-x-3 flex-1 min-w-0">
-                              <button
-                                onClick={() => handlePlayTrack(`${selectedCategory}-${category.id}-${index}`)}
-                                className={`w-8 h-8 rounded-full flex items-center justify-center transition-all duration-300 flex-shrink-0 ${
-                                  playingTrack === `${selectedCategory}-${category.id}-${index}`
-                                    ? 'bg-sunset text-white'
-                                    : 'bg-golden text-white hover:bg-sunset'
-                                }`}
-                              >
-                                {playingTrack === `${selectedCategory}-${category.id}-${index}` ? (
-                                  <Pause className="h-3 w-3" />
+                              <div className="flex-shrink-0">
+                                {selectedCategory === 'church' && category.id === 'wejscie' && track.title === 'Oblubieniec' ? (
+                                  <span className="text-xs text-chocolate/60">Brak podglądu</span>
                                 ) : (
-                                  <Play className="h-3 w-3 ml-0.5" />
+                                  <AudioPreview title={track.title} artist={track.artist} />
                                 )}
-                              </button>
+                              </div>
                               <div className="min-w-0 flex-1">
                                 <h4 className="font-medium text-dark-brown text-sm truncate">{track.title}</h4>
                                 <p className="text-xs text-chocolate truncate">
-                                  {track.artist} • {track.duration}
+                                  {track.artist}{' '}
+                                  {('duration' in track && (track as any).duration) ? `• ${(track as any).duration}` : ''}
                                 </p>
                               </div>
                             </div>
-                            <Volume2 className="h-4 w-4 text-chocolate flex-shrink-0 ml-2" />
+                            {/* Ikona głośności usunięta – kontrola w komponencie AudioPreview */}
                           </div>
                         ))}
                       </div>
@@ -943,10 +867,10 @@ const WeddingServices = () => {
               Sprawdź Dostępność
             </button>
             <a 
-              href="tel:+48123456789"
+              href="tel:+48517666426"
               className="text-white hover:text-cream font-medium text-lg flex items-center transition-colors duration-300"
             >
-              lub zadzwoń: +48 123 456 789
+              lub zadzwoń: +48 517 666 426
             </a>
           </div>
           <p className="text-white/80 text-sm mt-6">
