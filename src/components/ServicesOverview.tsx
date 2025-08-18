@@ -149,9 +149,14 @@ const ServicesOverview = () => {
               Pomożemy Ci wybrać idealne zajęcia muzyczne!
             </p>
             <div className="flex flex-col sm:flex-row justify-center items-center space-y-4 sm:space-y-0 sm:space-x-6">
-              <button className="bg-white text-dark-brown hover:bg-cream px-8 py-4 rounded-full font-medium text-lg transition-all duration-300 transform hover:scale-105">
+              <a
+                href="https://nextvisit.pl/spiewolandia-naxvav1smnyhcizq"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="bg-white text-dark-brown hover:bg-cream px-8 py-4 rounded-full font-medium text-lg transition-all duration-300 transform hover:scale-105"
+              >
                 Umów Konsultację
-              </button>
+              </a>
               <a 
                 href="tel:+48517666426"
                 className="text-white hover:text-cream font-medium text-lg flex items-center transition-colors duration-300"

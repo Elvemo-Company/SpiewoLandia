@@ -1,5 +1,4 @@
-
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Heart, Music, Star, CheckCircle, Calendar, MapPin, Youtube, Church, Sparkles } from 'lucide-react';
 import { playCTASound } from '../utils/audioUtils';
 import AudioPreview from '../components/AudioPreview';
@@ -24,11 +23,15 @@ const WeddingHero = () => (
         Tworzymy magiczne momenty muzyczne w Waszym najważniejszym dniu.
         Profesjonalna oprawa ceremonii i przyjęć okolicznościowych.
       </p>
-      <button 
-        onClick={playCTASound}
-        className="bg-golden hover:bg-sunset text-white px-8 py-4 rounded-full font-medium text-lg transition-all duration-300 transform hover:scale-105">
+      <a
+        href="https://www.weselezklasa.pl/ogloszenia-weselne/wiktoria-kicinska,60060/#timetable-section"
+        target="_blank"
+        rel="noopener noreferrer"
+        // onClick={playCTASound}
+        className="bg-golden hover:bg-sunset text-white px-8 py-4 rounded-full font-medium text-lg transition-all duration-300 transform hover:scale-105"
+      >
         Sprawdź Dostępność
-      </button>
+      </a>
     </div>
   </section>
 );
@@ -346,6 +349,80 @@ const WeddingServices = () => {
     setExpandedCategories(new Set([firstCategory]));
   };
 
+  const WzkWidget: React.FC = () => {
+    useEffect(() => {
+      const id = 'wzk-widget-script';
+      const containerId = 'wzk-container-60060';
+
+      const tryInit = () => {
+        const win = window as any;
+        // common heuristics for widget init functions
+        if (typeof win.WzkInit === 'function') {
+          win.WzkInit();
+          return true;
+        }
+        if (typeof win.wzkInit === 'function') {
+          win.wzkInit();
+          return true;
+        }
+        if (win.wzkWidgets && typeof win.wzkWidgets.init === 'function') {
+          win.wzkWidgets.init();
+          return true;
+        }
+        if (typeof win.initWzk === 'function') {
+          win.initWzk();
+          return true;
+        }
+        // fallback: dispatch event that some widgets listen for
+        try {
+          document.dispatchEvent(new CustomEvent('wzk:script:loaded'));
+        } catch (e) {
+          // ignore
+        }
+        return false;
+      };
+
+      const existing = document.getElementById(id) as HTMLScriptElement | null;
+      if (!existing) {
+        const s = document.createElement('script');
+        s.src = 'https://widgets.4wzk.pl/dist/js/widget.js';
+        s.defer = true;
+        s.id = id;
+        s.onload = () => {
+          // small delay to let script process DOM
+          console.debug('[WZK] script loaded');
+          setTimeout(() => {
+            const ok = tryInit();
+            console.debug('[WZK] init attempted, success=', ok);
+          }, 50);
+        };
+        s.onerror = () => console.error('[WZK] script failed to load');
+        document.body.appendChild(s);
+      } else {
+        // script already present — try init after short delay
+        setTimeout(() => {
+          const ok = tryInit();
+          console.debug('[WZK] script present, init attempted, success=', ok);
+        }, 50);
+      }
+
+      return () => {
+        // do not remove the script; leave global widget available
+      };
+    }, []);
+
+    return (
+      <div id="wzk-container-60060" style={{ width: '1000px', maxWidth: '100%', borderRadius: '8px', boxShadow: '0 1px 6px #B8C5D366', overflow: 'hidden' }} className="wzk-widget iframe-height" data-wzk-widget-type="type1" data-wzk-notice="60060">
+        <div style={{ backgroundColor: '#F5F6FA', textAlign: 'center', padding: '16px', fontSize: '12px', lineHeight: '12px' }}>
+          <a className="wzk-accent-color" title="Wiktoria Kicińska" href="https://www.weselezklasa.pl/ogloszenia-weselne/wiktoria-kicinska,60060/#timetable-section" rel="nofollow" target="_blank" style={{ color: 'currentColor', textDecoration: 'none' }}>
+            Wiktoria Kicińska
+          </a>
+          <img style={{ margin: '8px auto 0', display: 'block' }} src="https://widgets.4wzk.pl/dist/img/footer-logo.svg" alt="Wesele z klasą" />
+        </div>
+      </div>
+    );
+  };
+
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
@@ -360,7 +437,7 @@ const WeddingServices = () => {
             </h2>
             <p className="text-lg text-chocolate max-w-3xl mx-auto">
               Oferujemy profesjonalną oprawę muzyczną ślubów w różnych formach - od kameralnych ceremonii 
-              po wielkie wesela. Nasze doświadczenie i pasja sprawią, że Wasz ślub będzie wyjątkowy 
+              po większe przyjęcia okolicznościowe. Nasze doświadczenie i pasja sprawią, że Wasz ślub będzie wyjątkowy 
               i zapadnie w pamięć na długo.
             </p>
           </div>
@@ -373,11 +450,11 @@ const WeddingServices = () => {
               <div className="space-y-4">
                 <div className="flex items-start">
                   <CheckCircle className="h-5 w-5 text-soft-green mr-3 mt-1 flex-shrink-0" />
-                  <p className="text-chocolate">Ponad 10 lat doświadczenia w branży ślubnej</p>
+                  <p className="text-chocolate">Ponad 5 lat doświadczenia w branży ślubnej</p>
                 </div>
                 <div className="flex items-start">
                   <CheckCircle className="h-5 w-5 text-soft-green mr-3 mt-1 flex-shrink-0" />
-                  <p className="text-chocolate">Setki zadowolonych par młodych w całej Polsce</p>
+                  <p className="text-chocolate">Dzięsiątki zadowolonych par młodych w całej Polsce</p>
                 </div>
                 <div className="flex items-start">
                   <CheckCircle className="h-5 w-5 text-soft-green mr-3 mt-1 flex-shrink-0" />
@@ -624,9 +701,14 @@ const WeddingServices = () => {
               <p className="text-chocolate mb-4">
                 To tylko przykłady z naszego repertuaru. Dostosowujemy muzykę do Waszych preferencji!
               </p>
-              <button className="bg-golden hover:bg-sunset text-white px-6 py-3 rounded-full font-medium transition-all duration-300">
+              <a
+                href="/repertuar.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="bg-golden hover:bg-sunset text-white px-6 py-3 rounded-full font-medium transition-all duration-300 inline-block"
+              >
                 Pełny Repertuar (PDF)
-              </button>
+              </a>
             </div>
           </div>
         </div>
@@ -755,101 +837,11 @@ const WeddingServices = () => {
             </h2>
           </div>
 
-          {/* Mobile: Carousel with pagination */}
-          <div className="lg:hidden">
-            <div className="relative">
-              <div 
-                className="overflow-hidden"
-                onTouchStart={onTouchStart}
-                onTouchMove={onTouchMove}
-                onTouchEnd={onTouchEnd}
-              >
-                <div 
-                  className="flex transition-transform duration-300 ease-in-out"
-                  style={{ transform: `translateX(-${currentTestimonial * 100}%)` }}
-                >
-                  {testimonials.map((testimonial, index) => (
-                    <div
-                      key={index}
-                      className="w-full flex-shrink-0 px-4"
-                    >
-                      <div className="bg-white rounded-2xl shadow-card mx-auto max-w-sm overflow-hidden">
-                        <div className="h-48 relative">
-                          <img
-                            src={testimonial.image}
-                            alt={testimonial.names}
-                            className="w-full h-full object-cover"
-                          />
-                          <div className="absolute inset-0 bg-gradient-to-t from-dark-brown/50 to-transparent"></div>
-                          <div className="absolute bottom-4 left-4 text-white">
-                            <h4 className="font-serif text-lg font-bold">{testimonial.names}</h4>
-                            <p className="text-sm opacity-90">{testimonial.date}</p>
-                          </div>
-                        </div>
-                        <div className="p-6">
-                          <div className="flex items-center mb-4">
-                            {Array.from({ length: testimonial.rating }).map((_, starIndex) => (
-                              <Star key={starIndex} className="h-4 w-4 text-golden fill-current" />
-                            ))}
-                          </div>
-                          <p className="text-chocolate italic">"{testimonial.text}"</p>
-                        </div>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-              
-              {/* Pagination dots */}
-              <div className="flex justify-center mt-6 space-x-2">
-                {testimonials.map((_, index) => (
-                  <button
-                    key={index}
-                    onClick={() => setCurrentTestimonial(index)}
-                    className={`w-3 h-3 rounded-full transition-all duration-300 ${
-                      index === currentTestimonial 
-                        ? 'bg-golden scale-125' 
-                        : 'bg-chocolate/30 hover:bg-chocolate/50'
-                    }`}
-                    aria-label={`Przejdź do opinii ${index + 1}`}
-                  />
-                ))}
-              </div>
-            </div>
-          </div>
-
-          {/* Desktop: Grid */}
-          <div className="hidden lg:grid lg:grid-cols-2 gap-8">
-            {testimonials.map((testimonial, index) => (
-              <div
-                key={index}
-                className="bg-white rounded-2xl shadow-card hover:shadow-card-hover transition-all duration-300 overflow-hidden"
-              >
-                <div className="h-48 relative">
-                  <img
-                    src={testimonial.image}
-                    alt={testimonial.names}
-                    className="w-full h-full object-cover"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-dark-brown/50 to-transparent"></div>
-                  <div className="absolute bottom-4 left-4 text-white">
-                    <h4 className="font-serif text-lg font-bold">{testimonial.names}</h4>
-                    <p className="text-sm opacity-90">{testimonial.date}</p>
-                  </div>
-                </div>
-                <div className="p-6">
-                  <div className="flex items-center mb-4">
-                    {Array.from({ length: testimonial.rating }).map((_, starIndex) => (
-                      <Star key={starIndex} className="h-4 w-4 text-golden fill-current" />
-                    ))}
-                  </div>
-                  <p className="text-chocolate italic">"{testimonial.text}"</p>
-                </div>
-              </div>
-            ))}
+          <div className="flex justify-center">
+            <WzkWidget />
           </div>
         </div>
-      </section>
+      </section>  
 
       {/* Booking CTA */}
       <section className="py-16 lg:py-24 bg-gradient-to-r from-golden to-sunset">
@@ -862,10 +854,15 @@ const WeddingServices = () => {
             Skontaktuj się z nami już dziś i sprawdź dostępność na Wasz termin ślubu
           </p>
           <div className="flex flex-col sm:flex-row justify-center items-center space-y-4 sm:space-y-0 sm:space-x-6">
-            <button className="bg-white text-dark-brown hover:bg-cream px-8 py-4 rounded-full font-medium text-lg transition-all duration-300 transform hover:scale-105 flex items-center">
+            <a
+              href="https://www.weselezklasa.pl/ogloszenia-weselne/wiktoria-kicinska,60060/#timetable-section"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bg-white text-dark-brown hover:bg-cream px-8 py-4 rounded-full font-medium text-lg transition-all duration-300 transform hover:scale-105 flex items-center"
+            >
               <Calendar className="h-5 w-5 mr-2" />
               Sprawdź Dostępność
-            </button>
+            </a>
             <a 
               href="tel:+48517666426"
               className="text-white hover:text-cream font-medium text-lg flex items-center transition-colors duration-300"

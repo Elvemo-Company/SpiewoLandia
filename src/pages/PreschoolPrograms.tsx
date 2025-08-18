@@ -151,7 +151,6 @@ const PreschoolPrograms = () => {
             Wprowadzamy dzieci w świat dźwięków i rytmów. Śpiew, ruch, instrumenty oraz cisza – wszystko w naturalnej, radosnej atmosferze.
           </p>
           <button 
-            onClick={playCTASound}
             className="bg-golden hover:bg-sunset text-white px-8 py-4 rounded-full font-medium text-lg transition-all duration-300 transform hover:scale-105">
             Zapytaj o Program
           </button>

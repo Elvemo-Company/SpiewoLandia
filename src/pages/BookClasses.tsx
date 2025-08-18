@@ -179,378 +179,104 @@ const BookClasses = () => {
           </p>
         </div>
       </section>
+      {/* Child Programs Section - improved card layout */}
+      <section className="py-16 lg:py-24 bg-white">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 className="font-serif text-h2-mobile lg:text-h2-desktop font-bold text-dark-brown mb-6">
+            Zajęcia dla najmłodszych
+          </h2>
 
-      {/* Progress Bar */}
-      <div className="bg-white py-6">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between">
-            {[1, 2, 3, 4].map((stepNumber) => (
-              <div key={stepNumber} className="flex items-center">
-                <div
-                  className={`w-10 h-10 rounded-full flex items-center justify-center font-semibold transition-all duration-300 ${
-                    step >= stepNumber
-                      ? 'bg-golden text-white'
-                      : 'bg-cream text-chocolate'
-                  }`}
-                >
-                  {step > stepNumber ? (
-                    <CheckCircle className="h-5 w-5" />
-                  ) : (
-                    stepNumber
-                  )}
-                </div>
-                {stepNumber < 4 && (
-                  <div
-                    className={`w-16 lg:w-24 h-1 mx-2 transition-all duration-300 ${
-                      step > stepNumber ? 'bg-golden' : 'bg-cream'
-                    }`}
-                  />
-                )}
-              </div>
-            ))}
-          </div>
-          
-          <div className="flex justify-between mt-4 text-sm">
-            <span className={step >= 1 ? 'text-golden font-medium' : 'text-chocolate'}>
-              Wybierz usługę
-            </span>
-            <span className={step >= 2 ? 'text-golden font-medium' : 'text-chocolate'}>
-              Lokalizacja
-            </span>
-            <span className={step >= 3 ? 'text-golden font-medium' : 'text-chocolate'}>
-              Data i godzina
-            </span>
-            <span className={step >= 4 ? 'text-golden font-medium' : 'text-chocolate'}>
-              Dane kontaktowe
-            </span>
-          </div>
-        </div>
-      </div>
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">
+            <div className="lg:col-span-2 space-y-6">
+              <p className="text-chocolate text-lg">
+                Zajęcia prowadzone są w małych grupach, w przyjaznej i bezpiecznej atmosferze. Opierają się na naturalnym rozwoju muzykalności dzieci oraz elementach rytmiki. Nie wymagamy żadnego przygotowania muzycznego – liczy się radość wspólnego muzykowania.
+              </p>
 
-      {/* Booking Steps */}
-      <section className="py-16">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="bg-white rounded-2xl shadow-card p-8 lg:p-12">
-            
-            {/* Step 1: Service Selection */}
-            {step === 1 && (
-              <div className="animate-fade-in">
-                <h2 className="font-serif text-2xl lg:text-3xl font-bold text-dark-brown mb-8 text-center">
-                  Wybierz Rodzaj Zajęć
-                </h2>
-                
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  {services.map((service) => (
-                    <div
-                      key={service.id}
-                      onClick={() => handleServiceSelect(service.id)}
-                      className={`relative cursor-pointer rounded-xl p-6 transition-all duration-300 transform hover:scale-105 ${
-                        selectedService === service.id
-                          ? 'ring-2 ring-golden shadow-card-hover'
-                          : 'hover:shadow-card'
-                      }`}
-                    >
-                      <div className={`absolute inset-0 bg-gradient-to-br ${service.color} opacity-10 rounded-xl`}></div>
-                      <div className="relative">
-                        <service.icon className="h-12 w-12 text-golden mb-4" />
-                        <h3 className="font-serif text-xl font-bold text-dark-brown mb-2">
-                          {service.name}
-                        </h3>
-                        <p className="text-chocolate mb-4">
-                          {service.description}
-                        </p>
-                        <div className="flex items-center justify-between">
-                          <div className="flex items-center text-sm text-chocolate">
-                            <Clock className="h-4 w-4 mr-1" />
-                            {service.duration}
-                          </div>
-                          <div className="text-xl font-bold text-golden">
-                            {service.price}
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            )}
-
-            {/* Step 2: Location Selection */}
-            {step === 2 && (
-              <div className="animate-fade-in">
-                <h2 className="font-serif text-2xl lg:text-3xl font-bold text-dark-brown mb-8 text-center">
-                  Wybierz Lokalizację
-                </h2>
-                
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  {locations.map((location) => (
-                    <div
-                      key={location.id}
-                      onClick={() => location.available && handleLocationSelect(location.id)}
-                      className={`p-6 rounded-lg border-2 transition-all duration-300 ${
-                        !location.available
-                          ? 'opacity-50 cursor-not-allowed bg-gray-50 border-gray-200'
-                          : selectedLocation === location.id
-                          ? 'border-golden bg-golden/5 cursor-pointer'
-                          : 'border-cream hover:border-golden cursor-pointer hover:bg-cream/50'
-                      }`}
-                    >
-                      <div className="flex items-start justify-between">
-                        <div>
-                          <h3 className="font-semibold text-dark-brown mb-1">
-                            {location.name}
-                          </h3>
-                          <p className="text-sm text-chocolate flex items-center">
-                            <MapPin className="h-4 w-4 mr-1" />
-                            {location.address}
-                          </p>
-                        </div>
-                        {!location.available && (
-                          <span className="text-xs bg-muted-red text-white px-2 py-1 rounded">
-                            Niedostępne
-                          </span>
-                        )}
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            )}
-
-            {/* Step 3: Date and Time Selection */}
-            {step === 3 && (
-              <div className="animate-fade-in">
-                <h2 className="font-serif text-2xl lg:text-3xl font-bold text-dark-brown mb-8 text-center">
-                  Wybierz Datę i Godzinę
-                </h2>
-                
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-                  {/* Calendar */}
+              <div className="space-y-5">
+                <article className="bg-white rounded-2xl shadow-card border border-cream p-6 flex gap-4 items-start">
+                  <div className="flex-shrink-0 mt-1">
+                    <Users className="h-10 w-10 text-golden p-1 bg-golden/10 rounded-full" />
+                  </div>
                   <div>
-                    <h3 className="font-semibold text-dark-brown mb-4">Wybierz datę:</h3>
-                    <div className="grid grid-cols-7 gap-2">
-                      {calendarDays.slice(0, 21).map((day) => (
-                        <button
-                          key={day.date}
-                          onClick={() => day.available && handleDateSelect(day.date)}
-                          disabled={!day.available}
-                          className={`p-2 text-sm rounded-lg transition-all duration-300 ${
-                            !day.available
-                              ? 'opacity-50 cursor-not-allowed bg-gray-100'
-                              : selectedDate === day.date
-                              ? 'bg-golden text-white'
-                              : 'hover:bg-cream border border-cream'
-                          }`}
-                        >
-                          <div className="text-xs">{day.weekday}</div>
-                          <div className="font-semibold">{day.day}</div>
-                          <div className="text-xs">{day.month}</div>
-                        </button>
-                      ))}
-                    </div>
+                    <h3 className="text-lg font-semibold text-dark-brown">Gordonki – 0–12 miesięcy</h3>
+                    <p className="text-chocolate mt-2">Zajęcia gordonowskie dla najmłodszych to czas bliskości, muzyki i wspólnego odkrywania dźwięków. Maluszki uczestniczą w śpiewankach, kołysankach i rytmizowaniu w bezpiecznym kontakcie z rodzicem.</p>
+                    <h4 className="font-medium text-dark-brown mt-3">Korzyści dla dziecka</h4>
+                    <ul className="list-disc list-inside text-chocolate ml-3 mt-2 space-y-1">
+                      <li>stymulacja słuchu i uwagi</li>
+                      <li>wspieranie rozwoju mowy</li>
+                      <li>budowanie więzi z rodzicem poprzez muzykę</li>
+                      <li>pierwsze doświadczenia rytmu i melodii</li>
+                    </ul>
+                    <p className="text-chocolate mt-3">Rodzice aktywnie uczestniczą – kołyszą, nucą, poruszają się z dzieckiem. Nie liczą się zdolności muzyczne, ale bliskość i wspólna zabawa.</p>
                   </div>
+                </article>
 
-                  {/* Time Slots */}
+                <article className="bg-white rounded-2xl shadow-card border border-cream p-6 flex gap-4 items-start">
+                  <div className="flex-shrink-0 mt-1">
+                    <Users className="h-10 w-10 text-sunset p-1 bg-sunset/10 rounded-full" />
+                  </div>
                   <div>
-                    <h3 className="font-semibold text-dark-brown mb-4">Wybierz godzinę:</h3>
-                    <div className="grid grid-cols-2 gap-3">
-                      {timeSlots.map((slot) => (
-                        <button
-                          key={slot.time}
-                          onClick={() => slot.available && handleTimeSelect(slot.time)}
-                          disabled={!slot.available}
-                          className={`p-3 rounded-lg font-medium transition-all duration-300 ${
-                            !slot.available
-                              ? 'opacity-50 cursor-not-allowed bg-gray-100'
-                              : selectedTime === slot.time
-                              ? 'bg-golden text-white'
-                              : 'border border-cream hover:bg-cream'
-                          }`}
-                        >
-                          {slot.time}
-                        </button>
-                      ))}
-                    </div>
+                    <h3 className="text-lg font-semibold text-dark-brown">Gordonki – 1–3 lata</h3>
+                    <p className="text-chocolate mt-2">To czas radosnej zabawy z muzyką. Dzieci poznają proste rytmy, reagują ruchem na melodię i korzystają z pierwszych instrumentów perkusyjnych. Każde spotkanie to połączenie śpiewu, ruchu i radosnych interakcji z rodzicem.</p>
+                    <h4 className="font-medium text-dark-brown mt-3">Korzyści dla dziecka</h4>
+                    <ul className="list-disc list-inside text-chocolate ml-3 mt-2 space-y-1">
+                      <li>rozwój koordynacji ruchowej i koncentracji</li>
+                      <li>wspieranie rozwoju mowy poprzez śpiew i rytm</li>
+                      <li>nauka wyrażania emocji poprzez muzykę</li>
+                      <li>oswajanie z grupą i wspólną zabawą</li>
+                    </ul>
+                    <p className="text-chocolate mt-3">Dzieci uczestniczą razem z rodzicem – powtarzają dźwięki, klaszczą, podskakują, grają na instrumentach.</p>
                   </div>
-                </div>
+                </article>
 
-                {selectedDate && selectedTime && (
-                  <div className="mt-8 p-4 bg-cream rounded-lg">
-                    <h4 className="font-semibold text-dark-brown mb-2">Podsumowanie:</h4>
-                    <p className="text-chocolate">
-                      <strong>{selectedServiceData?.name}</strong> w {selectedLocationData?.name}
-                      <br />
-                      Data: {new Date(selectedDate).toLocaleDateString('pl-PL', { 
-                        weekday: 'long', 
-                        year: 'numeric', 
-                        month: 'long', 
-                        day: 'numeric' 
-                      })}
-                      <br />
-                      Godzina: {selectedTime}
-                    </p>
+                <article className="bg-white rounded-2xl shadow-card border border-cream p-6 flex gap-4 items-start">
+                  <div className="flex-shrink-0 mt-1">
+                    <Star className="h-10 w-10 text-golden p-1 bg-golden/10 rounded-full" />
                   </div>
-                )}
+                  <div>
+                    <h3 className="text-lg font-semibold text-dark-brown">🎵 Rytmika – 3–4 lata</h3>
+                    <p className="text-chocolate mt-2">Zajęcia rytmiczne rozwijają poczucie tempa i melodii, uczą reagowania na zmiany w muzyce i pozwalają wyrażać się przez ruch.</p>
+                    <h4 className="font-medium text-dark-brown mt-3">Korzyści dla dziecka</h4>
+                    <ul className="list-disc list-inside text-chocolate ml-3 mt-2 space-y-1">
+                      <li>rozwój pamięci i wyobraźni muzycznej</li>
+                      <li>ćwiczenie koncentracji i uważnego słuchania</li>
+                      <li>nauka współpracy w grupie</li>
+                      <li>naturalne przygotowanie do nauki gry na instrumentach</li>
+                    </ul>
+                    <p className="text-chocolate mt-3">Dzieci biorą udział w zabawach muzyczno-ruchowych, śpiewają krótkie melodie i grają na instrumentach.</p>
+                  </div>
+                </article>
+
+                <article className="bg-white rounded-2xl shadow-card border border-cream p-6 flex gap-4 items-start">
+                  <div className="flex-shrink-0 mt-1">
+                    <Calendar className="h-10 w-10 text-sunset p-1 bg-sunset/10 rounded-full" />
+                  </div>
+                  <div>
+                    <h3 className="text-lg font-semibold text-dark-brown">🎶 Rytmika – 5–6 lat</h3>
+                    <p className="text-chocolate mt-2">Na zajęciach dzieci rozwijają poczucie rytmu i melodii, uczą się prostych układów tanecznych i tworzą własne muzyczne pomysły.</p>
+                    <h4 className="font-medium text-dark-brown mt-3">Korzyści dla dziecka</h4>
+                    <ul className="list-disc list-inside text-chocolate ml-3 mt-2 space-y-1">
+                      <li>rozwój kreatywności i wyobraźni</li>
+                      <li>wzmacnianie koncentracji i pamięci</li>
+                      <li>nauka pracy w grupie i współodpowiedzialności</li>
+                    </ul>
+                    <p className="text-chocolate mt-3">Dzieci uczestniczą samodzielnie. Każde spotkanie ma stałą strukturę: ćwiczenia rytmiczne, ruch przy muzyce, gra na instrumentach i chwila wyciszenia.</p>
+                  </div>
+                </article>
               </div>
-            )}
-
-            {/* Step 4: Contact Information */}
-            {step === 4 && (
-              <div className="animate-fade-in">
-                <h2 className="font-serif text-2xl lg:text-3xl font-bold text-dark-brown mb-8 text-center">
-                  Dane Kontaktowe
-                </h2>
-                
-                <form className="space-y-6">
-                  {selectedService === 'children-classes' && (
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                      <div>
-                        <label className="block text-sm font-medium text-dark-brown mb-2">
-                          Imię dziecka *
-                        </label>
-                        <input
-                          type="text"
-                          name="childName"
-                          required
-                          value={bookingData.childName}
-                          onChange={handleInputChange}
-                          className="w-full px-4 py-3 border border-cream rounded-lg focus:outline-none focus:ring-2 focus:ring-golden focus:border-transparent"
-                          placeholder="Imię dziecka"
-                        />
-                      </div>
-                      <div>
-                        <label className="block text-sm font-medium text-dark-brown mb-2">
-                          Wiek dziecka *
-                        </label>
-                        <input
-                          type="number"
-                          name="childAge"
-                          required
-                          min="3"
-                          max="12"
-                          value={bookingData.childAge}
-                          onChange={handleInputChange}
-                          className="w-full px-4 py-3 border border-cream rounded-lg focus:outline-none focus:ring-2 focus:ring-golden focus:border-transparent"
-                          placeholder="Wiek"
-                        />
-                      </div>
-                    </div>
-                  )}
-
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div>
-                      <label className="block text-sm font-medium text-dark-brown mb-2">
-                        {selectedService === 'children-classes' ? 'Imię i nazwisko rodzica *' : 'Imię i nazwisko *'}
-                      </label>
-                      <input
-                        type="text"
-                        name="parentName"
-                        required
-                        value={bookingData.parentName}
-                        onChange={handleInputChange}
-                        className="w-full px-4 py-3 border border-cream rounded-lg focus:outline-none focus:ring-2 focus:ring-golden focus:border-transparent"
-                        placeholder="Imię i nazwisko"
-                      />
-                    </div>
-                    <div>
-                      <label className="block text-sm font-medium text-dark-brown mb-2">
-                        Email *
-                      </label>
-                      <input
-                        type="email"
-                        name="parentEmail"
-                        required
-                        value={bookingData.parentEmail}
-                        onChange={handleInputChange}
-                        className="w-full px-4 py-3 border border-cream rounded-lg focus:outline-none focus:ring-2 focus:ring-golden focus:border-transparent"
-                        placeholder="email@example.com"
-                      />
-                    </div>
-                  </div>
-
-                  <div>
-                    <label className="block text-sm font-medium text-dark-brown mb-2">
-                      Telefon *
-                    </label>
-                    <input
-                      type="tel"
-                      name="parentPhone"
-                      required
-                      value={bookingData.parentPhone}
-                      onChange={handleInputChange}
-                      className="w-full px-4 py-3 border border-cream rounded-lg focus:outline-none focus:ring-2 focus:ring-golden focus:border-transparent"
-                      placeholder="+48 123 456 789"
-                    />
-                  </div>
-
-                  <div>
-                    <label className="block text-sm font-medium text-dark-brown mb-2">
-                      Dodatkowe informacje
-                    </label>
-                    <textarea
-                      name="specialRequests"
-                      rows={4}
-                      value={bookingData.specialRequests}
-                      onChange={handleInputChange}
-                      className="w-full px-4 py-3 border border-cream rounded-lg focus:outline-none focus:ring-2 focus:ring-golden focus:border-transparent resize-none"
-                      placeholder="Czy masz jakieś specjalne życzenia lub pytania?"
-                    />
-                  </div>
-                </form>
-
-                {/* Booking Summary */}
-                <div className="mt-8 p-6 bg-cream rounded-lg">
-                  <h4 className="font-serif text-lg font-bold text-dark-brown mb-4">
-                    Podsumowanie Rezerwacji
-                  </h4>
-                  <div className="space-y-2 text-chocolate">
-                    <p><strong>Usługa:</strong> {selectedServiceData?.name}</p>
-                    <p><strong>Lokalizacja:</strong> {selectedLocationData?.name}</p>
-                    <p><strong>Data:</strong> {new Date(selectedDate).toLocaleDateString('pl-PL', { 
-                      weekday: 'long', 
-                      year: 'numeric', 
-                      month: 'long', 
-                      day: 'numeric' 
-                    })}</p>
-                    <p><strong>Godzina:</strong> {selectedTime}</p>
-                    <p><strong>Czas trwania:</strong> {selectedServiceData?.duration}</p>
-                    <p className="text-lg font-bold text-golden">
-                      <strong>Cena:</strong> {selectedServiceData?.price}
-                    </p>
-                  </div>
-                </div>
-              </div>
-            )}
-
-            {/* Navigation Buttons */}
-            <div className="flex justify-between mt-12">
-              <button
-                onClick={prevStep}
-                disabled={step === 1}
-                className="px-6 py-3 border-2 border-golden text-golden rounded-full font-medium transition-all duration-300 hover:bg-golden hover:text-white disabled:opacity-50 disabled:cursor-not-allowed"
-              >
-                Wstecz
-              </button>
-              
-              {step < 4 ? (
-                <button
-                  onClick={nextStep}
-                  disabled={!canProceed()}
-                  className="px-6 py-3 bg-golden hover:bg-sunset text-white rounded-full font-medium transition-all duration-300 transform hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed flex items-center"
-                >
-                  Dalej
-                  <ArrowRight className="h-4 w-4 ml-2" />
-                </button>
-              ) : (
-                <button
-                  disabled={!canProceed()}
-                  className="px-8 py-3 bg-golden hover:bg-sunset text-white rounded-full font-medium transition-all duration-300 transform hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed flex items-center"
-                >
-                  <CheckCircle className="h-4 w-4 mr-2" />
-                  Potwierdź Rezerwację
-                </button>
-              )}
             </div>
+
+            <aside className="hidden lg:block">
+              <div className="sticky top-28 p-6 bg-cream rounded-2xl border border-cream shadow-card">
+                <h4 className="font-semibold text-dark-brown mb-3">✨ Dlaczego warto wybrać nasze zajęcia?</h4>
+                <p className="text-chocolate mb-4">Muzyka to naturalny język dziecka. Regularny kontakt z nią wspiera rozwój mowy, pamięci, koncentracji i kreatywności. Gordonki i rytmika to inwestycja w harmonijny rozwój i doskonała zabawa.</p>
+                <ul className="list-disc list-inside text-chocolate ml-3 space-y-2">
+                  <li>Małe grupy i indywidualne podejście</li>
+                  <li>Bezpieczna, ciepła atmosfera</li>
+                  <li>Doświadczona kadra pedagogiczna</li>
+                </ul>
+              </div>
+            </aside>
           </div>
         </div>
       </section>

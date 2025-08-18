@@ -378,7 +378,7 @@ const Contact = () => {
               <div className="flex items-center justify-between">
                 <h3 className="font-serif text-lg font-bold text-dark-brown">ŚpiewoLandia Łódź</h3>
                 <a 
-                  href="https://maps.google.com/?q=Piotrkowska+1+Łódź"
+                  href="https://maps.google.com/?q=Kaliska+40+Łódź"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="bg-golden hover:bg-sunset text-white px-4 py-2 rounded-lg font-medium transition-all duration-300 text-sm flex items-center"

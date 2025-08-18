@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Clock, CheckCircle, Calendar, Play, Star, Music } from 'lucide-react';
 // Import pliku audio
@@ -24,9 +23,14 @@ const VocalHero = () => (
         Zajęcia wokalne dla dzieci od 8 lat, młodzieży i dorosłych.
         Nauka prawidłowego oddychania, emisji, dykcji i pracy z mikrofonem.
       </p>
-      <button className="bg-golden hover:bg-sunset text-white px-8 py-4 rounded-full font-medium text-lg transition-all duration-300 transform hover:scale-105">
+      <a
+        href="https://nextvisit.pl/spiewolandia-naxvav1smnyhcizq"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="bg-golden hover:bg-sunset text-white px-8 py-4 rounded-full font-medium text-lg transition-all duration-300 transform hover:scale-105"
+      >
         Umów Pierwszą Lekcję
-      </button>
+      </a>
     </div>
   </section>
 );
@@ -270,51 +274,6 @@ const VocalLessons = () => {
         </div>
       </section>
 
-      {/* Sample Lessons */}
-      <section className="py-16 lg:py-24 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="font-serif text-h2-mobile lg:text-h2-desktop font-bold text-dark-brown mb-4">
-              Przykładowe Lekcje
-            </h2>
-            <p className="text-lg text-chocolate">
-              Posłuchaj fragmentów naszych lekcji
-            </p>
-          </div>
-
-          <div className="max-w-4xl mx-auto space-y-6">
-            {sampleLessons.map((lesson, index) => (
-              <div
-                key={index}
-                className="bg-cream rounded-lg p-6 flex items-center justify-between hover:shadow-card transition-all duration-300"
-              >
-                <div className="flex items-center space-x-4">
-                  <button
-                    onClick={() => handlePlayAudio(`lesson-${index}`)}
-                    className={`w-12 h-12 flex-shrink-0 rounded-full flex items-center justify-center transition-all duration-300 ${
-                      playingAudio === `lesson-${index}`
-                        ? 'bg-sunset text-white'
-                        : 'bg-golden text-white hover:bg-sunset'
-                    }`}
-                  >
-                    <Play className="h-5 w-5 ml-0.5" />
-                  </button>
-                  <div>
-                    <h4 className="font-semibold text-dark-brown">{lesson.title}</h4>
-                    <p className="text-sm text-chocolate">
-                      {lesson.teacher} • {lesson.level} • {lesson.duration}
-                    </p>
-                  </div>
-                </div>
-                <div className="text-right">
-                  <span className="text-sm text-chocolate">Darmowy podgląd</span>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* Testimonials */}
       <section className="py-16 lg:py-24 bg-gradient-to-b from-cream to-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -418,10 +377,15 @@ const VocalLessons = () => {
             Umów się na bezpłatną lekcję próbną i odkryj potencjał swojego głosu
           </p>
           <div className="flex flex-col sm:flex-row justify-center items-center space-y-4 sm:space-y-0 sm:space-x-6">
-            <button className="bg-white text-dark-brown hover:bg-cream px-8 py-4 rounded-full font-medium text-lg transition-all duration-300 transform hover:scale-105">
+            <a
+              href="https://nextvisit.pl/spiewolandia-naxvav1smnyhcizq"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bg-white text-dark-brown hover:bg-cream px-8 py-4 rounded-full font-medium text-lg transition-all duration-300 transform hover:scale-105"
+            >
               <Calendar className="inline-block h-5 w-5 mr-2" />
               Zarezerwuj Lekcję
-            </button>
+            </a>
             <a 
               href="tel:+48517666426"
               className="text-white hover:text-cream font-medium text-lg flex items-center transition-colors duration-300"

@@ -28,10 +28,10 @@ const Header: React.FC<HeaderProps> = ({ className = '' }) => {
 
   const navigation = [
     {
-      name: 'Dla Dzieci',
+      name: 'Zajęcia umuzykalniające',
       href: '/book-classes'
     },
-    { name: 'Lekcje', href: '/vocal-lessons' },
+    { name: 'Zajęcia Wokalne', href: '/vocal-lessons' },
     { name: 'Dla Przedszkoli', href: '/preschool-programs' },
     { name: 'Śluby', href: '/wedding-services' },
     { name: 'O Mnie', href: '/about' },
@@ -74,8 +74,7 @@ const Header: React.FC<HeaderProps> = ({ className = '' }) => {
               ))}
               {/* Button */}
               <Link 
-                to="/book-classes"
-                onClick={playClickSound}
+                to="https://nextvisit.pl/spiewolandia-naxvav1smnyhcizq"
                 className="bg-sunset hover:bg-golden text-white px-6 py-2 rounded-full font-semibold transition-all duration-300 transform hover:scale-105 shadow-md text-base tracking-wide flex items-center justify-center focus:outline-none focus:border-none"
                 style={{ minWidth: 120, letterSpacing: '0.02em', textAlign: 'center' }}
               >

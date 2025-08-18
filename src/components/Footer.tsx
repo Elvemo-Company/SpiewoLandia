@@ -80,7 +80,7 @@ const Footer = () => {
                           rel="noopener noreferrer"
                           className="text-white/80 text-xs lg:text-sm hover:text-golden transition-colors duration-300 block"
                         >
-                          Piotrkowska 1<br />Łódź
+                          Kredka i Balon Łęczyca ulica Kaliska 40 Łódź
                         </a>
                       </div>
                     </div>

@@ -25,7 +25,6 @@ const AboutUsHero = () => (
       </p>
       <button 
         onClick={() => {
-          playCTASound();
           document.getElementById('founder')?.scrollIntoView({ behavior: 'smooth' });
         }}
         className="bg-golden hover:bg-sunset text-white px-8 py-4 rounded-full font-medium text-lg transition-all duration-300 transform hover:scale-105"
