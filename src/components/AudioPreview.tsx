@@ -1,5 +1,5 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react';
-import { Pause, Loader2, Youtube as YoutubeIcon, Headphones } from 'lucide-react';
+import { Pause, Loader2, Headphones } from 'lucide-react';
 import { findItunesPreviewUrl, globalAudioController, findYoutubeUrl, globalYoutubeController } from '../utils/audioUtils';
 
 type AudioPreviewProps = {
@@ -118,11 +118,7 @@ const AudioPreview: React.FC<AudioPreviewProps> = ({ title, artist, className })
         }`}
         aria-label={isPlaying ? 'Pauza' : 'Odtwórz podgląd'}
       >
-        {youtubeUrl ? (
-          isPlaying ? <Pause className="h-3 w-3" /> : <YoutubeIcon className="h-3 w-3" />
-        ) : (
-          isPlaying ? <Pause className="h-3 w-3" /> : <Headphones className="h-3 w-3" />
-        )}
+  {isPlaying ? <Pause className="h-3 w-3" /> : <Headphones className="h-3 w-3" />}
       </button>
       {youtubeVideoId && (
         <iframe

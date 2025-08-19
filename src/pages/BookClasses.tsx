@@ -172,105 +172,126 @@ const BookClasses = () => {
 
         <div className="relative z-10 max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
           <h1 className="font-serif text-h1-mobile lg:text-h1-desktop font-bold text-white mb-4 animate-fade-in">
-            Zarezerwuj Zajęcia
+            Zajęcia umuzykalniające
           </h1>
           <p className="text-lg text-white/90 animate-slide-up">
-            Wybierz termin i umów się na zajęcia muzyczne
+            Odkryj radość muzyki — wybierz termin i umów się na zajęcia umuzykalniające
           </p>
         </div>
       </section>
       {/* Child Programs Section - improved card layout */}
-      <section className="py-16 lg:py-24 bg-white">
+      <section className="pt-16 lg:pt-24 bg-white">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="font-serif text-h2-mobile lg:text-h2-desktop font-bold text-dark-brown mb-6">
-            Zajęcia dla najmłodszych
+            Zajęcia umuzykalniające dla najmłodszych
           </h2>
 
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">
-            <div className="lg:col-span-2 space-y-6">
-              <p className="text-chocolate text-lg">
-                Zajęcia prowadzone są w małych grupach, w przyjaznej i bezpiecznej atmosferze. Opierają się na naturalnym rozwoju muzykalności dzieci oraz elementach rytmiki. Nie wymagamy żadnego przygotowania muzycznego – liczy się radość wspólnego muzykowania.
+            <div className="lg:col-span-2">
+              <p className="text-chocolate text-base leading-relaxed mb-6 max-w-3xl">
+                Zajęcia prowadzone są w małych grupach, w przyjaznej i bezpiecznej atmosferze. Opierają się na naturalnym rozwoju muzykalności dzieci oraz elementach rytmiki. Nie wymagamy żadnego przygotowania muzycznego — liczy się radość wspólnego muzykowania.
               </p>
 
-              <div className="space-y-5">
-                <article className="bg-white rounded-2xl shadow-card border border-cream p-6 flex gap-4 items-start">
-                  <div className="flex-shrink-0 mt-1">
-                    <Users className="h-10 w-10 text-golden p-1 bg-golden/10 rounded-full" />
-                  </div>
-                  <div>
-                    <h3 className="text-lg font-semibold text-dark-brown">Gordonki – 0–12 miesięcy</h3>
-                    <p className="text-chocolate mt-2">Zajęcia gordonowskie dla najmłodszych to czas bliskości, muzyki i wspólnego odkrywania dźwięków. Maluszki uczestniczą w śpiewankach, kołysankach i rytmizowaniu w bezpiecznym kontakcie z rodzicem.</p>
-                    <h4 className="font-medium text-dark-brown mt-3">Korzyści dla dziecka</h4>
-                    <ul className="list-disc list-inside text-chocolate ml-3 mt-2 space-y-1">
-                      <li>stymulacja słuchu i uwagi</li>
-                      <li>wspieranie rozwoju mowy</li>
-                      <li>budowanie więzi z rodzicem poprzez muzykę</li>
-                      <li>pierwsze doświadczenia rytmu i melodii</li>
-                    </ul>
-                    <p className="text-chocolate mt-3">Rodzice aktywnie uczestniczą – kołyszą, nucą, poruszają się z dzieckiem. Nie liczą się zdolności muzyczne, ale bliskość i wspólna zabawa.</p>
-                  </div>
-                </article>
-
-                <article className="bg-white rounded-2xl shadow-card border border-cream p-6 flex gap-4 items-start">
-                  <div className="flex-shrink-0 mt-1">
-                    <Users className="h-10 w-10 text-sunset p-1 bg-sunset/10 rounded-full" />
-                  </div>
-                  <div>
-                    <h3 className="text-lg font-semibold text-dark-brown">Gordonki – 1–3 lata</h3>
-                    <p className="text-chocolate mt-2">To czas radosnej zabawy z muzyką. Dzieci poznają proste rytmy, reagują ruchem na melodię i korzystają z pierwszych instrumentów perkusyjnych. Każde spotkanie to połączenie śpiewu, ruchu i radosnych interakcji z rodzicem.</p>
-                    <h4 className="font-medium text-dark-brown mt-3">Korzyści dla dziecka</h4>
-                    <ul className="list-disc list-inside text-chocolate ml-3 mt-2 space-y-1">
-                      <li>rozwój koordynacji ruchowej i koncentracji</li>
-                      <li>wspieranie rozwoju mowy poprzez śpiew i rytm</li>
-                      <li>nauka wyrażania emocji poprzez muzykę</li>
-                      <li>oswajanie z grupą i wspólną zabawą</li>
-                    </ul>
-                    <p className="text-chocolate mt-3">Dzieci uczestniczą razem z rodzicem – powtarzają dźwięki, klaszczą, podskakują, grają na instrumentach.</p>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                <article className="bg-white rounded-2xl shadow-lg p-6 hover:shadow-xl transition-shadow duration-200">
+                  <div className="flex items-start gap-4">
+                    <div className="flex-shrink-0 mt-1">
+                      <div className="h-12 w-12 rounded-full flex items-center justify-center bg-gradient-to-br from-golden to-golden/60 text-white">
+                        <Users className="h-6 w-6" />
+                      </div>
+                    </div>
+                    <div className="flex-1">
+                      <div className="flex items-center justify-between">
+                        <h3 className="text-lg font-semibold text-dark-brown">Gordonki</h3>
+                        <span className="text-xs bg-cream text-dark-brown px-2 py-1 rounded-full">0–12 miesięcy</span>
+                      </div>
+                      <p className="text-chocolate mt-3 text-sm leading-relaxed">Zajęcia gordonowskie dla najmłodszych to czas bliskości, muzyki i wspólnego odkrywania dźwięków. Maluszki uczestniczą w śpiewankach, kołysankach i rytmizowaniu w bezpiecznym kontakcie z rodzicem.</p>
+                      <h4 className="font-medium text-dark-brown mt-4">Korzyści</h4>
+                      <ul className="mt-2 text-chocolate text-sm space-y-1 list-inside">
+                        <li>stymulacja słuchu i uwagi</li>
+                        <li>wspieranie rozwoju mowy</li>
+                        <li>budowanie więzi z rodzicem</li>
+                      </ul>
+                    </div>
                   </div>
                 </article>
 
-                <article className="bg-white rounded-2xl shadow-card border border-cream p-6 flex gap-4 items-start">
-                  <div className="flex-shrink-0 mt-1">
-                    <Star className="h-10 w-10 text-golden p-1 bg-golden/10 rounded-full" />
-                  </div>
-                  <div>
-                    <h3 className="text-lg font-semibold text-dark-brown">🎵 Rytmika – 3–4 lata</h3>
-                    <p className="text-chocolate mt-2">Zajęcia rytmiczne rozwijają poczucie tempa i melodii, uczą reagowania na zmiany w muzyce i pozwalają wyrażać się przez ruch.</p>
-                    <h4 className="font-medium text-dark-brown mt-3">Korzyści dla dziecka</h4>
-                    <ul className="list-disc list-inside text-chocolate ml-3 mt-2 space-y-1">
-                      <li>rozwój pamięci i wyobraźni muzycznej</li>
-                      <li>ćwiczenie koncentracji i uważnego słuchania</li>
-                      <li>nauka współpracy w grupie</li>
-                      <li>naturalne przygotowanie do nauki gry na instrumentach</li>
-                    </ul>
-                    <p className="text-chocolate mt-3">Dzieci biorą udział w zabawach muzyczno-ruchowych, śpiewają krótkie melodie i grają na instrumentach.</p>
+                <article className="bg-white rounded-2xl shadow-lg p-6 hover:shadow-xl transition-shadow duration-200">
+                  <div className="flex items-start gap-4">
+                    <div className="flex-shrink-0 mt-1">
+                      <div className="h-12 w-12 rounded-full flex items-center justify-center bg-gradient-to-br from-sunset to-sunset/60 text-white">
+                        <Users className="h-6 w-6" />
+                      </div>
+                    </div>
+                    <div className="flex-1">
+                      <div className="flex items-center justify-between">
+                        <h3 className="text-lg font-semibold text-dark-brown">Gordonki</h3>
+                        <span className="text-xs bg-cream text-dark-brown px-2 py-1 rounded-full">1–3 lata</span>
+                      </div>
+                      <p className="text-chocolate mt-3 text-sm leading-relaxed">To czas radosnej zabawy z muzyką. Dzieci poznają proste rytmy, reagują ruchem na melodię i korzystają z pierwszych instrumentów perkusyjnych. Każde spotkanie to połączenie śpiewu, ruchu i radosnych interakcji z rodzicem.</p>
+                      <h4 className="font-medium text-dark-brown mt-4">Korzyści</h4>
+                      <ul className="mt-2 text-chocolate text-sm space-y-1 list-inside">
+                        <li>rozwój koordynacji ruchowej i koncentracji</li>
+                        <li>wspieranie rozwoju mowy poprzez śpiew</li>
+                        <li>nauka wyrażania emocji przez muzykę</li>
+                      </ul>
+                    </div>
                   </div>
                 </article>
 
-                <article className="bg-white rounded-2xl shadow-card border border-cream p-6 flex gap-4 items-start">
-                  <div className="flex-shrink-0 mt-1">
-                    <Calendar className="h-10 w-10 text-sunset p-1 bg-sunset/10 rounded-full" />
+                <article className="bg-white rounded-2xl shadow-lg p-6 hover:shadow-xl transition-shadow duration-200">
+                  <div className="flex items-start gap-4">
+                    <div className="flex-shrink-0 mt-1">
+                      <div className="h-12 w-12 rounded-full flex items-center justify-center bg-gradient-to-br from-golden to-golden/60 text-white">
+                        <Star className="h-6 w-6" />
+                      </div>
+                    </div>
+                    <div className="flex-1">
+                      <div className="flex items-center justify-between">
+                        <h3 className="text-lg font-semibold text-dark-brown">Rytmika</h3>
+                        <span className="text-xs bg-cream text-dark-brown px-2 py-1 rounded-full">3–4 lata</span>
+                      </div>
+                      <p className="text-chocolate mt-3 text-sm leading-relaxed">Zajęcia rytmiczne rozwijają poczucie tempa i melodii, uczą reagowania na zmiany w muzyce i pozwalają wyrażać się przez ruch.</p>
+                      <h4 className="font-medium text-dark-brown mt-4">Korzyści</h4>
+                      <ul className="mt-2 text-chocolate text-sm space-y-1 list-inside">
+                        <li>rozwój pamięci i wyobraźni muzycznej</li>
+                        <li>ćwiczenie koncentracji i uważnego słuchania</li>
+                        <li>nauka współpracy w grupie</li>
+                      </ul>
+                    </div>
                   </div>
-                  <div>
-                    <h3 className="text-lg font-semibold text-dark-brown">🎶 Rytmika – 5–6 lat</h3>
-                    <p className="text-chocolate mt-2">Na zajęciach dzieci rozwijają poczucie rytmu i melodii, uczą się prostych układów tanecznych i tworzą własne muzyczne pomysły.</p>
-                    <h4 className="font-medium text-dark-brown mt-3">Korzyści dla dziecka</h4>
-                    <ul className="list-disc list-inside text-chocolate ml-3 mt-2 space-y-1">
-                      <li>rozwój kreatywności i wyobraźni</li>
-                      <li>wzmacnianie koncentracji i pamięci</li>
-                      <li>nauka pracy w grupie i współodpowiedzialności</li>
-                    </ul>
-                    <p className="text-chocolate mt-3">Dzieci uczestniczą samodzielnie. Każde spotkanie ma stałą strukturę: ćwiczenia rytmiczne, ruch przy muzyce, gra na instrumentach i chwila wyciszenia.</p>
+                </article>
+
+                <article className="bg-white rounded-2xl shadow-lg p-6 hover:shadow-xl transition-shadow duration-200">
+                  <div className="flex items-start gap-4">
+                    <div className="flex-shrink-0 mt-1">
+                      <div className="h-12 w-12 rounded-full flex items-center justify-center bg-gradient-to-br from-sunset to-sunset/60 text-white">
+                        <Calendar className="h-6 w-6" />
+                      </div>
+                    </div>
+                    <div className="flex-1">
+                      <div className="flex items-center justify-between">
+                        <h3 className="text-lg font-semibold text-dark-brown">Rytmika</h3>
+                        <span className="text-xs bg-cream text-dark-brown px-2 py-1 rounded-full">5–6 lat</span>
+                      </div>
+                      <p className="text-chocolate mt-3 text-sm leading-relaxed">Na zajęciach dzieci rozwijają poczucie rytmu i melodii, uczą się prostych układów tanecznych i tworzą własne muzyczne pomysły.</p>
+                      <h4 className="font-medium text-dark-brown mt-4">Korzyści</h4>
+                      <ul className="mt-2 text-chocolate text-sm space-y-1 list-inside">
+                        <li>rozwój kreatywności i wyobraźni</li>
+                        <li>wzmacnianie koncentracji i pamięci</li>
+                        <li>nauka pracy w grupie i współodpowiedzialności</li>
+                      </ul>
+                    </div>
                   </div>
                 </article>
               </div>
             </div>
 
-            <aside className="hidden lg:block">
-              <div className="sticky top-28 p-6 bg-cream rounded-2xl border border-cream shadow-card">
+            <aside className="hidden md:block">
+              <div className="sticky top-24 p-6 bg-cream rounded-2xl border border-cream shadow-card">
                 <h4 className="font-semibold text-dark-brown mb-3">✨ Dlaczego warto wybrać nasze zajęcia?</h4>
                 <p className="text-chocolate mb-4">Muzyka to naturalny język dziecka. Regularny kontakt z nią wspiera rozwój mowy, pamięci, koncentracji i kreatywności. Gordonki i rytmika to inwestycja w harmonijny rozwój i doskonała zabawa.</p>
-                <ul className="list-disc list-inside text-chocolate ml-3 space-y-2">
+                <ul className="list-inside text-chocolate ml-3 space-y-2">
                   <li>Małe grupy i indywidualne podejście</li>
                   <li>Bezpieczna, ciepła atmosfera</li>
                   <li>Doświadczona kadra pedagogiczna</li>
@@ -282,7 +303,7 @@ const BookClasses = () => {
       </section>
 
       {/* Trust Indicators */}
-      <section className="py-16 bg-white">
+      <section className="py-24 bg-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <div className="flex flex-col items-center">
