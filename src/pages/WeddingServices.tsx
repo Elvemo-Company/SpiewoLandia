@@ -671,11 +671,7 @@ const WeddingServices = () => {
                           >
                             <div className="flex items-center space-x-3 flex-1 min-w-0">
                               <div className="flex-shrink-0">
-                                {selectedCategory === 'church' && category.id === 'wejscie' && track.title === 'Oblubieniec' ? (
-                                  <span className="text-xs text-chocolate/60">Brak podglądu</span>
-                                ) : (
-                                  <AudioPreview title={track.title} artist={track.artist} />
-                                )}
+                                <AudioPreview title={track.title} artist={track.artist} />
                               </div>
                               <div className="min-w-0 flex-1">
                                 <h4 className="font-medium text-dark-brown text-sm truncate">{track.title}</h4>
@@ -685,7 +681,6 @@ const WeddingServices = () => {
                                 </p>
                               </div>
                             </div>
-                            {/* Ikona głośności usunięta – kontrola w komponencie AudioPreview */}
                           </div>
                         ))}
                       </div>
