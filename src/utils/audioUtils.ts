@@ -1,4 +1,5 @@
 import notaAudio from '../assets/audio/nuta.mp3';
+import youtubeMapJson from '../data/youtube-links.json';
 
 // Funkcja do odtwarzania dźwięku na kliknięcie
 export const playClickSound = () => {
@@ -46,6 +47,87 @@ type TitleOverride = {
   country?: string; // wymuś kraj wyszukiwania
   searchVariants?: Array<{ title?: string; artist?: string; country?: string }>; // dodatkowe warianty prób
 };
+
+// =========================
+// YouTube map + controller
+// =========================
+
+type YoutubeMap = Record<string, string>;
+
+const normalizeKey = (title: string, artist?: string) =>
+  `${stripDiacritics(title)}|${stripDiacritics(artist || '')}`;
+
+const buildYoutubeMap = (): YoutubeMap => {
+  const map: YoutubeMap = {};
+  try {
+    const obj = (youtubeMapJson as unknown) as Record<string, string>;
+    Object.entries(obj).forEach(([rawKey, url]) => {
+      const parts = rawKey.split('|');
+      const title = parts[0] || '';
+      const artist = parts[1];
+      map[normalizeKey(title, artist)] = url;
+    });
+  } catch {}
+  return map;
+};
+
+const YOUTUBE_MAP: YoutubeMap = buildYoutubeMap();
+
+export const findYoutubeUrl = (title: string, artist?: string): string | null => {
+  const keyExact = normalizeKey(title, artist);
+  if (YOUTUBE_MAP[keyExact]) return YOUTUBE_MAP[keyExact];
+  const keyTitleOnly = normalizeKey(title);
+  return YOUTUBE_MAP[keyTitleOnly] || null;
+};
+
+class GlobalYoutubeController {
+  private currentId: string | null = null;
+  private listeners: Set<(state: { currentId: string | null; isPlaying: boolean }) => void> = new Set();
+
+  private emit() {
+    const state = { currentId: this.currentId, isPlaying: this.currentId !== null };
+    this.listeners.forEach((cb) => {
+      try { cb(state); } catch {}
+    });
+  }
+
+  subscribe(listener: (state: { currentId: string | null; isPlaying: boolean }) => void): () => void {
+    this.listeners.add(listener);
+    listener({ currentId: this.currentId, isPlaying: this.currentId !== null });
+    return () => {
+      this.listeners.delete(listener);
+    };
+  }
+
+  start(id: string) {
+    // zatrzymaj iTunes preview przy starcie YT
+    try { this.stopAudioPreviews(); } catch {}
+    this.currentId = id;
+    this.emit();
+  }
+
+  toggle(id: string) {
+    if (this.currentId === id) {
+      this.currentId = null;
+      this.emit();
+      return;
+    }
+    this.start(id);
+  }
+
+  stop(id?: string) {
+    if (!id || id === this.currentId) {
+      this.currentId = null;
+      this.emit();
+    }
+  }
+
+  private stopAudioPreviews() {
+    try { globalAudioController.stop(); } catch {}
+  }
+}
+
+export const globalYoutubeController = new GlobalYoutubeController();
 
 // DOPRECYZOWANIE dla spornych tytułów
 const TITLE_OVERRIDES: Record<string, TitleOverride> = {
