@@ -39,20 +39,23 @@ const AboutUs = () => {
   const [selectedValue, setSelectedValue] = useState<number | null>(null);
 
   const founder = {
-    name: 'Anna Kowalska',
-    role: 'Założycielka i Dyrektor Artystyczny',
-    experience: '15 lat doświadczenia',
-    education: 'Akademia Muzyczna w Warszawie, Wydział Wokalno-Aktorski',
-    specialization: 'Pedagogika muzyczna, technika wokalna',
+    name: 'Wiktoria Kicińska',
+    role: 'Wokalistka i Pedagog',
+    experience: 'Wieloletnia praktyka sceniczna i praca z dziećmi',
+    education: 'Studentka pedagogiki opiekuńczo-wychowawczej z arteterapią, Akademia Humanistyczno-Ekonomiczna w Łodzi',
+    specialization: 'Pedagogika wokalna, arteterapia, praca z dziećmi',
     image: 'https://images.pexels.com/photos/3756679/pexels-photo-3756679.jpeg',
-    bio: 'Pasjonatka muzyki i pracy z dziećmi. Stworzyła ŚpiewoLandię z misją dzielenia się radością płynącą z muzyki. Laureatka licznych konkursów wokalnych.',
+    bio: `Cześć! Nazywam się Wiktoria Kicińska i od wielu lat moja największa pasja to muzyka i praca z dziećmi. Jestem wokalistką, która nieustannie rozwija swój warsztat u najlepszych nauczycieli i podczas warsztatów, a jednocześnie studentką pedagogiki opiekuńczo-wychowawczej z arteterapią na Akademii Humanistyczno-Ekonomicznej w Łodzi.
+Muzyka towarzyszy mi od zawsze – śpiewam na scenie, w studio i na kameralnych uroczystościach, tworzę autorskie utwory, a także rozwijam się w kierunku pedagogiki wokalnej. Miałam okazję występować z orkiestrą symfoniczną, współpracować z DJ-em i łączyć klasykę z nowoczesnością, co pokazało mi, jak wielką moc ma muzyka w różnych formach.
+Od kilku lat zdobywam doświadczenie w pracy z dziećmi – zarówno w żłobkach, jak i przedszkolach. Prowadziłam zabawy muzyczne i arteterapeutyczne, wspierałam dzieci w rozwoju, a także dbałam o to, by czuły się bezpiecznie i swobodnie. To właśnie ta praca pokazała mi, że chcę iść drogą, która łączy moje dwie pasje: muzykę i pedagogikę.`,
     achievements: [
-      'Laureatka konkursu "Złoty Głos 2015"',
-      'Certyfikowany pedagog muzyczny',
-      'Autorka metody "Naturalny rozwój głosu"',
-      'Współpraca z 50+ przedszkolami',
-      'Wokalista i producent muzyczny',
-      'Współpraca z TVP i Polskim Radiem'
+      'Professional Vocal Coaching (szkolenie instruktorskie, w trakcie realizacji)',
+      'Pedagogika Wokalna XXI w.',
+      'Estill Voice Training – warsztaty wprowadzające',
+      'Audiacja wstępna i właściwa wg teorii E. Gordona (w trakcie realizacji)',
+      'Logopedia – zadania i metody pracy',
+      'Gry i zabawy terapeutyczne w pracy z dziećmi i dorosłymi',
+      'Szkolenia z artykulacji, emisji głosu i terapii dziecięcej'
     ]
   };
 

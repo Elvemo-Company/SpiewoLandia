@@ -192,6 +192,10 @@ const BookClasses = () => {
                 Zajęcia prowadzone są w małych grupach, w przyjaznej i bezpiecznej atmosferze. Opierają się na naturalnym rozwoju muzykalności dzieci oraz elementach rytmiki. Nie wymagamy żadnego przygotowania muzycznego — liczy się radość wspólnego muzykowania.
               </p>
 
+              <div className="mb-6">
+                <p className="text-chocolate text-sm">Wybierz grupę wiekową poniżej, aby poznać program.</p>
+              </div>
+
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                 <article className="bg-white rounded-2xl shadow-lg p-6 hover:shadow-xl transition-shadow duration-200">
                   <div className="flex items-start gap-4">
@@ -202,10 +206,10 @@ const BookClasses = () => {
                     </div>
                     <div className="flex-1">
                       <div className="flex items-center justify-between">
-                        <h3 className="text-lg font-semibold text-dark-brown">Gordonki</h3>
+                        <h3 className="text-lg font-semibold text-dark-brown">Nutkowe Maluszki</h3>
                         <span className="text-xs bg-cream text-dark-brown px-2 py-1 rounded-full">0–12 miesięcy</span>
                       </div>
-                      <p className="text-chocolate mt-3 text-sm leading-relaxed">Zajęcia gordonowskie dla najmłodszych to czas bliskości, muzyki i wspólnego odkrywania dźwięków. Maluszki uczestniczą w śpiewankach, kołysankach i rytmizowaniu w bezpiecznym kontakcie z rodzicem.</p>
+                      <p className="text-chocolate mt-3 text-sm leading-relaxed">Zajęcia umuzykalniające dla najmłodszych to czas bliskości, muzyki i wspólnego odkrywania dźwięków. Maluszki uczestniczą w śpiewankach, kołysankach i rytmizowaniu w bezpiecznym kontakcie z rodzicem.</p>
                       <h4 className="font-medium text-dark-brown mt-4">Korzyści</h4>
                       <ul className="mt-2 text-chocolate text-sm space-y-1 list-inside">
                         <li>stymulacja słuchu i uwagi</li>
@@ -225,7 +229,7 @@ const BookClasses = () => {
                     </div>
                     <div className="flex-1">
                       <div className="flex items-center justify-between">
-                        <h3 className="text-lg font-semibold text-dark-brown">Gordonki</h3>
+                        <h3 className="text-lg font-semibold text-dark-brown">Rytmiczne Brzdące</h3>
                         <span className="text-xs bg-cream text-dark-brown px-2 py-1 rounded-full">1–3 lata</span>
                       </div>
                       <p className="text-chocolate mt-3 text-sm leading-relaxed">To czas radosnej zabawy z muzyką. Dzieci poznają proste rytmy, reagują ruchem na melodię i korzystają z pierwszych instrumentów perkusyjnych. Każde spotkanie to połączenie śpiewu, ruchu i radosnych interakcji z rodzicem.</p>
@@ -248,10 +252,10 @@ const BookClasses = () => {
                     </div>
                     <div className="flex-1">
                       <div className="flex items-center justify-between">
-                        <h3 className="text-lg font-semibold text-dark-brown">Rytmika</h3>
+                        <h3 className="text-lg font-semibold text-dark-brown">Śpiewające Skrzaty</h3>
                         <span className="text-xs bg-cream text-dark-brown px-2 py-1 rounded-full">3–4 lata</span>
                       </div>
-                      <p className="text-chocolate mt-3 text-sm leading-relaxed">Zajęcia rytmiczne rozwijają poczucie tempa i melodii, uczą reagowania na zmiany w muzyce i pozwalają wyrażać się przez ruch.</p>
+                      <p className="text-chocolate mt-3 text-sm leading-relaxed">Zajęcia umuzykalniające rozwijają poczucie tempa i melodii, uczą reagowania na zmiany w muzyce i pozwalają wyrażać się przez ruch.</p>
                       <h4 className="font-medium text-dark-brown mt-4">Korzyści</h4>
                       <ul className="mt-2 text-chocolate text-sm space-y-1 list-inside">
                         <li>rozwój pamięci i wyobraźni muzycznej</li>
@@ -271,7 +275,7 @@ const BookClasses = () => {
                     </div>
                     <div className="flex-1">
                       <div className="flex items-center justify-between">
-                        <h3 className="text-lg font-semibold text-dark-brown">Rytmika</h3>
+                        <h3 className="text-lg font-semibold text-dark-brown">Muzyczni Odkrywcy</h3>
                         <span className="text-xs bg-cream text-dark-brown px-2 py-1 rounded-full">5–6 lat</span>
                       </div>
                       <p className="text-chocolate mt-3 text-sm leading-relaxed">Na zajęciach dzieci rozwijają poczucie rytmu i melodii, uczą się prostych układów tanecznych i tworzą własne muzyczne pomysły.</p>
@@ -288,14 +292,36 @@ const BookClasses = () => {
             </div>
 
             <aside className="hidden md:block">
+              <a
+                  href="https://nextvisit.pl/spiewolandia-naxvav1smnyhcizq"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="block bg-golden hover:bg-sunset text-white text-center px-6 py-4 rounded-full font-semibold text-lg mb-8"
+                >
+                  Zarezerwuj teraz
+                </a>
               <div className="sticky top-24 p-6 bg-cream rounded-2xl border border-cream shadow-card">
+                
                 <h4 className="font-semibold text-dark-brown mb-3">✨ Dlaczego warto wybrać nasze zajęcia?</h4>
-                <p className="text-chocolate mb-4">Muzyka to naturalny język dziecka. Regularny kontakt z nią wspiera rozwój mowy, pamięci, koncentracji i kreatywności. Gordonki i rytmika to inwestycja w harmonijny rozwój i doskonała zabawa.</p>
+                <p className="text-chocolate mb-4">Muzyka to naturalny język dziecka. Regularny kontakt z nią wspiera rozwój mowy, pamięci, koncentracji i kreatywności. Zajęcia umuzykalniające to inwestycja w harmonijny rozwój i doskonała zabawa.</p>
                 <ul className="list-inside text-chocolate ml-3 space-y-2">
                   <li>Małe grupy i indywidualne podejście</li>
                   <li>Bezpieczna, ciepła atmosfera</li>
                   <li>Doświadczona kadra pedagogiczna</li>
                 </ul>
+
+                <div className="mt-6 pt-4 border-t border-cream/60">
+                  <h4 className="font-serif text-lg font-bold text-dark-brown mb-2">Miejsca zajęć</h4>
+                  <p className="text-chocolate text-sm mb-2">
+                    Zajęcia odbywają się w lokalu <strong>Kredka i Balon</strong> w Łęczycy — ul. <em>Kaliska 40</em>.
+                  </p>
+                  <p className="text-chocolate text-sm">
+                    Trwają prace nad uruchomieniem zajęć w <strong>Ozorkowie</strong>. Na stronie pojawią się informacje, gdy potwierdzimy terminy i miejsce.
+                  </p>
+
+                  <h4 className="font-serif text-sm font-semibold text-dark-brown mt-4 mb-1">Kontakt lokalny</h4>
+                  <p className="text-chocolate text-sm">Województwo: <strong>łódzkie</strong> — Łęczyca i Ozorków</p>
+                </div>
               </div>
             </aside>
           </div>

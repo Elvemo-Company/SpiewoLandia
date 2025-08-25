@@ -822,22 +822,6 @@ const WeddingServices = () => {
         </div>
       </section>
 
-
-      {/* Testimonials */}
-      <section className="py-16 lg:py-24 bg-gradient-to-b from-cream to-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="font-serif text-h2-mobile lg:text-h2-desktop font-bold text-dark-brown mb-4">
-              Opinie Par Młodych
-            </h2>
-          </div>
-
-          <div className="flex justify-center">
-            <WzkWidget />
-          </div>
-        </div>
-      </section>  
-
       {/* Booking CTA */}
       <section className="py-16 lg:py-24 bg-gradient-to-r from-golden to-sunset">
         <div className="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">

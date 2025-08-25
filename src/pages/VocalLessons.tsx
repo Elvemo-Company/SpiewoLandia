@@ -1,7 +1,11 @@
-import React, { useState } from 'react';
-import { Clock, CheckCircle, Calendar, Play, Star, Music } from 'lucide-react';
-// Import pliku audio
-import notaAudio from '../assets/audio/nuta.mp3';
+import React, { useEffect, useRef } from 'react';
+import { Clock, CheckCircle, Calendar } from 'lucide-react';
+
+declare global {
+  interface Window {
+    WzkWidget?: { init?: () => void } | any;
+  }
+}
 
 const VocalHero = () => (
   <section className="relative h-[600px] lg:h-[700px] flex items-center justify-center overflow-hidden">
@@ -35,136 +39,11 @@ const VocalHero = () => (
   </section>
 );
 
+
+
+
 const VocalLessons = () => {
-  const [selectedLevel, setSelectedLevel] = useState('beginner');
-  const [playingAudio, setPlayingAudio] = useState<string | null>(null);
-  const [currentTestimonial, setCurrentTestimonial] = useState(0);
-  const [touchStart, setTouchStart] = useState<number | null>(null);
-  const [touchEnd, setTouchEnd] = useState<number | null>(null);
-
-  const levels = [
-    {
-      id: 'kids8+',
-      name: 'Dzieci 8+',
-      description: 'Pierwsze kroki w śpiewie – zabawowo i merytorycznie',
-      duration: '45 min',
-      price: '—',
-      features: [
-        'Prawidłowe oddychanie i emisja głosu',
-        'Intonacja, dykcja i artykulacja',
-        'Różne style: pop, musical, klasyka',
-        'Praca z mikrofonem i ruchem scenicznym'
-      ]
-    },
-    {
-      id: 'youth',
-      name: 'Młodzież',
-      description: 'Rozwój techniki i interpretacji utworów',
-      duration: '60 min',
-      price: '—',
-      features: [
-        'Rozszerzanie skali i kontrola głosu',
-        'Różne gatunki: pop, rock, musical, jazz',
-        'Interpretacja i wyrażanie emocji',
-        'Praca sceniczna i mikrofonowa'
-      ]
-    },
-    {
-      id: 'adults',
-      name: 'Dorośli',
-      description: 'Kompleksowe wsparcie wokalne dla każdego poziomu',
-      duration: '60 min',
-      price: '—',
-      features: [
-        'Technika oddechowa i emisja',
-        'Praca nad stylem i repertuarem',
-        'Pewność siebie na scenie i w życiu',
-        'Nagrania próbne i przygotowanie do występów'
-      ]
-    }
-  ];
-
-  const sampleLessons = [
-    {
-      title: 'Oddychanie i emisja – podstawy',
-      duration: '3:24',
-      level: 'Dzieci 8+',
-      teacher: 'Instruktor'
-    },
-    {
-      title: 'Intonacja i dykcja w praktyce',
-      duration: '5:12',
-      level: 'Młodzież',
-      teacher: 'Instruktor'
-    },
-    {
-      title: 'Interpretacja i emocje w śpiewie',
-      duration: '4:38',
-      level: 'Dorośli',
-      teacher: 'Instruktor'
-    }
-  ];
-
-  const testimonials = [
-    {
-      name: 'Magdalena W.',
-      text: 'Zawsze marzyłam o śpiewaniu. Dzięki lekcjom z Anną odkryłam swój głos i zyskałam pewność siebie.',
-      rating: 5,
-      image: 'https://images.pexels.com/photos/415829/pexels-photo-415829.jpeg'
-    },
-    {
-      name: 'Tomasz K.',
-      text: 'Profesjonalne podejście i indywidualne tempo nauki. Polecam każdemu, kto chce rozwijać swoje umiejętności wokalne.',
-      rating: 5,
-      image: 'https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg'
-    }
-  ];
-
-  const handlePlayAudio = (audioId: string) => {
-    if (playingAudio === audioId) {
-      setPlayingAudio(null);
-      // Zatrzymaj odtwarzanie audio
-    } else {
-      setPlayingAudio(audioId);
-      // Odtwórz dźwięk nuta.mp3
-      try {
-        const audio = new Audio(notaAudio);
-        audio.volume = 0.5; // Ustaw głośność na 50%
-        audio.play().catch(error => {
-          console.log('Nie można odtworzyć dźwięku:', error);
-        });
-      } catch (error) {
-        console.log('Błąd przy odtwarzaniu audio:', error);
-      }
-    }
-  };
-
-  // Swipe handling for testimonials
-  const minSwipeDistance = 50;
-
-  const onTouchStart = (e: React.TouchEvent) => {
-    setTouchEnd(null);
-    setTouchStart(e.targetTouches[0].clientX);
-  };
-
-  const onTouchMove = (e: React.TouchEvent) => {
-    setTouchEnd(e.targetTouches[0].clientX);
-  };
-
-  const onTouchEnd = () => {
-    if (!touchStart || !touchEnd) return;
-    
-    const distance = touchStart - touchEnd;
-    const isLeftSwipe = distance > minSwipeDistance;
-    const isRightSwipe = distance < -minSwipeDistance;
-
-    if (isLeftSwipe && currentTestimonial < testimonials.length - 1) {
-      setCurrentTestimonial(currentTestimonial + 1);
-    }
-    if (isRightSwipe && currentTestimonial > 0) {
-      setCurrentTestimonial(currentTestimonial - 1);
-    }
-  };
+  // (testimonials removed — external widget used instead)
 
 
   return (
@@ -172,200 +51,110 @@ const VocalLessons = () => {
       {/* Hero Section */}
       <VocalHero />
 
-      {/* Lesson Levels */}
+      {/* Informacje o zajęciach (ogólne) */}
       <section className="py-12 lg:py-16 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <h2 className="font-serif text-h2-mobile lg:text-h2-desktop font-bold text-dark-brown mb-4">
-              Poziomy Zaawansowania
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-10">
+            <h2 className="font-serif text-h2-mobile lg:text-h2-desktop font-bold text-dark-brown mb-3">
+              Ogólne informacje
             </h2>
             <p className="text-lg text-chocolate max-w-2xl mx-auto">
-              Wybierz poziom dostosowany do Twoich umiejętności i celów
+              Zajęcia wokalne bez podziału na zaawansowanie — zapraszamy wszystkich, którzy
+              chcą śpiewać i rozwijać swoje umiejętności.
             </p>
           </div>
 
-          <div className="flex justify-center mb-6 overflow-x-auto scrollbar-hide">
-            <div className="flex space-x-3 px-12 lg:px-0 min-w-max lg:min-w-0">
-              {levels.map((level, idx) => (
-                <button
-                  key={level.id}
-                  onClick={() => setSelectedLevel(level.id)}
-                  className={`px-6 lg:px-6 py-3 rounded-full font-medium transition-all duration-300 whitespace-nowrap
-                    ${selectedLevel === level.id
-                      ? 'bg-golden text-white shadow-card-hover'
-                      : 'bg-cream text-chocolate hover:bg-golden hover:text-white'}
-                    ${idx === 0 ? 'ml-48 lg:ml-0' : ''}
-                  `}
-                >
-                  {level.name}
-                </button>
-              ))}
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <div className="lg:col-span-2 bg-cream rounded-2xl p-6 lg:p-8">
+              <h3 className="font-serif text-2xl font-bold text-dark-brown mb-4">Dla kogo</h3>
+              <p className="text-chocolate leading-relaxed mb-4">
+                Zajęcia wokalne są dla każdego, kto lubi śpiewać – niezależnie od wieku czy doświadczenia.
+                Zapraszamy zarówno tych, którzy dopiero zaczynają swoją przygodę z muzyką, jak i osoby,
+                które już od dawna śpiewają i chcą rozwijać swój talent. Do naszych zajęć można dołączyć od 8. roku życia – i nie ma górnej granicy! 🎶
+              </p>
+
+              <h4 className="font-semibold text-dark-brown mb-2">Jak wyglądają zajęcia?</h4>
+              <ul className="space-y-3 mb-4">
+                <li className="flex items-start">
+                  <CheckCircle className="h-5 w-5 text-soft-green mr-3 mt-0.5 flex-shrink-0" />
+                  <span className="text-chocolate">Uczymy się prawidłowej emisji głosu i oddychania</span>
+                </li>
+                <li className="flex items-start">
+                  <CheckCircle className="h-5 w-5 text-soft-green mr-3 mt-0.5 flex-shrink-0" />
+                  <span className="text-chocolate">Ćwiczymy intonację, dykcję i rytmikę</span>
+                </li>
+                <li className="flex items-start">
+                  <CheckCircle className="h-5 w-5 text-soft-green mr-3 mt-0.5 flex-shrink-0" />
+                  <span className="text-chocolate">Rozwijamy słuch muzyczny i poczucie rytmu</span>
+                </li>
+                <li className="flex items-start">
+                  <CheckCircle className="h-5 w-5 text-soft-green mr-3 mt-0.5 flex-shrink-0" />
+                  <span className="text-chocolate">Interpretujemy utwory w różnych stylach i pracujemy nad występami scenicznymi</span>
+                </li>
+                <li className="flex items-start">
+                  <CheckCircle className="h-5 w-5 text-soft-green mr-3 mt-0.5 flex-shrink-0" />
+                  <span className="text-chocolate">Zajęcia mogą być indywidualne lub grupowe – dostosowujemy formę do potrzeb</span>
+                </li>
+              </ul>
+
+              <h4 className="font-semibold text-dark-brown mb-2">Korzyści z zajęć wokalnych</h4>
+              <ul className="space-y-3">
+                <li className="flex items-start">
+                  <CheckCircle className="h-5 w-5 text-soft-green mr-3 mt-0.5 flex-shrink-0" />
+                  <span className="text-chocolate">Rozwój muzyczny i artystyczny</span>
+                </li>
+                <li className="flex items-start">
+                  <CheckCircle className="h-5 w-5 text-soft-green mr-3 mt-0.5 flex-shrink-0" />
+                  <span className="text-chocolate">Wzmocnienie pewności siebie i swobody wyrażania emocji</span>
+                </li>
+                <li className="flex items-start">
+                  <CheckCircle className="h-5 w-5 text-soft-green mr-3 mt-0.5 flex-shrink-0" />
+                  <span className="text-chocolate">Poprawa dykcji i pracy głosem</span>
+                </li>
+                <li className="flex items-start">
+                  <CheckCircle className="h-5 w-5 text-soft-green mr-3 mt-0.5 flex-shrink-0" />
+                  <span className="text-chocolate">Ćwiczenie koncentracji i pamięci</span>
+                </li>
+                <li className="flex items-start">
+                  <CheckCircle className="h-5 w-5 text-soft-green mr-3 mt-0.5 flex-shrink-0" />
+                  <span className="text-chocolate">Świetna zabawa i nowe znajomości</span>
+                </li>
+              </ul>
             </div>
-          </div>
 
-          <style dangerouslySetInnerHTML={{
-            __html: `
-              .scrollbar-hide {
-                -ms-overflow-style: none;
-                scrollbar-width: none;
-              }
-              .scrollbar-hide::-webkit-scrollbar {
-                display: none;
-              }
-            `
-          }} />
-
-          <div className="max-w-4xl mx-auto">
-            {levels.map((level) => (
-              <div
-                key={level.id}
-                className={`transition-all duration-500 ${
-                  selectedLevel === level.id ? 'opacity-100 block' : 'opacity-0 hidden'
-                }`}
-              >
-                <div className="bg-cream rounded-2xl p-6 lg:p-8">
-                  <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
-                    <div>
-                      <h3 className="font-serif text-2xl lg:text-3xl font-bold text-dark-brown mb-4">
-                        {level.name}
-                      </h3>
-                      <p className="text-chocolate text-lg mb-6 leading-relaxed">
-                        {level.description}
-                      </p>
-                      <div className="flex items-center justify-between mb-6 bg-white/60 rounded-lg p-4">
-                        <div className="flex items-center">
-                          <Clock className="h-5 w-5 text-golden mr-2" />
-                          <span className="text-chocolate">{level.duration}</span>
-                        </div>
-                        <span className="text-2xl font-bold text-golden">{level.price}</span>
-                      </div>
-                      <ul className="space-y-3">
-                        {level.features.map((feature, index) => (
-                          <li key={index} className="flex items-start">
-                            <CheckCircle className="h-5 w-5 text-soft-green mr-3 mt-0.5 flex-shrink-0" />
-                            <span className="text-chocolate">{feature}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                    <div className="text-center">
-                      <div className="bg-white/40 rounded-xl p-6 lg:p-8">
-                      <div className="hidden lg:flex justify-center mb-6">
-                        <div className="w-20 h-20 bg-golden rounded-full flex items-center justify-center">
-                          <Music className="h-10 w-10 text-white" />
-                        </div>
-                      </div>
-                        <h4 className="hidden lg:block font-serif text-lg lg:text-xl font-bold text-dark-brown mb-4 lg:mb-6">
-                          Rozpocznij Teraz
-                        </h4>
-                        <button className="bg-golden hover:bg-sunset text-white px-6 lg:px-8 py-3 lg:py-4 rounded-full font-medium text-base lg:text-lg transition-all duration-300 transform hover:scale-105 w-full mb-3 lg:mb-4">
-                          Zarezerwuj Lekcję
-                        </button>
-                        <p className="text-xs lg:text-sm text-soft-green font-medium">
-                          -20% na pierwszą lekcję
-                        </p>
-                      </div>
-                    </div>
+            <aside className="bg-white rounded-2xl p-6 lg:p-8 flex flex-col justify-between">
+              <div>
+                <div className="mb-6">
+                  <a
+                    href="https://nextvisit.pl/spiewolandia-naxvav1smnyhcizq"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="bg-golden hover:bg-sunset text-white px-6 py-3 rounded-full font-medium text-base w-full inline-block text-center transition-all duration-300">
+                    Umów Pierwszą Lekcję
+                  </a>
+                </div>
+                
+                <h4 className="font-serif text-lg font-bold text-dark-brown mb-3">Godziny</h4>
+                <div className="flex items-center text-chocolate mb-2">
+                  <Clock className="h-5 w-5 text-golden mr-3" />
+                  <div>
+                    <div>Pon–Pt: 8:00 – 21:30</div>
+                    <div>Sob: 8:00 – 14:00</div>
                   </div>
                 </div>
+
+                <h4 className="font-serif text-lg font-bold text-dark-brown mt-6 mb-3">Kontakt</h4>
+                <a href="mailto:spiewolandia.info@gmail.com" className="text-chocolate underline">spiewolandia.info@gmail.com</a>
               </div>
-            ))}
+
+                
+            </aside>
           </div>
         </div>
       </section>
 
-      {/* Testimonials */}
-      <section className="py-16 lg:py-24 bg-gradient-to-b from-cream to-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="font-serif text-h2-mobile lg:text-h2-desktop font-bold text-dark-brown mb-4">
-              Opinie Uczniów
-            </h2>
-          </div>
-
-          {/* Mobile: Carousel with pagination */}
-          <div className="lg:hidden">
-            <div className="relative">
-              <div 
-                className="overflow-hidden"
-                onTouchStart={onTouchStart}
-                onTouchMove={onTouchMove}
-                onTouchEnd={onTouchEnd}
-              >
-                <div 
-                  className="flex transition-transform duration-300 ease-in-out"
-                  style={{ transform: `translateX(-${currentTestimonial * 100}%)` }}
-                >
-                  {testimonials.map((testimonial, index) => (
-                    <div
-                      key={index}
-                      className="w-full flex-shrink-0 px-4"
-                    >
-                      <div className="bg-white rounded-lg p-6 shadow-card mx-auto max-w-sm">
-                        <div className="flex items-center mb-4">
-                          {Array.from({ length: testimonial.rating }).map((_, starIndex) => (
-                            <Star key={starIndex} className="h-4 w-4 text-golden fill-current" />
-                          ))}
-                        </div>
-                        <p className="text-chocolate mb-4 italic">"{testimonial.text}"</p>
-                        <div className="flex items-center">
-                          <img
-                            src={testimonial.image}
-                            alt={testimonial.name}
-                            className="w-10 h-10 rounded-full object-cover mr-3"
-                          />
-                          <span className="font-semibold text-dark-brown">{testimonial.name}</span>
-                        </div>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-              
-              {/* Pagination dots */}
-              <div className="flex justify-center mt-6 space-x-2">
-                {testimonials.map((_, index) => (
-                  <button
-                    key={index}
-                    onClick={() => setCurrentTestimonial(index)}
-                    className={`w-3 h-3 rounded-full transition-all duration-300 ${
-                      index === currentTestimonial 
-                        ? 'bg-golden scale-125' 
-                        : 'bg-chocolate/30 hover:bg-chocolate/50'
-                    }`}
-                    aria-label={`Przejdź do opinii ${index + 1}`}
-                  />
-                ))}
-              </div>
-            </div>
-          </div>
-
-          {/* Desktop: Grid */}
-          <div className="hidden lg:grid lg:grid-cols-2 gap-8">
-            {testimonials.map((testimonial, index) => (
-              <div
-                key={index}
-                className="bg-white rounded-lg p-6 shadow-card hover:shadow-card-hover transition-all duration-300"
-              >
-                <div className="flex items-center mb-4">
-                  {Array.from({ length: testimonial.rating }).map((_, starIndex) => (
-                    <Star key={starIndex} className="h-4 w-4 text-golden fill-current" />
-                  ))}
-                </div>
-                <p className="text-chocolate mb-4 italic">"{testimonial.text}"</p>
-                <div className="flex items-center">
-                  <img
-                    src={testimonial.image}
-                    alt={testimonial.name}
-                    className="w-10 h-10 rounded-full object-cover mr-3"
-                  />
-                  <span className="font-semibold text-dark-brown">{testimonial.name}</span>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+      {/* External reviews widget */}
+      <ExternalReviews />
 
       {/* CTA Section */}
       <section className="py-16 lg:py-24 bg-gradient-to-r from-golden to-sunset">
@@ -395,6 +184,201 @@ const VocalLessons = () => {
           </div>
         </div>
       </section>
+    </div>
+  );
+};
+
+
+const ExternalReviews = () => {
+  const containerRef = useRef<HTMLDivElement | null>(null);
+  const scriptRef = useRef<HTMLScriptElement | null>(null);
+  const observerRef = useRef<MutationObserver | null>(null);
+
+  useEffect(() => {
+    const id = 'wzk-widget-script';
+    const baseSrc = 'https://widgets.4wzk.pl/dist/js/widget.js';
+
+    const cleanWidgetNodes = () => {
+      // remove iframes and dynamically added nodes inside widget container
+      try {
+        const containers = document.querySelectorAll('.wzk-widget');
+        containers.forEach((c) => {
+          const iframes = c.querySelectorAll('iframe');
+          iframes.forEach((f) => f.remove());
+          // also remove children except the header anchor/img we render statically
+          Array.from(c.children).forEach((child) => {
+            if (child !== containerRef.current?.firstElementChild) {
+              // leave our static header (first child), remove others
+              child.remove();
+            }
+          });
+        });
+      } catch (e) {
+        // ignore
+      }
+    };
+
+    const removeScript = () => {
+      const prev = document.getElementById(id);
+      if (prev) prev.remove();
+      if (scriptRef.current && scriptRef.current.parentNode) {
+        scriptRef.current.parentNode.removeChild(scriptRef.current);
+        scriptRef.current = null;
+      }
+    };
+
+    const waitForIframe = (timeout = 2500) =>
+      new Promise<boolean>((resolve) => {
+        if (!containerRef.current) return resolve(false);
+        const c = containerRef.current;
+        // quick check
+        if (c.querySelector('iframe')) return resolve(true);
+
+        const obs = new MutationObserver(() => {
+          if (c.querySelector('iframe')) {
+            resolve(true);
+            obs.disconnect();
+          }
+        });
+        observerRef.current = obs;
+        obs.observe(c, { childList: true, subtree: true });
+
+        // timeout fallback
+        setTimeout(() => {
+          try {
+            obs.disconnect();
+          } catch {}
+          resolve(!!c.querySelector('iframe'));
+        }, timeout);
+      });
+
+    const tryInitGlobal = () => {
+      try {
+        if ((window as any).WzkWidget && typeof (window as any).WzkWidget.init === 'function') {
+          (window as any).WzkWidget.init();
+        }
+      } catch (e) {
+        // ignore
+      }
+    };
+
+    const loadScript = async (cacheBust = false) => {
+      // If widget global exists, try to init first instead of reloading script
+      if (!cacheBust && (window as any).WzkWidget) {
+        tryInitGlobal();
+        // wait a moment for DOM changes
+        let ok = await waitForIframe(1000);
+        if (!ok) {
+          // retry init a few times
+          for (let i = 0; i < 3 && !ok; i++) {
+            await new Promise((r) => setTimeout(r, 700));
+            tryInitGlobal();
+            ok = !!(containerRef.current && containerRef.current.querySelector('iframe'));
+            if (ok) break;
+          }
+        }
+        if (ok) return;
+        // fallthrough to reload script with cacheBust
+        cacheBust = true;
+      }
+
+      // remove previous script and widget nodes before loading
+      removeScript();
+      cleanWidgetNodes();
+
+      const src = cacheBust ? `${baseSrc}?ts=${Date.now()}` : baseSrc;
+      const s = document.createElement('script');
+      s.src = src;
+      s.defer = true;
+      s.id = id;
+      scriptRef.current = s;
+      document.body.appendChild(s);
+
+      // wait for script load or short timeout
+      await new Promise((res) => {
+        const t = setTimeout(res, 2000);
+        s.onload = () => {
+          clearTimeout(t);
+          res(undefined);
+        };
+        s.onerror = () => {
+          clearTimeout(t);
+          res(undefined);
+        };
+      });
+
+      // attempt to init if widget exposes API
+      tryInitGlobal();
+
+      // wait shortly for iframe to be inserted
+      const ok = await waitForIframe(2000);
+      if (!ok && !cacheBust) {
+        // retry once with cache-busting
+        await loadScript(true);
+      }
+    };
+
+    // kick off loader
+    loadScript(false).catch(() => {});
+
+    return () => {
+      // cleanup
+      try {
+        if (observerRef.current) observerRef.current.disconnect();
+      } catch {}
+      removeScript();
+      // remove any iframes added
+      try {
+        const containers = document.querySelectorAll('.wzk-widget');
+        containers.forEach((c) => {
+          const iframes = c.querySelectorAll('iframe');
+          iframes.forEach((f) => f.remove());
+        });
+      } catch {}
+    };
+  }, []);
+
+  return (
+    <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 mt-10">
+      <div
+        ref={containerRef}
+        style={{
+          width: '1000px',
+          maxWidth: '100%',
+          borderRadius: 8,
+          boxShadow: '0 1px 6px #B8C5D366',
+          overflow: 'hidden',
+        }}
+        className="wzk-widget iframe-height"
+        data-wzk-widget-type="type1"
+        data-wzk-notice="60060"
+      >
+        <div
+          style={{
+            backgroundColor: '#F5F6FA',
+            textAlign: 'center',
+            padding: 16,
+            fontSize: 12,
+            lineHeight: '12px',
+          }}
+        >
+          <a
+            className="wzk-accent-color"
+            title="Wiktoria Kicińska"
+            href="https://www.weselezklasa.pl/ogloszenia-weselne/wiktoria-kicinska,60060/#opinie"
+            rel="nofollow"
+            target="_blank"
+            style={{ color: 'currentColor', textDecoration: 'none' }}
+          >
+            Wiktoria Kicińska
+          </a>
+          <img
+            style={{ margin: '8px auto 0', display: 'block' }}
+            src="https://widgets.4wzk.pl/dist/img/footer-logo.svg"
+            alt="Wesele z klasą"
+          />
+        </div>
+      </div>
     </div>
   );
 };
